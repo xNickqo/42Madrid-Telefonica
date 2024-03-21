@@ -6,9 +6,11 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:14:06 by niclopez          #+#    #+#             */
-/*   Updated: 2024/02/21 20:36:49 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:04:46 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 /*La funcion strstr() busca la palabra o coincidencia "to_find" dentro de
  * la cadena "str", si la cencuentra te devolvera la primera palabra 

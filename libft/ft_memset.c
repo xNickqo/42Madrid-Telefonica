@@ -6,12 +6,13 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 16:15:37 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/20 17:06:51 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:52:28 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
+#include "libft.h"
 
 /*Esta funcion llenara el dest[] con el value y el tamaño establecido
  *
@@ -25,7 +26,7 @@
 void	*ft_memset(void *dest, int value, size_t len)
 {
 	unsigned char	*temp;
-	int	i;
+	size_t			i;
 
 	temp = dest;
 	i = 0;
@@ -64,6 +65,7 @@ int	main(void)
 
 	for (int y = 0; y < len1; y++)
 	{
-									                		printf("%d ", dest1[y]);								printf("\n");
+		printf("%d ", dest1[y]);
+		printf("\n");
 	}
 }*/

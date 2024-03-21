@@ -6,12 +6,13 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 00:24:12 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/20 00:36:41 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:49:56 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <ctype.h>
+#include "libft.h"
 
 int	ft_isalnum(int c)
 {
@@ -19,7 +20,7 @@ int	ft_isalnum(int c)
 		return (1);
 	return (0);
 }
-
+/*
 int	main(void)
 {
 	char	c = 'a';
@@ -40,4 +41,4 @@ int	main(void)
 
 	int     reso = isalnum(c);
 	printf("El resultado de mi funcion es: %d\n", reso);
-}
+}*/

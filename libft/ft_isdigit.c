@@ -6,12 +6,13 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 23:49:13 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/20 00:23:44 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:22:04 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <ctype.h>
+#include "libft.h"
 
 int	ft_isdigit(int c)
 {

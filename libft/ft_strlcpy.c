@@ -6,30 +6,37 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:15:36 by niclopez          #+#    #+#             */
-/*   Updated: 2024/02/17 17:14:37 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:54:00 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "libft.h"
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+unsigned int	ft_strlcpy(char *dest, const char *src, size_t destsize)
 {
-	unsigned int	i;
+	size_t	i;
+	size_t	n;
+	size_t	count;
 
-	i = 0;
-	while (i < size && src[i] != '\0')
+	if (dest == 0 && destsize == 0)
+		return (0);
+	if (destsize < (size_t)ft_strlen(dest))
+		return (destsize + (size_t)ft_strlen((char *)src));
+	i = ft_strlen(dest);
+	n = 0;
+	count = ft_strlen(dest) + ft_strlen((char *)src);
+	while ((i < destsize - 1) && src[n] != '\0')
 	{
-		dest[i] = src[i];
+		dest[i] = src[n];
+		n++;
 		i++;
 	}
 	dest[i] = '\0';
-	while (src[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+	return (count);
 }
-/*int main(void){
+/*
+int main(void){
 	char origen[15] = "Manuela";
 	char destino[20] = "Adios";
 	int x;
