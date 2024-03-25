@@ -6,11 +6,11 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:06:19 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/24 15:09:05 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/03/25 17:18:41 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-nclude <stdio.h>
+#include <stdio.h>
 #include <string.h>
 
 /*La funcion memcmp() n bytes de los strings s1 y s2 sin tener en cuenta la
