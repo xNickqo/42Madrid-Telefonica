@@ -1,12 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 14:59:43 by niclopez          #+#    #+#             */
+/*   Updated: 2024/03/29 16:17:33 by niclopez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+/*Reserva con malloc() y devuelve una nueva string, formada por la
+ * concatenacion de s1 y s2*/
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
 	char	*res = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (res == 0)
+	if (res == '\0')
 		return (0);
 
 	i = 0;
@@ -24,11 +39,11 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	res[ft_strlen(s1) + i] = '\0';
 	return (res);
 }
-
+/*
 int	main(void)
 {
 	char	*s1 = "hola";
 	char	*s2 = "mundo";
 	char	*res = ft_strjoin(s1, s2);
 	printf("%s\n", res);
-}
+}*/
