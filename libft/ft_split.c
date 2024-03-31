@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:59:04 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/30 18:37:17 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/03/31 21:54:48 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ int	count_substr(const char *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	int	num_str;
-	int	index;
-	int	len;
+	int		num_str;
+	int		index;
+	int		len;
 	const char	*start;
+	char		**split;
 
 	num_str = count_substr(s, c);
-
-	char	**split = (char **)malloc(num_str + 1);
+	(char **)malloc(num_str + 1);
 	if (!split)
 		return (0);
 	index = 0;
@@ -81,18 +81,16 @@ char	**ft_split(char const *s, char c)
 		}
 		s++;
 	}
-	
 	if (len > 0)
 	{
 		split[index] = (char *)malloc(len + 1);
 		ft_strlcpy(split[index], start, len + 1);
 		index++;
 	}
-
 	split[index] = NULL;
 	return (split);
 }
-
+/*
 int	main(void)
 {
 	char	s[] = "Hello, World, This, is, an, Example";
@@ -106,11 +104,4 @@ int	main(void)
 		printf("%s\n", res[i]);
 		i++;
 	}
-	//Output
-	//Hello
-	//world
-	//this
-	//is
-	//an
-	//example
-}
+}*/

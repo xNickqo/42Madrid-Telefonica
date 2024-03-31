@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 14:14:06 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/25 17:22:04 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/03/31 21:50:26 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
  * coincidente y si no encuentra ninguna coincidencia devolera null(0)*/
 char	*ft_strstr(char *str, char *to_find, size_t len)
 {
-	size_t	str_len = ft_strlen(str);
-	size_t	to_find_len = ft_strlen(to_find);
+	size_t	str_len;
+	size_t	to_find_len;
 	size_t	i;
 	size_t	j;
 
+	str_len = ft_strlen(str);
+	to_find_len = ft_strlen(to_find);
 	i = 0;
 	if (to_find_len == 0)
 	{

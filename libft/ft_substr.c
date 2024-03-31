@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 15:00:57 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/29 15:47:13 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/03/31 21:52:49 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,24 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	if (s == '\0')
-		return (0);
-
+	size_t	sub_len;
 	size_t	s_len;
+	char	*sub;
 
 	s_len = ft_strlen(s);
-
-	//Verificamos si start >= que la longitud de la cadena
+	if (s == '\0')
+		return (0);
 	if (start >= s_len)
 		return (0);
-
-	//Calcular la longitud de la subcadena
-	size_t	sub_len;
-
-	sub_len = len 
-	//sub_len = (len < s_len - start) ? len : (s_len - start);
-
-	//Asignar memoria para la subcadena
-	char	*sub = (char *)malloc(s_len + 1);
+	sub_len = len;
+	(char *)malloc(s_len + 1);
 	if (sub == '\0')
 		return (0);
-
-	//Copia la subcadena desde la cadena de origen
 	ft_memcpy(sub, s + start, sub_len);
 	sub[sub_len] = '\0';
-
 	return (sub);
 }
-
+/*
 int	main(void)
 {
 	char	*original = "Nico es guapo y perni tambien";
@@ -62,4 +51,4 @@ int	main(void)
 	}else{
 		printf("Error");
 	}
-}
+}*/

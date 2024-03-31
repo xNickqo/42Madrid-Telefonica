@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:06:19 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/25 17:18:41 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/03/31 21:59:06 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
  *  * terminacion nula, esa es la principal diferencia entre esta funcion y
  *   * strncmp()*/
 
-int     ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	const unsigned char     *temp1;
-	const unsigned char     *temp2;
-	size_t                  i;
-	
+	const unsigned char	*temp1;
+	const unsigned char	*temp2;
+	size_t			i;
+
 	temp1 = s1;
 	temp2 = s2;
 	i = 0;
 	while (i < n)
 	{
 		if (temp1[i] != temp2[i])
-	                return (temp1[i] - temp2[i]);
+			return (temp1[i] - temp2[i]);
 		i++;
 	}
 	return (0);
