@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:59:04 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/31 21:54:48 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:09:58 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ char	**ft_split(char const *s, char c)
 	char		**split;
 
 	num_str = count_substr(s, c);
-	(char **)malloc(num_str + 1);
+	split = (char **)malloc(num_str + 1);
 	if (!split)
-		return (0);
+		return (NULL);
 	index = 0;
 	len = 0;
 	start = s;
@@ -90,7 +90,7 @@ char	**ft_split(char const *s, char c)
 	split[index] = NULL;
 	return (split);
 }
-/*
+
 int	main(void)
 {
 	char	s[] = "Hello, World, This, is, an, Example";
@@ -104,4 +104,4 @@ int	main(void)
 		printf("%s\n", res[i]);
 		i++;
 	}
-}*/
+}

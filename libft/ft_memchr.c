@@ -6,31 +6,33 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:10:45 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/24 15:47:47 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:09:18 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
-#include <string.h>
-#include <stddef.h>
 
 /*La funcion escanea n bytes del area de memoria de str[] y si encuentra
  * el caracter c devuelve un puntero a la direccion de memoria donde lo
  * ha encontrado, sino encuentra ninguna ocurrencia devuelve NULL*/
 
-char	*ft_memchr(const char *str, int c, size_t n)
+void	*ft_memchr(const void *str, int c, size_t n)
 {
 	size_t	i;
+	char	*str_temp;
+	char	c_char;
 
 	i = 0;
+	c_char = (char)c;
 	while (i < n)
 	{
-		if (str[i] == c)
-			return ((char *)str + i);
+		str_temp = (char *)str++;
+		if (*str_temp == c_char)
+			return ((void *)str_temp);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
 /*
 int	main(void)

@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 17:08:42 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/21 17:23:12 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/05 19:03:23 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 /*La funcion strrchr() es identica a strchr(), solo que devolviendo un puntero
  * a la ultima ocurrencia del caracter c en la cadena s*/
 
+
 char	*ft_strrchr(const char *str, int c)
 {
 	int		i;
 	char	*last_ocurrence;
-
+	
+	c = (char)c;
 	i = 0;
 	last_ocurrence = 0;
 	while (str[i] != '\0')

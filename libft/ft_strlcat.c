@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 17:35:44 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/21 15:26:09 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/03 17:01:14 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 #include <string.h>
 #include "libft.h"
 
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	len_dest;
-	unsigned int	len_src;
+	size_t	i;
+	size_t	j;
+	size_t	len_dest;
+	size_t	len_src;
 
 	i = 0;
 	j = 0;

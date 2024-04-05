@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 16:18:56 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/21 16:52:58 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/05 19:03:39 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*ft_strchr(const char *str, int c)
 	int	i;
 
 	i = 0;
+	c = (char)c;
 	while (str[i] != '\0')
 	{
 		if (str[i] == c)
@@ -32,7 +33,7 @@ char	*ft_strchr(const char *str, int c)
 		i++;
 	}
 	if (c == '\0')
-		return ((char *)str + ft_strlen((char *)str));
+		return ((char *)str + ft_strlen(str));
 	return (0);
 }
 /*

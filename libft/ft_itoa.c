@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 20:33:46 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/31 22:02:29 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:00:14 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,45 @@
 /*Esta funcion convierte un numero en un string reservando memoria con 
  * malloc()*/
 
+static unsigned int	number_len(int temp)
+{
+	unsigned int	len;
+
+	len = 0;
+	if (temp <= 0)
+		len = 1;
+	else
+		len = 0;
+	while (temp != 0)
+	{
+		temp /= 10;
+		len++;
+	}
+	return (len);
+}
+
 char	*ft_itoa(int n)
 {
 	char	*res;
-	int	len;
-	int	signo;
-	int	temp;
+	unsigned int	len;
+	unsigned long	temp;
 
-	temp = n;
-	len = 1;
-	while (temp /= 10)
-		len++;
+	len = number_len(n);
 	res = (char *)malloc(len + 1);
 	if (res == NULL)
 		return (NULL);
-	signo = 1;
-	if (n < 0)
-	{
-		signo = -1;
-		temp = -n;
-		len++;
-	}
 	res[len] = '\0';
-	while (len-- > 0)
+	temp = 0;
+	if (n < 0)
+		temp = -(long)n;
+	else
+		temp = n;
+	while (len > 0)
 	{
-		res[len] = '0' + (n % 10) * signo;
-		n /= 10;	
+		res[--len] = '0' + (temp % 10);
+		temp /= 10;
 	}
-	if (signo == -1)
+	if (n < 0 && len == 0)
 		res[0] = '-';
 	return (res);
 }
@@ -53,6 +64,6 @@ char	*ft_itoa(int n)
 int	main(void)
 {
 	char	*res;
-	res = ft_itoa(2147483648);
+	res = ft_itoa(-10004);
 	printf("%s\n", res);
 }*/
