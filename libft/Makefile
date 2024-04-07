@@ -4,8 +4,12 @@ NAME = libft.a
 # Todos los archivos ft_*.c
 SRCS = $(wildcard ft_*.c)
 
+# Archivos ft_*_bonus.c
+BONUS_SRCS = $(wildcard ft_*_bonus.c)
+
 # Objetos generados a partir de los archivos fuente
 OBJS = $(SRCS:.c=.o)
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
 # Compilador
 CC = gcc
@@ -15,8 +19,13 @@ CFLAGS = -Wall -Wextra -Werror
 
 # Reglas
 
-# Construye la libreria
+# Construye la libreria principal
 all: $(NAME)
+
+# Construye la libreria bonus
+bonus: $(NAME) $(BONUS_OBJS)
+	ar rc $(NAME) $(BONUS_OBJS)
+	ranlib $(NAME)
 
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
@@ -28,7 +37,7 @@ $(NAME): $(OBJS)
 
 # Elimina los archivos objeto
 clean:
-	rm -rf *.o
+	rm -rf $(OBJS) $(BONUS_OBJS) 
 
 # Elimina tanto los objetos como la libreria
 fclean: clean
@@ -38,5 +47,5 @@ fclean: clean
 re: fclean all
 
 # Indica que las reglas no son archivos reales
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
 

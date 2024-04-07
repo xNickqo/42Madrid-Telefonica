@@ -6,15 +6,16 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:25:10 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/05 18:13:42 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/07 16:27:13 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H	
 # define LIBFT_H
 
-# include <stdio.h>
-# include <unistd.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 //Prototipos de las funciones
 //Parte1
@@ -55,4 +56,19 @@ void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 
+//BONUS
+typedef struct s_list
+{
+	void		*content;
+	struct	s_list	*next;
+}			t_list;
+
+t_list	*ft_lstnew(void content);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+int	ft_lstsize(t_list *lst);
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void  (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void));
 #endif
