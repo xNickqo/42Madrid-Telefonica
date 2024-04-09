@@ -72,5 +72,5 @@ t_list	*ft_lstlast_bonus(t_list *lst);
 void	ft_lstadd_back_bonus(t_list **lst, t_list *new);
 void	ft_lstdelone_bonus(t_list *lst, void (*del)(void *));
 void	ft_lstclear_bonus(t_list **lst, void  (*del)(void *));
-void	ft_lstiter_bonus(t_list *lst, void (*f)(void));
+void    ft_lstiter_bonus(t_list *lst, void (*f)(void *));
 #endif
