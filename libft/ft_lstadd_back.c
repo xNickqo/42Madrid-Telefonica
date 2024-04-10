@@ -1,37 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 17:04:35 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/03 19:50:44 by niclopez         ###   ########.fr       */
+/*   Created: 2024/04/10 18:00:06 by niclopez          #+#    #+#             */
+/*   Updated: 2024/04/10 18:04:56 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-/*Copia "len" bytes de "src" en "dest". El comportamiento no esta definido
- * si la copia tiene lugar entre objetos que se solapan. La funcion memmove
- * permite copiar entre objetos que pueden solaparse. */
+/*Añade el nodo 'new' al final de la lista 'lst'*/
 
-void	*ft_memcpy(void *dest, const void *src, size_t len)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	char		*d;
-	const char	*s;
-	size_t		i;
+	t_list	*last;
 
-	i = 0;
-	if (!dest && !src)
-		return (dest);
-	d = (char *)dest;
-	s = (char *)src;
-	while (i < len)
+	if (new != NULL)
 	{
-		d[i] = s[i];
-		i++;
+		if (*lst == 0)
+			*lst = new;
+		else
+		{
+			last = ft_lstlast(*lst);
+			last->next = new;
+		}
 	}
-	return (dest);
 }
+/*
+int main(void)
+{
+    t_list  *lst = NULL;
+    lst = ft_lstnew("principio");
+    
+    t_list  *last = ft_lstnew("final");
+    ft_lstadd_back(&lst, last);
+
+    printlst(lst);
+}*/

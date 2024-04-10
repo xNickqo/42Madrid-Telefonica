@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "libft.h"
-
 #include <string.h>
 
 /*Reserva utilizando malloc() un array de strings resultante de 
@@ -23,25 +22,25 @@
  * Debe devolver un array de nuevas strings resultante de la 
  * separacion y NULL si falla la reserva de memoria.*/
 
-int	count_substr(const char *s, char c)
+static int	count_substr(const char *s, char c)
 {
-	int	count;
-	int	in_sub;
+	int	i;
+	int	substr;
 
-	count = 0;
-	in_sub = 0;
+	i = 1;
+	substr = 0;
 	while (*s)
 	{
-		if (*s == c)
-			in_sub = 0;
-		else if (!in_sub)
+		if (*s != c && i == 0)
 		{
-			in_sub = 1;
-			count++;
+			substr++;
+			i = 1;
 		}
+		else if (*s == c && i == 1)
+			i = 0;
 		s++;
 	}
-	return (count);
+	return (substr + 1);
 }
 
 char	**ft_split(char const *s, char c)
@@ -90,7 +89,7 @@ char	**ft_split(char const *s, char c)
 	split[index] = NULL;
 	return (split);
 }
-
+/*
 int	main(void)
 {
 	char	s[] = "Hello, World, This, is, an, Example";
@@ -104,4 +103,4 @@ int	main(void)
 		printf("%s\n", res[i]);
 		i++;
 	}
-}
+}*/

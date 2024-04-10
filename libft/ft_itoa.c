@@ -37,7 +37,7 @@ static unsigned int	number_len(int temp)
 
 char	*ft_itoa(int n)
 {
-	char	*res;
+	char			*res;
 	unsigned int	len;
 	unsigned long	temp;
 

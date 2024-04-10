@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 14:13:48 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/08 14:14:01 by niclopez         ###   ########.fr       */
+/*   Created: 2024/04/10 18:15:54 by niclopez          #+#    #+#             */
+/*   Updated: 2024/04/10 18:33:59 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
+#include <stdio.h>
 
-/*Añade el nodo 'new' al principio de la lista 'lst'*/
+/*Devuelve el ultimo nodo de la lista*/
 
-void    ft_lstadd_front_bonus(t_list **lst, t_list *new)
+t_list	*ft_lstlast(t_list *lst)
 {
-    new->next = *lst;
-    *lst = new;
+	if (lst == NULL)
+		return (NULL);
+	if (lst->next == NULL)
+		return (lst);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
-
-/*
-int main(void)
-{
-    t_list *lst = NULL;
-    lst = ft_lstnew_bonus("Hello");
-
-    t_list  *new = ft_lstnew_bonus("Primero");
-    
-    ft_lstadd_front_bonus(&lst, new);
-
-    printlst(lst);
-}*/

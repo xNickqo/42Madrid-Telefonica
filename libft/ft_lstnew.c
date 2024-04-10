@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:13:41 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/08 14:13:43 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:36:33 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,25 @@
 
     La variable miembro 'content' se inicializa
     con el contenido del parametro 'content'. La
-    variable 'next' con NULL
-    
-*/
+    variable 'next' con NULL*/
 
-t_list *ft_lstnew_bonus(void *content)
+t_list	*ft_lstnew(void *content)
 {
-    t_list *new;
-    new = (t_list *)malloc(sizeof(t_list));
-    if (!new)
-        return (NULL);
-    new->content = content;
-    new->next = NULL;
-    return (new);
-}
+	t_list	*new;
 
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
+}
 /*
 int main(void)
 {
-    t_list *new = ft_lstnew_bonus("Primero");
-    t_list *new2 = ft_lstnew_bonus("Segundo");
-    t_list *new3 = ft_lstnew_bonus("Tercero");
+    t_list *new = ft_lstnew("Primero");
+    t_list *new2 = ft_lstnew("Segundo");
+    t_list *new3 = ft_lstnew("Tercero");
 
     //Enlazar nodos
     new->next = new2;

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "libft.h"
 #include <stdio.h>
 #include <stddef.h>
@@ -18,17 +17,17 @@
 /*Itera una lista 'lst' y aplica la funcion 'f' en el contenido
 de cada nodo*/
 
-void    ft_lstiter_bonus(t_list *lst, void (*f)(void *))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-    if (!lst || !f)
-        return ; 
-    while (lst != NULL)
-    {
-        f(lst->content);
-        lst = lst->next;
-    }
+	if (lst && f)
+	{
+		while (lst != NULL)
+		{
+			f(lst->content);
+			lst = lst->next;
+		}
+	}
 }
-
 /*
 int	main(void)
 {
@@ -36,10 +35,10 @@ int	main(void)
     t_list *lst = NULL;
 
     // Añadimos nodos a la lista
-    lst = ft_lstnew_bonus("hello");
-    ft_lstadd_front_bonus(&lst, ft_lstnew_bonus("first"));
-    ft_lstadd_back_bonus(&lst, ft_lstnew_bonus("last"));
+    lst = ft_lstnew("hello");
+    ft_lstadd_front(&lst, ft_lstnew("first"));
+    ft_lstadd_back(&lst, ft_lstnew("last"));
 
-	ft_lstiter_bonus(lst, NULL);
+	ft_lstiter(lst, NULL);
 	printlst(lst);
 }*/

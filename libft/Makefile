@@ -1,15 +1,9 @@
 # Nombre del archivo de salida
 NAME = libft.a
 
-# Todos los archivos ft_*.c
-SRCS = $(wildcard ft_*.c)
+OBJS = ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o ft_memmove.o ft_strlcpy.o ft_strlcat.o ft_toupper.o ft_tolower.o ft_strchr.o ft_strrchr.o ft_strncmp.o ft_memchr.o ft_memcmp.o ft_strnstr.o ft_atoi.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o
 
-# Archivos ft_*_bonus.c
-BONUS_SRCS = $(wildcard ft_*_bonus.c)
-
-# Objetos generados a partir de los archivos fuente
-OBJS = $(SRCS:.c=.o)
-BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+OBJSBONUS = ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o
 
 # Compilador
 CC = gcc
@@ -22,14 +16,13 @@ CFLAGS = -Wall -Wextra -Werror
 # Construye la libreria principal
 all: $(NAME)
 
-# Construye la libreria bonus
-bonus: $(NAME) $(BONUS_OBJS)
-	ar rc $(NAME) $(BONUS_OBJS)
-	ranlib $(NAME)
-
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 	ranlib $(NAME)
+
+# Construye la libreria bonus
+bonus: $(OBJSBONUS)
+	ar rc $(NAME) $(OBJSBONUS)
 
 # Compila cada archivo fuente en un archivo objeto
 %.o: %.c
@@ -37,7 +30,7 @@ $(NAME): $(OBJS)
 
 # Elimina los archivos objeto
 clean:
-	rm -rf $(OBJS) $(BONUS_OBJS) 
+	rm -rf *.o 
 
 # Elimina tanto los objetos como la libreria
 fclean: clean
