@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <stdio.h>
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	resultado;
 	int	signo;
@@ -38,11 +38,12 @@ int	ft_atoi(char *str)
 /*
 int	main(void)
 {
-	char	a[] = "   ---+--+1234ab567";
+	char	a[] = "-2147483648";
 	int	num;
 
 	num = ft_atoi(a);
-	printf("%d", num);*/
+	printf("%d", num);
+}*/
 /*
 	char	c = '3';
 	//	Whitespaces in C

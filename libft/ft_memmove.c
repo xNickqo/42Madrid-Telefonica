@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:41:56 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/03 17:32:32 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:32:32 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,8 @@ void	*ft_memmove(void *dest, const void *src, size_t len)
 	}
 	else
 	{
-		i = len;
-		while (i > 0)
-		{
-			i--;
-			d[i] = s[i];
-		}
+		while (len-- > 0)
+			d[len] = s[len];
 	}
 	return (dest);
 }

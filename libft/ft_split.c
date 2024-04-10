@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:59:04 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/05 21:09:58 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:31:47 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
  * Debe devolver un array de nuevas strings resultante de la 
  * separacion y NULL si falla la reserva de memoria.*/
 
+/*Funcion para contar substrings*/
+
 static int	count_substr(const char *s, char c)
 {
 	int	i;
 	int	substr;
 
-	i = 1;
+	i = 0;
 	substr = 0;
 	while (*s)
 	{
@@ -40,50 +42,63 @@ static int	count_substr(const char *s, char c)
 			i = 0;
 		s++;
 	}
-	return (substr + 1);
+	return (substr);
 }
+
+/*Funcion para contar la longitud de las palabras en hasta llegar al caracter
+ * separador o el caracter sea nulo*/
+
+static int	count_word_len(const char *s, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != c && s[i] != '\0')
+		i++;
+	return (i);
+}
+
+/*Funcion para liberar memoria tanto de los substrings como del array principal
+ * en caso de que la memoria falle*/
+
+static char	**free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split && split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+	return (NULL);
+}
+
+/*FUNCION PRINCIPAL*/
 
 char	**ft_split(char const *s, char c)
 {
 	int		num_str;
 	int		index;
 	int		len;
-	const char	*start;
-	char		**split;
+	char	**split;
 
 	num_str = count_substr(s, c);
-	split = (char **)malloc(num_str + 1);
+	split = (char **)malloc(sizeof(char *) * (num_str + 1));
 	if (!split)
 		return (NULL);
 	index = 0;
-	len = 0;
-	start = s;
-	while (*s != '\0')
+	while (index < num_str)
 	{
-		if (*s == c)
-		{
-			if (len > 0)
-			{
-				split[index] = (char *)malloc(len + 1);
-				if (!split[index])
-					return (0);
-				ft_strlcpy(split[index], start, len + 1);
-				split[index][len] = '\0';
-				index++;
-				len = 0;
-			}
-			start = s + 1;
-		}
-		else
-		{
-			len++;
-		}
-		s++;
-	}
-	if (len > 0)
-	{
+		while (*s == c)
+			s++;
+		len = count_word_len(s, c);
 		split[index] = (char *)malloc(len + 1);
-		ft_strlcpy(split[index], start, len + 1);
+		if (!split[index])
+			return (free_split(split));
+		ft_strlcpy(split[index], s, len + 1);
+		s += len;
 		index++;
 	}
 	split[index] = NULL;
