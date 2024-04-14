@@ -6,12 +6,18 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:15:36 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/03 17:39:40 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/14 23:35:40 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
+
+/* Copia una cadena de origen en un destino de tamaño limitado, asegurándose 
+ * de que el destino esté terminado con un carácter nulo y devolviendo la 
+ * longitud de la cadena original. 
+ *
+ * Es útil para evitar desbordamientos de búfer al copiar cadenas.*/
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
 {

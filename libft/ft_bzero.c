@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:08:10 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/21 16:49:23 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/14 21:20:21 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <string.h>
 #include "libft.h"
 
-/*Pone a 0 los primeros n bytes del area de bytes que comienza en s */
+/*Pone a 0 los primeros n bytes de un array */
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -42,4 +42,5 @@ int	main(void)
 		printf("%d\n", s[i]);
 		i++;
 	}
+	//[0, 0, 0 ,0 ,0, , , , ,]
 }*/

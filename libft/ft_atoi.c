@@ -6,12 +6,14 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 14:29:01 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/03 20:37:21 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/14 21:17:27 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
+
+/*Convierte una cadena de caracteres(numeros) en int*/
 
 int	ft_atoi(const char *str)
 {

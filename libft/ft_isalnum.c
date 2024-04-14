@@ -6,13 +6,16 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 00:24:12 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/21 16:49:56 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/14 21:51:25 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <ctype.h>
 #include "libft.h"
+
+/*Comprueba si el caracter es alfanumerico.
+ * Devuelve 1 si el caracter es alfanumerico y 0 si NO es alfanumerico*/
 
 int	ft_isalnum(int c)
 {

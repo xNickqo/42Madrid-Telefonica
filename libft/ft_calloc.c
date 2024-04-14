@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:09:55 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/31 21:58:06 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/14 21:42:37 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*Asigna memoria para una matriz de "nmemb" elementos de "size" bytes cada uno
- * y devuelve un puntero a la memoria asignada. La memoria es puesta a cero
- *
- * EL valor devuelto es un puntero a la matriz asignada, que esta 
- * convenientemente alineada para cualquier tipo de variable, o 0 si la 
- * peticion falla*/
+/*Asigna memoria a un array de 'nmemb' elementos y 'size' tamaño de los datos
+ * y se inicializa en 0*/
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 20:33:46 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/05 21:00:14 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/14 22:03:32 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 #include "libft.h"
 #include <unistd.h>
 
-/*Esta funcion convierte un numero en un string reservando memoria con 
+/* Esta funcion convierte un numero en un string reservando memoria con 
  * malloc()*/
+
+/* number_len() calcula la cantidad de caracteres de un entero teniendo en
+ * cuenta los numeros negativos para el '-' y el '0' y devuelve un entero
+ * equivalente a la longitud del int*/
 
 static unsigned int	number_len(int temp)
 {

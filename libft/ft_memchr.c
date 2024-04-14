@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/24 15:10:45 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/05 18:09:18 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/14 22:07:51 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ int	main(void)
 	char *str = "Hola me llamo Nicolas y Perni es guapa";
 	char c = 'P';
 
-	char *res = ft_memchr(str, c, 100);
+	char *res = ft_memchr(str, c, 5);
 	printf("%s\n", res);
 	if (res != NULL)
 		printf("%c\n", *res);
 	else
 		printf("No se ha encontrado el caracter '%c'\n", c);
+	//OUTPUT: res* = Perni
 }*/

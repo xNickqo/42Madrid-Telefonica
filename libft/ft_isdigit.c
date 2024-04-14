@@ -6,13 +6,16 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 23:49:13 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/21 15:22:04 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/14 21:52:19 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <ctype.h>
 #include "libft.h"
+
+/*Comprueba si el caracter es un digito (1-9)
+ * Devuelve 1 si lo es, y  0 si NO*/
 
 int	ft_isdigit(int c)
 {
