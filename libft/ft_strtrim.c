@@ -6,7 +6,7 @@
 /*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 14:59:24 by niclopez          #+#    #+#             */
-/*   Updated: 2024/03/31 21:56:23 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/15 14:19:19 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	trim = (char *)malloc(end - start + 1);
 	if (!trim)
 		return (0);
-	i = start;
+	i = 0;
 	while (i < end)
 	{
-		trim[i - start] = s1[i];
+		trim[i] = s1[i];
 		i++;
 	}
 	trim[end - start] = '\0';
