@@ -25,17 +25,22 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	void	*ptr;
 
 	total = nmemb * size;
-	ptr = (char *)malloc(total);
-	if (ptr == 0)
-		return (0);
-	i = 0;
-	temp = ptr;
-	while (i < total)
+	if (total < SIZE_MAX)
 	{
-		temp[i] = 0;
-		i++;
+		ptr = (char *)malloc(total);
+		if (ptr == 0)
+			return (0);
+		i = 0;
+		temp = ptr;
+		while (i < total)
+		{
+			temp[i] = 0;
+			i++;
+		}
+		return (ptr);
 	}
-	return (ptr);
+	else
+		return (NULL);
 }
 /*
 int	main(void)

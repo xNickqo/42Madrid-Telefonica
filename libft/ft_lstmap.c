@@ -16,28 +16,30 @@
 
 /*Itera la lista 'lst' y aplica la funcion 'f' al contenido de cada nodo.
 Crea una lista resultante de la aplicacion correcta y sucesiva de la funcion
-'f' sobre cada nodo. LA funcion 'del' se utiliza para eliminar el contenido
+'f' sobre cada nodo. La funcion 'del' se utiliza para eliminar el contenido
 de un nodo, si hace falta.*/
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*new;
-	t_list	*start;
+	t_list	*new_list;
+	t_list	*new_node;
+	void	*set;
 
-	if (lst && f && del)
+	if (!lst || !f || !del)
+		return (NULL);
+	new_list = NULL;
+	while (lst)
 	{
-		new = ft_lstnew(f(lst->content));
-		start = new;
-		lst = lst->next;
-		if (!start)
-			return (NULL);
-		while (lst != NULL)
+		set = f(lst->content);
+		new_node = ft_lstnew(set);
+		if (!new_node)
 		{
-			new->next = ft_lstnew(f(lst->content));
-			new = new->next;
-			lst = lst->next;
+			del(set);
+			ft_lstclear(&new_list, (*del));
+			return (new_list);
 		}
-		return (start);
+		ft_lstadd_back(&new_list, new_node);
+		lst = lst->next;
 	}
-	return (NULL);
+	return (new_list);
 }

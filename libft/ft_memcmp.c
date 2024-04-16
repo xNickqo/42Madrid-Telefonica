@@ -13,9 +13,9 @@
 #include <stdio.h>
 #include <string.h>
 
-/* La funcion memcmp() compara n bytes de los strings s1 y s2 sin tener en cuenta la
- * terminacion nula, esa es la principal diferencia entre esta funcion y
- * strncmp()*/
+/* La funcion memcmp() compara n bytes de los strings s1 y s2 sin tener 
+ * en cuenta la terminacion nula, esa es la principal diferencia entre 
+ * esta funcion y strncmp()*/
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {

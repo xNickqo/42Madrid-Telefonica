@@ -37,10 +37,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	trim = (char *)malloc(end - start + 1);
 	if (!trim)
 		return (0);
-	i = 0;
+	i = start;
 	while (i < end)
 	{
-		trim[i] = s1[i];
+		trim[i - start] = s1[i];
 		i++;
 	}
 	trim[end - start] = '\0';

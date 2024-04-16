@@ -12,6 +12,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include "libft.h"
 #include <string.h>
 
@@ -118,4 +119,5 @@ int	main(void)
 		printf("%s\n", res[i]);
 		i++;
 	}
+	system("leaks a.out");
 }*/
