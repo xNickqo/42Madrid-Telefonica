@@ -22,6 +22,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	i;
 	char	*res;
 
+	if (!s1 || !s2)
+		return (NULL);
 	res = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (res == '\0')
 		return (NULL);
@@ -43,8 +45,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 /*
 int	main(void)
 {
-	char	*s1 = "hola";
-	char	*s2 = "mundo";
+	char	*s1 = NULL;
+	char	*s2 = NULL;
 	char	*res = ft_strjoin(s1, s2);
 	printf("%s\n", res);
 }*/
