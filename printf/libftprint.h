@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:25:10 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/17 19:39:44 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:14:17 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 
 int	ft_printf(char const *format, ...);
 void	ch_format(va_list args, int *count);
+void	str_format(va_list args, int *count);
 
 #endif
