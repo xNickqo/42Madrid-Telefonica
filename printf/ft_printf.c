@@ -6,27 +6,28 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:54:14 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/19 16:17:07 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/22 15:38:58 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprint.h"
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdio.h>
 
 static void write_digits(char const *format, va_list args, int *count)
 {
 	if (*format == 'c')
-		ch_format(args, count);
+		ft_char(args, count);
 	if (*format == 's')
-		str_format(args, count);
-	/*if (*format == 'p')
-		ptr_format();
-	if (*format == 'd')
-		double_format();
+		ft_str(args, count);
+	if (*format == 'p')
+		ft_ptr(args, count);
+	/*if (*format == 'd')
+		ft_double(args, count);*/
 	if (*format == 'i')
-		i_format();
-	if (*format == 'u')
+		ft_int(args, count);
+	/*if (*format == 'u')
 		u_format();
 	if (*format == 'x')
 		x_format();
@@ -67,7 +68,13 @@ int ft_printf(char const *format, ...)
 
 int main(void)
 {
+	int		num = 2234542;
 	char	c = 'c';
 	char	*str = "Hola mundo";
-	ft_printf("Hola mundo este es el resultado: %c de %s", c, str);
+	void	*ptr = &num;
+	ft_printf(" char: %c \n str: %s \n ptr: %p \n int: %i \n", c, str, ptr, num);
+
+	ft_printf("\n-----------------------------\n");
+
+	printf(" char: %c\n str: %s \n ptr: %p \n int: %i \n", c, str, ptr, num);
 }
