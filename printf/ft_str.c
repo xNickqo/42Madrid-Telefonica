@@ -12,17 +12,19 @@
 
 #include <unistd.h>
 #include <stdarg.h>
-#include "libftprint.h"
+#include "ft_printf.h"
 
 void	ft_str(va_list args, int *count)
 {
 	char	*str;
-	int	i;
+	int		i;
 
 	i = 0;
 	str = va_arg(args, char *);
+	if (str == NULL)
+		write(1, "(null)", 6);
 	while (str[i] != '\0')
 		i++;
 	write(1, str, i);
-	(*count)++;
+	(*count) += i;
 }

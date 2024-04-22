@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_uitoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/31 20:33:46 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/22 16:26:28 by niclopez         ###   ########.fr       */
+/*   Created: 2024/04/22 17:11:05 by niclopez          #+#    #+#             */
+/*   Updated: 2024/04/22 18:04:38 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,14 @@
 #include "ft_printf.h"
 #include <unistd.h>
 
-/* Esta funcion convierte un numero en un string reservando memoria con
- * malloc()*/
-
-/* number_len() calcula la cantidad de caracteres de un entero teniendo en
- * cuenta los numeros negativos para el '-' y el '0' y devuelve un entero
- * equivalente a la longitud del int*/
-
-static unsigned int	number_len(int temp)
+static unsigned int	number_len(unsigned int temp)
 {
-	unsigned int	len;
+	unsigned long	len;
+	unsigned long	n;
 
+	n = (unsigned long)temp;
 	len = 0;
-	if (temp <= 0)
+	if (temp == 0)
 		len = 1;
 	else
 		len = 0;
@@ -39,7 +34,7 @@ static unsigned int	number_len(int temp)
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char	*ft_uitoa(unsigned int n)
 {
 	char			*res;
 	unsigned int	len;
@@ -50,24 +45,11 @@ char	*ft_itoa(int n)
 	if (res == NULL)
 		return (NULL);
 	res[len] = '\0';
-	temp = 0;
-	if (n < 0)
-		temp = -(long)n;
-	else
-		temp = n;
+	temp = n;
 	while (len > 0)
 	{
 		res[--len] = '0' + (temp % 10);
 		temp /= 10;
 	}
-	if (n < 0 && len == 0)
-		res[0] = '-';
 	return (res);
 }
-/*
-int	main(void)
-{
-	char	*res;
-	res = ft_itoa(-10004);
-	printf("%s\n", res);
-}*/

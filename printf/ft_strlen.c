@@ -6,13 +6,13 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 22:24:36 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/22 15:42:33 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:26:51 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
-#include "libftprint.h"
+#include "ft_printf.h"
 
 size_t	ft_strlen(const char *str)
 {

@@ -2,9 +2,9 @@
 NAME = libftprintf.a
 
 # Lista de archivos de origen
-SRCS = ft_printf.c ft_char.c ft_double.c ft_int.c ft_ptr.c ft_str.c ft_unsignedint.c ft_x.c ft_strlen.c ft_itoa.c
+SRCS = ft_printf.c ft_char.c ft_int.c ft_ptr.c ft_str.c ft_uitoa.c ft_unsignedint.c ft_x.c ft_strlen.c ft_itoa.c
 OBJS = $(SRCS:.c=.o)
-OBJSBONUS =
+# OBJSBONUS =
 
 # Compilador
 CC = gcc
@@ -19,9 +19,9 @@ $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 	@echo "ft_print compiled!"
 
-# Construye la libreria bonus
-bonus: $(OBJSBONUS)
-	ar rc $(NAME) $(OBJSBONUS)
+# # Construye la libreria bonus
+# bonus: $(OBJSBONUS)
+# 	ar rc $(NAME) $(OBJSBONUS)
 
 # Compila cada archivo fuente en un archivo objeto
 %.o: %.c

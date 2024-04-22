@@ -6,13 +6,13 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:02:03 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/22 13:57:26 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:51:05 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdarg.h>
-#include "libftprint.h"
+#include "ft_printf.h"
 
 char	to_hex(int digit)
 {
@@ -37,11 +37,11 @@ void	write_inverse(const char *str, int len, int *count)
 
 void	ft_ptr(va_list args, int *count)
 {
-	void	*ptr;
+	void		*ptr;
 	uintptr_t	ptr_val;
-	char	buffer[20];
-	int		len;
-	char	digit;
+	char		buffer[20];
+	int			len;
+	char		digit;
 
 	ptr = va_arg(args, void *);
 	ptr_val = (uintptr_t)ptr;

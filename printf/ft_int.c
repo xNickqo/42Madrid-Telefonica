@@ -6,12 +6,12 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:03:01 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/22 15:44:18 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/22 16:45:58 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include "libftprint.h"
+#include "ft_printf.h"
 #include <stdarg.h>
 
 void	ft_int(va_list args, int *count)
@@ -26,7 +26,7 @@ void	ft_int(va_list args, int *count)
 	if (str)
 	{
 		write(1, str, len);
-		count += len;
+		(*count) += len;
 		free(str);
 	}
 }

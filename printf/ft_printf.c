@@ -6,16 +6,16 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:54:14 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/22 15:38:58 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/22 17:48:05 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprint.h"
+#include "ft_printf.h"
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdio.h>
 
-static void write_digits(char const *format, va_list args, int *count)
+static void	write_digits(char const *format, va_list args, int *count)
 {
 	if (*format == 'c')
 		ft_char(args, count);
@@ -23,27 +23,24 @@ static void write_digits(char const *format, va_list args, int *count)
 		ft_str(args, count);
 	if (*format == 'p')
 		ft_ptr(args, count);
-	/*if (*format == 'd')
-		ft_double(args, count);*/
-	if (*format == 'i')
+	if (*format == 'i' || *format == 'd')
 		ft_int(args, count);
-	/*if (*format == 'u')
-		u_format();
-	if (*format == 'x')
-		x_format();
-	if (*format == 'X')
-		X_format();
+	if (*format == 'u')
+		ft_unsignedint(args, count);
+	/* if (*format == 'x')
+		ft_x(args, count); */
 	if (*format == '%')
 	{
-
-	}*/
+		write(1, "%", 1);
+		(*count)++;
+	}
 }
 
-int ft_printf(char const *format, ...)
+int	ft_printf(char const *format, ...)
 {
-	int	i;
-	int	count;
-	va_list args;
+	int		i;
+	int		count;
+	va_list	args;
 
 	count = 0;
 	va_start(args, format);
@@ -65,16 +62,16 @@ int ft_printf(char const *format, ...)
 	va_end(args);
 	return (count);
 }
-
+/*
 int main(void)
 {
-	int		num = 2234542;
+	int		num = -2234542;
 	char	c = 'c';
 	char	*str = "Hola mundo";
 	void	*ptr = &num;
-	ft_printf(" char: %c \n str: %s \n ptr: %p \n int: %i \n", c, str, ptr, num);
+	ft_printf(" char: %c \n str: %s \n ptr: %p \n int: %i \n u: %u\n", c, str, ptr, num, num);
 
 	ft_printf("\n-----------------------------\n");
 
-	printf(" char: %c\n str: %s \n ptr: %p \n int: %i \n", c, str, ptr, num);
-}
+	printf(" char: %c\n str: %s \n ptr: %p \n int: %i \n u: %u\n", c, str, ptr, num, num);
+}*/
