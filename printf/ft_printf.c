@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:54:14 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/22 17:48:05 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/23 15:12:45 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ static void	write_digits(char const *format, va_list args, int *count)
 		ft_int(args, count);
 	if (*format == 'u')
 		ft_unsignedint(args, count);
-	/* if (*format == 'x')
-		ft_x(args, count); */
+	if (*format == 'x')
+		ft_x(args, count);
+	if (*format == 'X')
+		ft_X(args, count);
 	if (*format == '%')
 	{
 		write(1, "%", 1);
@@ -65,13 +67,14 @@ int	ft_printf(char const *format, ...)
 /*
 int main(void)
 {
-	int		num = -2234542;
+	int		num = 4542;
 	char	c = 'c';
 	char	*str = "Hola mundo";
 	void	*ptr = &num;
-	ft_printf(" char: %c \n str: %s \n ptr: %p \n int: %i \n u: %u\n", c, str, ptr, num, num);
+
+	ft_printf(" char: %c \n str: %s \n ptr: %p \n int: %i \n u: %u\n x en hex: %x\n", c, str, ptr, num, num, num);
 
 	ft_printf("\n-----------------------------\n");
 
-	printf(" char: %c\n str: %s \n ptr: %p \n int: %i \n u: %u\n", c, str, ptr, num, num);
+	printf(" char: %c\n str: %s \n ptr: %p \n int: %i \n u: %u\n x en hex: %x\n", c, str, ptr, num, num, num);
 }*/

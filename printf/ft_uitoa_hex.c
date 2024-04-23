@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa.c                                         :+:      :+:    :+:   */
+/*   ft_uitoa_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 17:11:05 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/23 14:42:36 by niclopez         ###   ########.fr       */
+/*   Created: 2024/04/23 14:24:32 by niclopez          #+#    #+#             */
+/*   Updated: 2024/04/23 15:15:57 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include <stdio.h>
 #include "ft_printf.h"
 #include <unistd.h>
+#include <stdlib.h>
 
-static unsigned int	number_len(unsigned int temp)
+unsigned int	number_len_hex(unsigned int temp)
 {
-	unsigned long	len;
-	//unsigned long	n;
+	unsigned int	len;
 
-	//n = (unsigned long)temp;
 	len = 0;
 	if (temp == 0)
 		len = 1;
@@ -28,28 +26,33 @@ static unsigned int	number_len(unsigned int temp)
 		len = 0;
 	while (temp != 0)
 	{
-		temp /= 10;
+		temp /= 16;
 		len++;
 	}
 	return (len);
 }
 
-char	*ft_uitoa(unsigned int n)
+char	*ft_uitoa_hex(unsigned int n, int letra)
 {
-	char			*res;
+	char		*res;
 	unsigned int	len;
-	unsigned long	temp;
+	unsigned int	temp;
+	const char	*hex_digits;
 
-	len = number_len(n);
+	len = number_len_hex(n);
 	res = (char *)malloc(len + 1);
 	if (res == NULL)
 		return (NULL);
 	res[len] = '\0';
 	temp = n;
+	if (letra == 0)
+		hex_digits = "0123456789abcdef";
+	else
+		hex_digits = "0123456789ABCDEF";
 	while (len > 0)
 	{
-		res[--len] = '0' + (temp % 10);
-		temp /= 10;
+		res[--len] = hex_digits[temp % 16];
+		temp /= 16;
 	}
 	return (res);
 }

@@ -6,13 +6,14 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:02:03 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/22 16:51:05 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/23 14:40:25 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdarg.h>
 #include "ft_printf.h"
+#include <stdint.h>
 
 char	to_hex(int digit)
 {

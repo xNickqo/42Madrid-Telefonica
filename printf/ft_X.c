@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_x.c                                             :+:      :+:    :+:   */
+/*   ft_X.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 13:06:03 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/23 15:14:38 by niclopez         ###   ########.fr       */
+/*   Created: 2024/04/23 15:05:09 by niclopez          #+#    #+#             */
+/*   Updated: 2024/04/23 15:14:14 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-void	ft_x(va_list args, int *count)
+void    ft_X(va_list args, int *count)
 {
 	unsigned int	n;
 	char		*str;
 	int		len;
 
 	n = va_arg(args, unsigned int);
-	str = ft_uitoa_hex(n, 0);
+	str = ft_uitoa_hex(n, 1);
 	len = ft_strlen(str);
 	if (str)
 	{
