@@ -2,7 +2,7 @@
 NAME = libftprintf.a
 
 # Lista de archivos de origen
-SRCS = ft_printf.c ft_char.c ft_int.c ft_ptr.c ft_str.c ft_uitoa.c ft_uitoa_hex.c ft_unsignedint.c ft_x.c ft_X.c ft_strlen.c ft_itoa.c
+SRCS = ft_printf.c ft_char.c ft_int.c ft_ptr.c ft_str.c ft_uitoa.c ft_uitoa_hex.c ft_unsignedint.c ft_x.c ft_xupper.c ft_strlen.c ft_itoa.c
 OBJS = $(SRCS:.c=.o)
 # OBJSBONUS =
 

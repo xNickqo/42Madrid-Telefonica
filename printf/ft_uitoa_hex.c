@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_uitoa_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:24:32 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/23 15:15:57 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:36:22 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ unsigned int	number_len_hex(unsigned int temp)
 
 char	*ft_uitoa_hex(unsigned int n, int letra)
 {
-	char		*res;
+	char			*res;
 	unsigned int	len;
 	unsigned int	temp;
-	const char	*hex_digits;
+	const char		*hex_digits;
 
 	len = number_len_hex(n);
 	res = (char *)malloc(len + 1);

@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:11:05 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/23 14:42:36 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:35:53 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 static unsigned int	number_len(unsigned int temp)
 {
 	unsigned long	len;
-	//unsigned long	n;
 
-	//n = (unsigned long)temp;
 	len = 0;
 	if (temp == 0)
 		len = 1;

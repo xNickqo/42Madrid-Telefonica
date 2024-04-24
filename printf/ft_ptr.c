@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:02:03 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/23 14:40:25 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:42:10 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void	write_inverse(const char *str, int len, int *count)
 	}
 }
 
+void	nullptr(int *count)
+{
+	write(1, "0x0", 3);
+	(*count) += 3;
+}
+
 void	ft_ptr(va_list args, int *count)
 {
 	void		*ptr;
@@ -46,15 +52,20 @@ void	ft_ptr(va_list args, int *count)
 
 	ptr = va_arg(args, void *);
 	ptr_val = (uintptr_t)ptr;
-	len = 0;
-	while (ptr_val)
+	if (ptr == NULL)
+		nullptr(count);
+	else
 	{
-		digit = ptr_val % 16;
-		buffer[len] = to_hex(digit);
-		ptr_val /= 16;
-		len++;
+		len = 0;
+		while (ptr_val)
+		{
+			digit = ptr_val % 16;
+			buffer[len] = to_hex(digit);
+			ptr_val /= 16;
+			len++;
+		}
+		buffer[len++] = 'x';
+		buffer[len++] = '0';
+		write_inverse(buffer, len, count);
 	}
-	buffer[len++] = 'x';
-	buffer[len++] = '0';
-	write_inverse(buffer, len, count);
 }

@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:54:14 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/23 15:12:45 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:44:01 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	write_digits(char const *format, va_list args, int *count)
 	if (*format == 'x')
 		ft_x(args, count);
 	if (*format == 'X')
-		ft_X(args, count);
+		ft_xupper(args, count);
 	if (*format == '%')
 	{
 		write(1, "%", 1);
@@ -64,17 +64,17 @@ int	ft_printf(char const *format, ...)
 	va_end(args);
 	return (count);
 }
-/*
-int main(void)
+
+/* int main(void)
 {
 	int		num = 4542;
 	char	c = 'c';
 	char	*str = "Hola mundo";
 	void	*ptr = &num;
 
-	ft_printf(" char: %c \n str: %s \n ptr: %p \n int: %i \n u: %u\n x en hex: %x\n", c, str, ptr, num, num, num);
+	ft_printf("x en hex: %x\n", num);
 
 	ft_printf("\n-----------------------------\n");
 
-	printf(" char: %c\n str: %s \n ptr: %p \n int: %i \n u: %u\n x en hex: %x\n", c, str, ptr, num, num, num);
-}*/
+	printf("x en hex: %x\n"num);
+} */

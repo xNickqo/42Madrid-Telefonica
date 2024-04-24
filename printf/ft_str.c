@@ -22,7 +22,11 @@ void	ft_str(va_list args, int *count)
 	i = 0;
 	str = va_arg(args, char *);
 	if (str == NULL)
+	{
 		write(1, "(null)", 6);
+		(*count) += 6;
+		return ;
+	}
 	while (str[i] != '\0')
 		i++;
 	write(1, str, i);
