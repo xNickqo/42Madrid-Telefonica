@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:54:14 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/24 17:44:01 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:32:00 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int	ft_printf(char const *format, ...)
 	char	*str = "Hola mundo";
 	void	*ptr = &num;
 
-	ft_printf("x en hex: %x\n", num);
+	ft_printf("x en hex:");
 
 	ft_printf("\n-----------------------------\n");
 
-	printf("x en hex: %x\n"num);
+	printf("x en hex:");
 } */
