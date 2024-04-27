@@ -14,7 +14,7 @@
 # define LIBFT_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 5
 # endif
 
 # include <unistd.h>
@@ -26,7 +26,6 @@
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t destsize);
+char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char *str);
-void	*ft_memcpy(void *dest, const void *src, size_t len);
-char	*my_realloc(char *ptr, int old_size, int new_size);
 #endif

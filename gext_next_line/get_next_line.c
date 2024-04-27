@@ -30,93 +30,57 @@
 	ha leido una linea exitosamente, si se ha alcanzado el final del
 	archivo, o si ha ocurrido algun error.*/
 
-char	*get_next_line(int fd)
+
+static char *read_from_file(int fd)
 {
-	static char	*buffer;
-	int			bytes_read;
-	char		*line;
-	int			i;
-	int			len;
-	char		*temp;
+	int   bytes_read;
+	char  *buffer;
 
-	len = BUFFER_SIZE;
-	if(buffer)
-	{
-		i = 0;
-		while (buffer[i] && buffer[i] != '\n')
-			i++;
-		if (buffer[i] == '\n')
-		{
-			line = (char *)malloc(len + 1);
-			if (line == NULL)
-			{
-				free(buffer);
-				buffer = NULL;
-				return (NULL);
-			}
-			ft_memcpy(line, buffer, i);
-			line[i] = '\0';
-			temp = ft_strdup(buffer + i + 1);
-			free(buffer);
-			buffer = temp;
-			return (line);
-		}
-		free(buffer);
-		buffer = NULL;
-	}
-
-	line = (char *)malloc(len + 1);
-	if (line == NULL)
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (buffer == NULL)
 		return (NULL);
-	i = 0;
-	while ((bytes_read = read(fd, line + i, BUFFER_SIZE)) > 0)
-	{
-		i += bytes_read;
-		len += BUFFER_SIZE;
-		if (i >= len)
-		{
-			temp = my_realloc(line, len - BUFFER_SIZE, len);
-			if (temp == NULL)
-			{
-				free(line);
-				return(NULL);
-			}
-			line = temp;
-		}
-		i = 0;
-		while (i < bytes_read)
-		{
-			if (line[i] == '\n')
-			{
-				line[i] = '\0';
-				buffer = ft_strdup(line + i + 1);
-				if (buffer == NULL)
-				{
-					free(line);
-					return (NULL);
-				}
-				return (line);
-			}
-			i++;
-		}
-	}
-	if (bytes_read == 0 && i > 0)
-	{
-		line[i] = '\0';
-		return (line);
-	}
-	free(line);
-	return (NULL);
+	bytes_read = read(fd, buffer, BUFFER_SIZE);
+	if (bytes_read <= 0)
+		return (free (buffer), NULL);
+	return (buffer);
 }
 
-int	main()
+char *get_next_line(int fd)
+{
+	char *line;
+	static char *buffer;
+	char *newline;
+
+	if (buffer == NULL)
+	{
+		buffer = read_from_file(fd);
+		if (buffer == NULL)
+			return (NULL);
+	}
+	newline = ft_strchr(buffer, '\n');
+	if (newline != NULL)
+	{
+		*newline = '\0';
+		line = buffer;
+		buffer = ft_strdup(newline + 1);
+		return (line);
+	}
+	else
+	{
+		line = buffer;
+		buffer = NULL;
+		return (line);
+	}
+}
+
+int main(void)
 {
 	int	fd = open("ejemplo.txt", O_RDONLY);
 
-	char	*line;;
+	char	*line;
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("Linea leida: %s\n", line);
+		printf("Linea leida:---%s---\n", line);
 		free(line);
 	}
 	close(fd);
