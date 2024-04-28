@@ -30,58 +30,93 @@
 	ha leido una linea exitosamente, si se ha alcanzado el final del
 	archivo, o si ha ocurrido algun error.*/
 
-
 static char *read_from_file(int fd)
 {
-	int   bytes_read;
-	char  *buffer;
+    int bytes_read;
+    int total_bytes_read = 0;
+    int buffer_size = BUFFER_SIZE;
+    char *buffer;
 
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (buffer == NULL)
-		return (NULL);
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	if (bytes_read <= 0)
-		return (free (buffer), NULL);
-	return (buffer);
+	buffer = malloc(buffer_size + 1);
+    if (buffer == NULL)
+        return NULL;
+    while (1)
+    {
+        bytes_read = read(fd, buffer + total_bytes_read, buffer_size - total_bytes_read);
+        total_bytes_read += bytes_read;
+        if (total_bytes_read >= buffer_size) {
+            buffer_size *= 2;
+            char *temp = realloc(buffer, buffer_size + 1);
+            if (temp == NULL)
+                return (free(buffer), NULL);
+            buffer = temp;
+        }
+        if (bytes_read <= 0)
+		{
+            if (total_bytes_read == 0)
+                return (free(buffer), NULL);
+            break ;
+        }
+    }
+    buffer[total_bytes_read] = '\0';
+    return buffer;
 }
 
 char *get_next_line(int fd)
 {
-	char *line;
-	static char *buffer;
-	char *newline;
+    static char *buffer = NULL;
+    char *line;
+    char *newline;
 
-	if (buffer == NULL)
-	{
-		buffer = read_from_file(fd);
-		if (buffer == NULL)
-			return (NULL);
-	}
-	newline = ft_strchr(buffer, '\n');
-	if (newline != NULL)
-	{
-		*newline = '\0';
-		line = buffer;
-		buffer = ft_strdup(newline + 1);
-		return (line);
-	}
-	else
-	{
-		line = buffer;
-		buffer = NULL;
-		return (line);
-	}
+    if (buffer == NULL)
+    {
+        buffer = read_from_file(fd);
+        if (buffer == NULL)
+            return (NULL);
+    }
+
+    newline = ft_strchr(buffer, '\n');
+    if (newline != NULL)
+    {
+        *newline = '\0';
+        line = ft_strdup(buffer);
+        if (line == NULL)
+            return (free(buffer), NULL);
+        char *temp = ft_strdup(newline + 1);
+        if (temp == NULL) {
+            free(buffer);
+            free(line);
+            return (NULL);
+        }
+        free(buffer);
+        buffer = temp;
+        return (line);
+    }
+    else
+    {
+        line = ft_strdup(buffer);
+        if (line == NULL && buffer[0] != '\0')
+            return (free(buffer), NULL);
+        free(buffer);
+        buffer = NULL;
+        return line;
+    }
 }
 
 int main(void)
 {
-	int	fd = open("ejemplo.txt", O_RDONLY);
+    int fd = open("ejemplo.txt", O_RDONLY);
+    if (fd == -1) {
+        perror("open");
+        return 1;
+    }
 
-	char	*line;
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		printf("Linea leida:---%s---\n", line);
-		free(line);
-	}
-	close(fd);
+    char *line;
+    while ((line = get_next_line(fd)) != NULL) {
+        printf("Linea leida:---%s---\n", line);
+        free(line);
+    }
+    close(fd);
+    return 0;
 }
+
