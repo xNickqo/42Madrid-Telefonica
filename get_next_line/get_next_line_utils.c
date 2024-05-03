@@ -18,49 +18,14 @@
 
 /*FUNCIONES DE AYUDA*/
 
-/*La funcion strdup() reserva espacio de almacenamiento para una copia de
- * serie llamando a malloc. Se espera que el argumento de serie para esta
- * funcion contenga un caracter '\0' que marque el final de la serie.
- * Recordar liberar con free() */
-
-char	*ft_strdup(const char *str)
-{
-	size_t	len;
-	char	*dest;
-
-	len = ft_strlen(str) + 1;
-	dest = (char *)malloc(len);
-	if (dest == 0)
-		return (0);
-	ft_strlcpy(dest, str, len);
-	return (dest);
-}
-
-/* Copia una cadena de origen en un destino de tamaño limitado, asegurándose 
- * de que el destino esté terminado con un carácter nulo y devolviendo la 
- * longitud de la cadena original. 
- *
- * Es útil para evitar desbordamientos de búfer al copiar cadenas.*/
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
+size_t	ft_strlen(char	*str)
 {
 	size_t	i;
 
 	i = 0;
-	if (destsize == 0)
-	{
-		while (src[i] != '\0')
-			i++;
-		return (i);
-	}
-	while ((i < destsize - 1) && src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	i = 0;
-	while (src[i] != '\0')
+	if (!str)
+		return (0);
+	while (str[i])
 		i++;
 	return (i);
 }
@@ -71,29 +36,63 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
  * Devuelve un puntero al elemento de la cadena con el caracter coincidente
  * o null si el caracter no se ha encontrado*/
 
-char	*ft_strchr(const char *str, int c)
-{
-	int	i;
-
-	i = 0;
-	c = (char)c;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			return ((char *)&str[i]);
-		i++;
-	}
-	if (c == '\0')
-		return ((char *)str + ft_strlen(str));
-	return (0);
-}
-
-size_t	ft_strlen(const char *str)
+char	*ft_strchr(char *s, int c)
 {
 	size_t	i;
 
+	if (!s)
+		return (NULL);
+	if (c == 0)
+	{
+		i = ft_strlen((char *)s);
+		return (&s[i]);
+	}
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i])
+	{
+		if (s[i] == (char) c)
+			return (&s[i]);
 		i++;
-	return (i);
+	}
+	return (NULL);
+}
+
+char	*ft_strjoin(char *start, char *buff)
+{
+	char	*ptr;
+
+	if (!start)
+	{
+		start = (char *)malloc(1 * sizeof(char));
+		start[0] = '\0';
+	}
+	if (!start || !buff)
+		return (NULL);
+	ptr = (char *)malloc(1 + ft_strlen(start) + ft_strlen(buff) * sizeof(char));
+	if (!ptr)
+		return (NULL);
+	ptr = ft_join(ptr, start, buff);
+	free(start);
+	return (ptr);
+}
+
+char	*ft_join(char *dest, char *s1, char *s2)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (s1 && s1[i])
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2 && s2[j])
+	{
+		dest[i + j] = s2[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+	return (dest);
 }

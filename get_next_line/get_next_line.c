@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:05:21 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/26 18:25:13 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/03 20:43:41 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,84 +30,91 @@
 	ha leido una linea exitosamente, si se ha alcanzado el final del
 	archivo, o si ha ocurrido algun error.*/
 
-static char *read_from_file(int fd)
+char	*read_line(char *buffer)
 {
-    int bytes_read;
-    char *buffer;
-    char   *temp;
+	int		i;
+	char	*line;
 
-	buffer = (char *)malloc(BUFFER_SIZE + 1);
-    if (buffer == NULL)
-        return (NULL);
-    bytes_read = 1;
-    while (bytes_read > 0)
-    {
-        bytes_read = read(fd, buffer, BUFFER_SIZE);
-        if (bytes_read >= BUFFER_SIZE)
-        {
-            temp = realloc(buffer, (BUFFER_SIZE * 2) + 1);
-            if (temp == NULL)
-                return (free(buffer), NULL);
-            buffer = temp;
-        }
-        if (bytes_read <= 0)
-            return (free(buffer), NULL);
-        buffer[bytes_read] = '\0';
-        //printf("buffer: %s\n", buffer);
-    }
-    if (bytes_read < 0)
-        return (free(buffer), NULL);
-    return (buffer);
+	if (!buffer || !buffer[0])
+		return (NULL);
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (buffer[i] == '\n')
+		i++;
+	line = (char *)malloc(1 + i * sizeof(char));
+	if (!line)
+		return (NULL);
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+	{
+		line[i] = buffer[i];
+		i++;
+	}
+	if (buffer[i] == '\n')
+		line[i++] = '\n';
+	line[i] = '\0';
+	return (line);
 }
 
-char *get_next_line(int fd)
+char	*ft_rest(char	*buffer)
 {
-    static char *buffer;
-    char *line;
-    char *newline;
+	char	*new_buff;
+	int		i;
+	int		j;
 
-    buffer = NULL;
-    if (buffer == NULL)
-    {
-        buffer = read_from_file(fd);
-        if (buffer == NULL)
-            return (NULL);
-    }
-    if (buffer[0] == '\0')
-    {
-        free(buffer);
-        buffer = NULL;
-        return (NULL);
-    }
-    newline = ft_strchr(buffer, '\n');
-    if (newline != NULL)
-    {
-        *newline = '\0';
-        line = ft_strdup(buffer);
-        if (line == NULL)
-            return (NULL);
-        buffer = ft_strdup(newline + 1);
-        if (buffer == NULL)
-            return (NULL);
-        return (line);
-    }
-    else
-    {
-        if (buffer[0] != '\0')
-        {
-            line = ft_strdup(buffer);
-            if (line == NULL)
-                return NULL;
-        }
-        else
-        {
-            line = NULL;
-        }
-        free(buffer);
-        buffer = NULL;
-        return (line);
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	if (buffer[i] == '\0')
+	{
+		free(buffer);
+		return (NULL);
+	}
+	i += (buffer[i] == '\n');
+	new_buff = (char *)malloc(1 + ft_strlen(buffer) - i);
+	if (!new_buff)
+		return (NULL);
+	j = 0;
+	while (buffer[i + j])
+	{
+		new_buff[j] = buffer[i + j];
+		j++;
+	}
+	new_buff[j] = '\0';
+	free(buffer);
+	return (new_buff);
 }
 
+char	*get_next_line(int fd)
+{
+	char		*line;
+	int			bytes_read;
+	static char	*buffer = NULL;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
+	bytes_read = 1;
+	line = (char *)malloc(1 + BUFFER_SIZE * sizeof(char));
+	if (!line)
+		return (NULL);
+	while (!(ft_strchr(buffer, '\n')) && bytes_read != 0)
+	{
+		bytes_read = read(fd, line, BUFFER_SIZE);
+		if (bytes_read == -1)
+		{
+			free(buffer);
+			buffer = NULL;
+			free(line);
+			return (NULL);
+		}
+		line[bytes_read] = '\0';
+		buffer = ft_strjoin(buffer, line);
+	}
+	free(line);
+	line = read_line(buffer);
+	buffer = ft_rest(buffer);
+	return (line);
 }
 
 /* int main(void)
@@ -120,10 +127,9 @@ char *get_next_line(int fd)
 
     char *line;
     while ((line = get_next_line(fd)) != NULL) {
-        printf("Linea leida:---%s---\n", line);
+        printf("Linea leida:%s", line);
         free(line);
     }
     close(fd);
     return 0;
-}  */
-
+} */
