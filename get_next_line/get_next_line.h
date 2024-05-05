@@ -24,7 +24,7 @@
 //# include <string.h>
 
 char	*read_line(char *buffer);
-char	*ft_rest(char *buffer);
+char	*restbuff(char *buffer);
 char	*get_next_line(int fd);
 
 size_t	ft_strlen(char	*str);

@@ -57,7 +57,7 @@ char	*read_line(char *buffer)
 	return (line);
 }
 
-char	*ft_rest(char	*buffer)
+char	*restbuff(char	*buffer)
 {
 	char	*new_buff;
 	int		i;
@@ -113,7 +113,7 @@ char	*get_next_line(int fd)
 	}
 	free(line);
 	line = read_line(buffer);
-	buffer = ft_rest(buffer);
+	buffer = restbuff(buffer);
 	return (line);
 }
 
