@@ -12,7 +12,8 @@
 
 #include "libft.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> 
+#include <stdint.h>
 
 /*Asigna memoria a un array de 'nmemb' elementos y 'size' tamaño de los datos
  * y se inicializa en 0*/
