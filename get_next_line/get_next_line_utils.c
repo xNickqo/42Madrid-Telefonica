@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:09:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/26 17:57:48 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:35:20 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*ft_strjoin(char *s1, char *s2)
 char	*ft_join(char *res, char *s1, char *s2)
 {
 	size_t	i;
-	
+
 	i = 0;
 	while (s1[i] != '\0')
 	{

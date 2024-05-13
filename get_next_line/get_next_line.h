@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:06:50 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/26 17:44:07 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:39:43 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 char	*read_line(char *buffer);
 char	*restbuff(char *buffer);
+char	*fd_error(char *buffer, char *line);
 char	*get_next_line(int fd);
 
 size_t	ft_strlen(char	*str);

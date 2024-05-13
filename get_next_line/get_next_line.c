@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:05:21 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/03 20:43:41 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:41:17 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,13 @@ char	*restbuff(char	*buffer)
 	return (new_buff);
 }
 
+char	*fd_error(char *buffer, char *line)
+{
+	free(buffer);
+	buffer = NULL;
+	return (free(line), NULL);
+}
+
 char	*get_next_line(int fd)
 {
 	char		*line;
@@ -102,12 +109,7 @@ char	*get_next_line(int fd)
 	{
 		bytes_read = read(fd, line, BUFFER_SIZE);
 		if (bytes_read == -1)
-		{
-			free(buffer);
-			buffer = NULL;
-			free(line);
-			return (NULL);
-		}
+			ft_error(buffer, line);
 		line[bytes_read] = '\0';
 		buffer = ft_strjoin(buffer, line);
 	}
