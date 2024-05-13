@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ptr.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 13:02:03 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/24 17:42:10 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:50:37 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	write_inverse(const char *str, int len, int *count)
 
 void	nullptr(int *count)
 {
-	write(1, "0x0", 3);
-	(*count) += 3;
+	write(1, "(nil)", 5);
+	(*count) += 5;
 }
 
 void	ft_ptr(va_list args, int *count)

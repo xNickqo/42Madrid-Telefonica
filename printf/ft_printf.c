@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:54:14 by niclopez          #+#    #+#             */
-/*   Updated: 2024/04/26 14:32:00 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:03:49 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ int	ft_printf(char const *format, ...)
 
 /* int main(void)
 {
-	int		num = 4542;
-	char	c = 'c';
-	char	*str = "Hola mundo";
-	void	*ptr = &num;
+	int	c = 0;
+	int min = -48;
+	char *str = "";
+	char *ptr = "Hola Mundo";
 
-	ft_printf("x en hex:");
+	ft_printf("Hola mundo");
 
 	ft_printf("\n-----------------------------\n");
 
-	printf("x en hex:");
+	printf("Hola mundo");
 } */
