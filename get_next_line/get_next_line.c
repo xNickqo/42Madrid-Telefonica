@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:05:21 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/13 18:43:38 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:20:00 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,10 @@ char	*restbuff(char	*buffer)
 
 char	*fd_error(char *buffer, char *line)
 {
+	free(line);
 	free(buffer);
 	buffer = NULL;
-	return (free(line), NULL);
+	return (NULL);
 }
 
 char	*get_next_line(int fd)
@@ -109,7 +110,7 @@ char	*get_next_line(int fd)
 	{
 		bytes_read = read(fd, line, BUFFER_SIZE);
 		if (bytes_read == -1)
-			fd_error(buffer, line);
+			return (fd_error(buffer, line));
 		line[bytes_read] = '\0';
 		buffer = ft_strjoin(buffer, line);
 	}
@@ -129,7 +130,7 @@ char	*get_next_line(int fd)
 
     char *line;
     while ((line = get_next_line(fd)) != NULL) {
-        printf("Linea leida:%s", line);
+        printf("Linea leida: %s", line);
         free(line);
     }
     close(fd);
