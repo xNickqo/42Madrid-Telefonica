@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:54:14 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/13 18:03:49 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/13 20:08:14 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,32 @@ int	ft_printf(char const *format, ...)
 
 /* int main(void)
 {
+	char char1 = 'a';
 	int	c = 0;
 	int min = -48;
 	char *str = "";
 	char *ptr = "Hola Mundo";
+	unsigned int u = 42;
+	int x = 108042;
 
-	ft_printf("Hola mundo");
+	//c s p i d u x X % pruebas
+	ft_printf("Hola mundo\n");
+	ft_printf("%c\n", char1);
+	ft_printf("%s\n", str);
+	ft_printf("%p\n", ptr);
+	ft_printf("%d, %i\n", c, min);
+	ft_printf("%u\n", u);
+	ft_printf("%x\n", x);
+	ft_printf("%%\n");
 
 	ft_printf("\n-----------------------------\n");
 
-	printf("Hola mundo");
+	printf("Hola mundo\n");
+	printf("%c\n", char1);
+	printf("%s\n", str);
+	printf("%p\n", ptr);
+	printf("%d, %i\n", c, min);
+	printf("%u\n", u);
+	printf("%x\n", x);
+	printf("%%\n");
 } */
