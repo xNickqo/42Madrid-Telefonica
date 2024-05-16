@@ -1,35 +1,36 @@
 # Nombre del archivo de salida
-NAME = libft.a
+NAME = juego
 
-OBJS = 
-OBJSBONUS =
+# Directorios
+MLX_DIR = ./minilibx/minilibx-linux
+SRC_DIR = .
+OBJ_DIR = ./OBJ
+
+SRC = $(wildcard $(SRC_DIR)/*.c)
+OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # Compilador
 CC = gcc
 
 # Flags que se le pasaran al compilador
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I$(MLX_DIR)
+LDFLAGS = -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
 
-# Reglas
-
-# Construye la libreria principal
+# Construye la librería principal
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
-
-# Construye la libreria bonus
-bonus: $(OBJSBONUS)
-	ar rc $(NAME) $(OBJSBONUS)
+# Compila el ejecutable
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -o $(NAME) $(LDFLAGS)
 
 # Compila cada archivo fuente en un archivo objeto
-%.o: %.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Elimina los archivos objeto
 clean:
-	rm -rf *.o 
+	rm -rf $(OBJ_DIR)
 
 # Elimina tanto los objetos como la libreria
 fclean: clean
