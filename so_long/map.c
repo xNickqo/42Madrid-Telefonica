@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:44:34 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/21 17:38:03 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:01:40 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-bool	has_duplicates(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_columnas)
+bool	has_duplicates(t_game *game)
 {
 	int	start_count;
 	int	exit_count;
@@ -30,12 +30,12 @@ bool	has_duplicates(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_co
 	exit_count = 0;
 	obj_count = 0;
 	i = 0;
-	while (i < num_filas)
+	while (i < game->num_filas)
 	{
 		j = 0;
-		while (j < num_columnas)
+		while (j < game->num_columnas)
 		{
-			if (map[i][j] == 'P')
+			if (game->map[i][j] == 'P')
 			{
 				if (start_count > 0)
 				{
@@ -44,7 +44,7 @@ bool	has_duplicates(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_co
 				}
 				start_count++;
 			}
-			else if (map[i][j] == 'E')
+			else if (game->map[i][j] == 'E')
 			{
 				if (exit_count > 0)
 				{
@@ -53,7 +53,7 @@ bool	has_duplicates(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_co
 				}
 				exit_count++;
 			}
-			else if (map[i][j] == 'C')
+			else if (game->map[i][j] == 'C')
 				obj_count++;
 			j++;
 		}
@@ -67,15 +67,15 @@ bool	has_duplicates(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_co
 	return (false);
 }
 
-bool	map_validator(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_columnas)
+bool	map_validator(t_game *game)
 {
 	int	i;
 	//Verificamos si el mapa esta rodeado por muros
-	printf(" %dx%d\n", num_filas, num_columnas);
+	printf(" %dx%d\n", game->num_filas, game->num_columnas);
 	i = 0;
-	while (i < num_filas)
+	while (i < game->num_filas)
 	{
-		if (map[i][0] != '1' || map[i][num_columnas - 1] != '1')
+		if (game->map[i][0] != '1' || game->map[i][game->num_columnas - 1] != '1')
 		{
 			printf("Error: El mapa no está rodeado por muros en la primera y ultima filas\n");
 			return (false);
@@ -83,9 +83,9 @@ bool	map_validator(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_col
 		i++;
 	}
 	i = 0;
-	while (i < num_columnas)
+	while (i < game->num_columnas)
 	{
-		if (map[0][i] != '1' || map[num_filas - 1][i] != '1')
+		if (game->map[0][i] != '1' || game->map[game->num_filas - 1][i] != '1')
 		{
 			printf("Error: El mapa no está rodeado por muros en la primera y ultima columnas\n");
 			return (false);
@@ -93,18 +93,15 @@ bool	map_validator(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_col
 		i++;
 	}
 	//Verificar duplicados
-	if (has_duplicates(map, num_filas, num_columnas))
+	if (has_duplicates(&game))
 		return (false);
 	return (true);
 }
 
-void map(char *filename)
+void read_map(char *filename, t_game *game)
 {
 	int		fd;
 	char	*line;
-	char	map[MAX_FILAS][MAX_COLUMNAS];
-	int		num_filas;
-	int		num_columnas;
 	int		i;
 
 	fd = open(filename, O_RDONLY);
@@ -113,29 +110,29 @@ void map(char *filename)
 		perror("Error al abrir el archivo");
 		exit(EXIT_FAILURE);
 	}
-	num_filas = 0;
-	num_columnas = 0;
+	game->num_filas = 0;
+	game->num_columnas = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		printf("%s", line);
 		i = 0;
 		while (line[i] != '\0')
 		{
-			if (num_columnas >= MAX_COLUMNAS)
+			if (game->num_columnas >= MAX_COLUMNAS)
 			{
 				printf("Error: linea demasiado larga");
 				exit(EXIT_FAILURE);
 			}
-			map[num_filas][i] = line[i];
+			game->map[game->num_filas][i] = line[i];
 			i++;
 		}
 		free(line);
-		num_filas++;
-		if (i > num_columnas)
-			num_columnas = i - 1;
+		game->num_filas++;
+		if (i > game->num_columnas)
+			game->num_columnas = i - 1;
 	}
 	close(fd);
-	if (!map_validator(map, num_filas, num_columnas))
+	if (!map_validator(&game))
 	{
 		printf("Error: El mapa no es valido\n");
 		exit(EXIT_FAILURE);

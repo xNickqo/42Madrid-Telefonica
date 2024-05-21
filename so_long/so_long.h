@@ -10,11 +10,29 @@
 
 #define MAX_FILAS 100
 #define MAX_COLUMNAS 100
+#define TILE_SIZE 32
+
+/*Estructuras*/
+typedef struct
+{
+    void    *mlx;
+    void    *window;
+    int     width;
+    int     height;
+    char    map[MAX_FILAS][MAX_COLUMNAS];
+    int     num_filas;
+    int     num_columnas;
+} t_game;
+
 
 /*Funciones*/
-bool    has_duplicates(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_columnas);
-bool    map_validator(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_columnas);
-void map(char *filename);
+int     handle_key(int key, t_game game);
+void    draw_tile(t_game *game, int x, int y, int color);
+void    draw_map(t_game *game);
+
+bool    has_duplicates(t_game *game);
+bool    map_validator(t_game *game);
+void    read_map(char *filename, t_game *game);
 
 /*GNL*/
 size_t	ft_strlen(char	*str);

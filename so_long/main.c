@@ -6,52 +6,59 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:06:06 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/16 22:00:12 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:56:32 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <mlx.h>
+#include "so_long.h"
 
-int	handle_key(int key, void *param)
+int	handle_key(int key, t_game *game)
 {
-	(void)param;
-	if (key == 53 || key == 65307)
+	(void)game;
+	if (key == 65307)
 		exit(0);
 	return (0);
 }
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	t_game	game;
+	if(argc != 2)
+    {
+        printf("Debes usar un solo argumento tal que: %s <archivo>.ber\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
+	map(argv[1], &game);
+
+	game.width = game.num_columnas * TILE_SIZE;
+	game.height = game.num_filas * TILE_SIZE;
 	
-	/* mlx_init() devuelve un puntero que se utiliza como identificador
-	 * para las futuras operaciones Minilibx*/
-	mlx_ptr = mlx_init();
-	if (mlx_ptr == NULL)
-		return 1;
+	game.mlx = mlx_init();
+	if (game.mlx == NULL)
+	{
+		printf("Error al inicializar Minilibx\n");
+		return (1);
+	}
 	
+	game.window = mlx_new_window(game.mlx, game.width, game.height, "Mi minijuego");
+	if (game.window == NULL)
+	{
+		printf("Error al crear la ventana\n");
+		return (1);
+	}
 	
-	/* mlx_new_window() creara una nueva ventana con el tamaño
-	 * especificado y el titulo dado*/
-	win_ptr = mlx_new_window(mlx_ptr, 800, 600, "Mi minijuego");
-	if (win_ptr == NULL)
-		return 1;
-	
-	
-	/* mlx_pixel_put() dibuja un pixel en las cordenadas de la ventana*/
-	mlx_pixel_put(mlx_ptr, win_ptr, 0, 0, 0xFFFFFF);
-	
-	
+	draw_map(&game);
+
 	/* mlx_key_hook() llama a una funcion cuando se presione una tecla
 	 * en la ventana especificada por win_ptr*/
-	mlx_key_hook(win_ptr, handle_key, NULL);
+	mlx_key_hook(game.window, handle_key, &game);
 
 
 	/* Ciclo de eventos de minilibx. Debes llamar a esta funcion
 	 * despues de haber configurado tus ventanas y eventos*/
-	mlx_loop(mlx_ptr);
+	mlx_loop(game.mlx);
 	return 0;
 }
