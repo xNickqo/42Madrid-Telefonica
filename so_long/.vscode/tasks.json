@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build map",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "map.c",
+                "get_next_line.c",
+                "get_next_line_utils.c"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Compilar map.c con get_next_line.c y get_next_line_utils.c"
+        }
+    ]
+}

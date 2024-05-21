@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:44:34 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/16 21:51:30 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:38:03 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	has_duplicates(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_co
 	while (i < num_filas)
 	{
 		j = 0;
-		while (j < num_columnas - 1)
+		while (j < num_columnas)
 		{
 			if (map[i][j] == 'P')
 			{
@@ -70,28 +70,27 @@ bool	has_duplicates(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_co
 bool	map_validator(char map[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_columnas)
 {
 	int	i;
-	int	j;
 	//Verificamos si el mapa esta rodeado por muros
-	printf(" %dx%d\n", num_filas, num_columnas - 1);
+	printf(" %dx%d\n", num_filas, num_columnas);
 	i = 0;
 	while (i < num_filas)
 	{
-		if (map[i][0] != '1' || map[i][num_columnas - 2] != '1')
+		if (map[i][0] != '1' || map[i][num_columnas - 1] != '1')
 		{
-			printf("Error: El mapa no está rodeado por muros en las filas\n");
+			printf("Error: El mapa no está rodeado por muros en la primera y ultima filas\n");
 			return (false);
 		}
 		i++;
 	}
-	j = 0;
-	while (j < num_columnas - 1)
+	i = 0;
+	while (i < num_columnas)
 	{
-		if (map[0][j] != '1' || map[num_filas - 1][j] != '1')
+		if (map[0][i] != '1' || map[num_filas - 1][i] != '1')
 		{
-			printf("Error: El mapa no está rodeado por muros en las columnas\n");
+			printf("Error: El mapa no está rodeado por muros en la primera y ultima columnas\n");
 			return (false);
 		}
-		j++;
+		i++;
 	}
 	//Verificar duplicados
 	if (has_duplicates(map, num_filas, num_columnas))
@@ -114,11 +113,11 @@ void map(char *filename)
 		perror("Error al abrir el archivo");
 		exit(EXIT_FAILURE);
 	}
+	num_filas = 0;
+	num_columnas = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		printf("%s", line);
-		num_filas = 0;
-		num_columnas = 0;
 		i = 0;
 		while (line[i] != '\0')
 		{
@@ -133,7 +132,7 @@ void map(char *filename)
 		free(line);
 		num_filas++;
 		if (i > num_columnas)
-			num_columnas = i;
+			num_columnas = i - 1;
 	}
 	close(fd);
 	if (!map_validator(map, num_filas, num_columnas))
