@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:06:06 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/21 18:56:32 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/21 21:54:00 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char *argv[])
         printf("Debes usar un solo argumento tal que: %s <archivo>.ber\n", argv[0]);
         exit(EXIT_FAILURE);
     }
-	map(argv[1], &game);
+	read_map(argv[1], &game);
 
 	game.width = game.num_columnas * TILE_SIZE;
 	game.height = game.num_filas * TILE_SIZE;

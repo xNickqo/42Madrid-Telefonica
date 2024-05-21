@@ -26,7 +26,7 @@ typedef struct
 
 
 /*Funciones*/
-int     handle_key(int key, t_game game);
+int     handle_key(int key, t_game *game);
 void    draw_tile(t_game *game, int x, int y, int color);
 void    draw_map(t_game *game);
 

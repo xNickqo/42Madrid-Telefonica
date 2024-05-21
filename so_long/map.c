@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:44:34 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/21 19:01:40 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/21 21:55:20 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ bool	map_validator(t_game *game)
 		i++;
 	}
 	//Verificar duplicados
-	if (has_duplicates(&game))
+	if (has_duplicates(game))
 		return (false);
 	return (true);
 }
@@ -132,7 +132,7 @@ void read_map(char *filename, t_game *game)
 			game->num_columnas = i - 1;
 	}
 	close(fd);
-	if (!map_validator(&game))
+	if (!map_validator(game))
 	{
 		printf("Error: El mapa no es valido\n");
 		exit(EXIT_FAILURE);
