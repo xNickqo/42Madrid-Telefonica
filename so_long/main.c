@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:06:06 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/21 21:54:00 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/05/22 02:39:13 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,33 +32,22 @@ int	main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 	read_map(argv[1], &game);
-
 	game.width = game.num_columnas * TILE_SIZE;
 	game.height = game.num_filas * TILE_SIZE;
-	
 	game.mlx = mlx_init();
 	if (game.mlx == NULL)
 	{
 		printf("Error al inicializar Minilibx\n");
 		return (1);
 	}
-	
 	game.window = mlx_new_window(game.mlx, game.width, game.height, "Mi minijuego");
 	if (game.window == NULL)
 	{
 		printf("Error al crear la ventana\n");
 		return (1);
 	}
-	
 	draw_map(&game);
-
-	/* mlx_key_hook() llama a una funcion cuando se presione una tecla
-	 * en la ventana especificada por win_ptr*/
 	mlx_key_hook(game.window, handle_key, &game);
-
-
-	/* Ciclo de eventos de minilibx. Debes llamar a esta funcion
-	 * despues de haber configurado tus ventanas y eventos*/
 	mlx_loop(game.mlx);
 	return 0;
 }
