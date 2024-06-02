@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:36:54 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/22 02:40:30 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:47:20 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 /*Estructuras*/
 typedef struct
 {
+    int  x;
+    int  y;
+} t_pos;
+
+typedef struct
+{
     void    *mlx;
     void    *window;
     int     width;
@@ -35,6 +41,8 @@ typedef struct
     char    map[MAX_FILAS][MAX_COLUMNAS];
     int     num_filas;
     int     num_columnas;
+    t_pos   start;
+    t_pos   end;
 } t_game;
 
 /*main*/
@@ -43,6 +51,11 @@ int     handle_key(int key, t_game *game);
 /*draw*/
 void    draw_tile(t_game *game, int x, int y, int color);
 void    draw_map(t_game *game);
+
+/*valid_way*/
+bool    is_valid_pos(t_game *game, int x, int y, bool visited[MAX_FILAS][MAX_COLUMNAS]);
+bool    dfs(t_game *game,  int x, int y, bool visited[MAX_FILAS][MAX_COLUMNAS], int *obj);
+bool    is_valid_path(t_game *game);
 
 /*Read_map*/
 bool    has_duplicates(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:35:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/22 02:35:45 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/02 18:44:15 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,20 +61,14 @@ bool	check_walls(t_game *game)
 	while (i < game->num_filas)
 	{
 		if (game->map[i][0] != '1' || game->map[i][game->num_columnas - 1] != '1')
-		{
-			printf("Error: El mapa no está rodeado por muros en la primera y ultima filas\n");
 			return (false);
-		}
 		i++;
 	}
 	i = 0;
 	while (i < game->num_columnas)
 	{
 		if (game->map[0][i] != '1' || game->map[game->num_filas - 1][i] != '1')
-		{
-			printf("Error: El mapa no está rodeado por muros en la primera y ultima columnas\n");
 			return (false);
-		}
 		i++;
 	}
 	return (true);
@@ -83,9 +77,20 @@ bool	check_walls(t_game *game)
 bool	map_validator(t_game *game)
 {
 	if (!check_walls(game))
+	{
+		printf("Error: el mapa no esta rodeado por muros\n");
 		return (false);
+	}
 	if (has_duplicates(game))
+	{
+		printf("Error: hay elementos duplicados o inexistentes\n");
 		return (false);
+	}
+	if (!is_valid_path(game))
+	{
+		printf("Error: el camino no es valido\n");	
+		return (false);
+	}
 	return (true);
 }
 
