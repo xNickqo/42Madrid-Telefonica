@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 18:20:30 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/02 22:43:03 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/02 23:28:42 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,30 @@ bool dfs(t_game *game, int x, int y, bool visited[MAX_FILAS][MAX_COLUMNAS], int 
 	int		new_x;
 	int		new_y;
 
+	printf("Estas en: (%d, %d)\n", x, y);
 	visited[y][x] = true;
-	//printf("Estas en: (%d, %d)\n", x, y);
+
+	if (game->map[y][x] == 'C')
+	{
+        printf("Coleccionable encontrado en: (%d, %d)\n", x, y);
+        (*obj)--;
+		game->map[y][x] = '0';
+    }
+
+    if (game->map[y][x] == 'E')
+	{
+		if(*obj == 0)
+		{
+			printf("Encontraste la salida CON TODOS los coleccionables\n");
+			return (true);
+		}
+        else
+		{
+			printf("Encontraste la salida pero sin los coleccionables!\n");
+        	return (false);
+		}
+    }
+
 	t_pos moves[4] = {{0, 1}, {1, 0},{0, -1}, {-1, 0}};
     i = 0;
     while (i < 4) {
@@ -39,30 +61,7 @@ bool dfs(t_game *game, int x, int y, bool visited[MAX_FILAS][MAX_COLUMNAS], int 
         }
         i++;
     }
-
-	if (game->map[y][x] == 'C')
-	{
-        printf("Coleccionable encontrado en: (%d, %d)\n", x, y);
-        (*obj)--;
-		visited[y][x] = true;
-    }
-
-    if (game->map[y][x] == 'E')
-	{
-		if(*obj == 0)
-		{
-			printf("Encontraste la salida CON TODOS los coleccionables\n");
-			visited[y][x] = true;
-			return (true);
-		}
-        else
-		{
-			printf("Encontraste la salida pero sin los coleccionables!\n");
-        	return (false);
-		}
-    }
 	
-    visited[y][x] = false;
 	printf("Retrocediendo desde (%d, %d)\n", x, y);
     return (false);
 }
