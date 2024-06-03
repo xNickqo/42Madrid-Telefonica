@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:44:34 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/02 21:18:54 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/03 22:13:37 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	read_file(int fd, t_game *game)
     printf("E: (%d, %d)\n", game->end.x, game->end.y);
 	if (!map_validator(game))
 	{
-		printf("Error: El mapa no es valido\n");
+		printf("MAPA NO VALIDO!\n");
 		exit(EXIT_FAILURE);
 	}
 	printf("El mapa es valido. OK!\n");

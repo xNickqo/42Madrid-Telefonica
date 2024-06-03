@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:34:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/22 02:40:16 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/03 22:05:52 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ void draw_map(t_game *game) {
         while (j < game->num_columnas)
         {
             if (game->map[i][j] == '1')
-                draw_tile(game, j, i, 0xFF0000); // Rojo para muros
+                draw_tile(game, j, i, 0x000000);
             else if (game->map[i][j] == '0')
-                draw_tile(game, j, i, 0x00FF00); // Verde para suelo
+                draw_tile(game, j, i, 0x737373);
             else if (game->map[i][j] == 'P')
-                draw_tile(game, j, i, 0x0000FF); // Azul para jugador
+                draw_tile(game, j, i, 0xFFFFFF);
             else if (game->map[i][j] == 'E')
-                draw_tile(game, j, i, 0xFFFF00); // Amarillo para salida
+                draw_tile(game, j, i, 0xFF0000);
             else if (game->map[i][j] == 'C')
-                draw_tile(game, j, i, 0xFF00FF); // Magenta para coleccionables
+                draw_tile(game, j, i, 0xFFFF9F);
             j++;
         }
         i++;

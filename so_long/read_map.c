@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:35:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/02 18:44:15 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/03 22:12:01 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ bool	has_duplicates(t_game *game)
 {
 	int	start_count;
 	int	exit_count;
-	int	obj_count;
 	int	i;
 	int	j;
 	
 	start_count = 0;
 	exit_count = 0;
-	obj_count = 0;
+	game->obj_count = 0;
 	i = 0;
 	while (i < game->num_filas)
 	{
@@ -45,12 +44,12 @@ bool	has_duplicates(t_game *game)
 			else if (game->map[i][j] == 'E')
 				exit_count++;
 			else if (game->map[i][j] == 'C')
-				obj_count++;
+				game->obj_count++;
 			j++;
 		}
 		i++;
 	}
-	return (check_counts(start_count, exit_count, obj_count));
+	return (check_counts(start_count, exit_count, game->obj_count));
 }
 
 bool	check_walls(t_game *game)
@@ -74,6 +73,13 @@ bool	check_walls(t_game *game)
 	return (true);
 }
 
+bool	is_rectangular(t_game *game)
+{
+	if (game->num_filas == game->num_columnas)
+		return (false);
+	return (true);
+}
+
 bool	map_validator(t_game *game)
 {
 	if (!check_walls(game))
@@ -90,6 +96,11 @@ bool	map_validator(t_game *game)
 	{
 		printf("Error: el camino no es valido\n");	
 		return (false);
+	}
+	if (!is_rectangular(game))
+	{
+		printf("Error: el mapa es cuadrado\n");
+		return(false);
 	}
 	return (true);
 }
