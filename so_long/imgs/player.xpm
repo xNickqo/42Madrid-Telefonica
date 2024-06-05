@@ -1,0 +1,25 @@
+/* XPM */
+static char *player_xpm[] = {
+"16 16 3 1",
+". c #000000",
+"X c #FF0000",
+"O c #FFFFFF",
+"................",
+".......OO.......",
+"......OXXO......",
+".....OXXXXO.....",
+"....OXXXXXXO....",
+"...OXXXXXXXXO...",
+"..OXXXXXXXXXXO..",
+".OXXXXXXXXXXXXO.",
+"OXXXXXXXXXXXXXXO",
+"OXXXXXX.XXXXXXOO",
+"OXXXXX...XXXXX.O",
+"OXXXXO...XXXXXO.",
+"OXXXXO...XXXXXO.",
+"OXXXXX...XXXXXO.",
+"OXXXXXX.XXXXXXO.",
+"OXXXXXXXXXXXXXXO",
+".OOOOOOOOOOOOOO.",
+"................"
+};

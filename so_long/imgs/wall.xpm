@@ -1,0 +1,23 @@
+/* XPM */
+static char *wall_xpm[] = {
+"16 16 2 1",
+". c #000000",
+"X c #808080",
+"................",
+"........XXXXXXXX",
+".....XXXXXXXXXX.",
+"...XXXXXXXXXXXX.",
+"..XXXXXXXXXXXXX.",
+"..XXXXXXXXXXXXX.",
+"..XXXXXXXXXXXXX.",
+"..XXXXXXXXXXXXX.",
+"..XXXXXXXXXXXXX.",
+"..XXXXXXXXXXXXX.",
+"..XXXXXXXXXXXXX.",
+"..XXXXXXXXXXXXX.",
+"..XXXXXXXXXXXXX.",
+"..XXXXXXXXXXXXX.",
+"..XXXXXXXXXXXXX.",
+"................"
+};
+

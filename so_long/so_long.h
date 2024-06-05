@@ -6,13 +6,14 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:36:54 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/03 22:58:12 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:44:35 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include <mlx.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -23,7 +24,7 @@
 
 #define MAX_FILAS 100
 #define MAX_COLUMNAS 100
-#define TILE_SIZE 32
+#define TILE_SIZE 16
 
 /*Estructuras*/
 typedef struct
@@ -44,6 +45,15 @@ typedef struct
     t_pos   start;
     t_pos   end;
     int     obj_count;
+
+    // Imagenes
+    int     img_width;
+    int     img_height;
+    void	*wall;
+    void	*floor;
+    void	*player;
+    void	*exit;
+    void	*collectible;
 } t_game;
 
 /*main*/
@@ -51,7 +61,8 @@ int     handle_key(int key, t_game *game);
 void	is_ber_file(int argc, char *argv[]);
 
 /*draw*/
-void    draw_tile(t_game *game, int x, int y, int color);
+void    load_images(t_game *game);
+void    free_images(t_game *game);
 void    draw_map(t_game *game);
 
 /*valid_way*/
@@ -69,7 +80,7 @@ bool	check_walls(t_game *game);
 bool	check_counts(int start_count, int exit_count, int obj_count);
 
 /*Read_files*/
-int	open_file(char *filename);
+int     open_file(char *filename);
 void	read_file(int fd, t_game *game);
 
 /*GNL*/
