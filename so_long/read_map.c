@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:35:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/03 22:12:01 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/05 18:23:41 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,3 @@ void read_map(char *filename, t_game *game)
 	read_file(fd, game);
 	close(fd);
 }
-
-/* int main(int argc, char *argv[])
-{
-    if(argc != 2)
-    {
-        printf("Debes usar un solo argumento tal que: %s <archivo>.ber\n", argv[0]);
-        exit(EXIT_FAILURE);
-    }
-    map(argv[1]);
-    return 0;
-} */
