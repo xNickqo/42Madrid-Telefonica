@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:34:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/06 22:01:51 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:29:25 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 void load_images(t_game *game)
 {
     printf("Cargando imágenes... ");
-
-    game->wall = mlx_xpm_file_to_image(game->mlx, "imgs/wall.xpm", &game->img_width, &game->img_height);
-    game->floor = mlx_xpm_file_to_image(game->mlx, "imgs/floor.xpm", &game->img_width, &game->img_height);
-    game->player = mlx_xpm_file_to_image(game->mlx, "imgs/player.xpm", &game->img_width, &game->img_height);
-    game->exit = mlx_xpm_file_to_image(game->mlx, "imgs/exit.xpm", &game->img_width, &game->img_height);
-    game->collectible = mlx_xpm_file_to_image(game->mlx, "imgs/collectible.xpm", &game->img_width, &game->img_height);
+    game->wall = mlx_xpm_file_to_image(game->mlx, "imgs/wall.xpm", 
+		&game->img_width, &game->img_height);
+    game->floor = mlx_xpm_file_to_image(game->mlx, "imgs/floor.xpm", 
+		&game->img_width, &game->img_height);
+    game->player = mlx_xpm_file_to_image(game->mlx, "imgs/player.xpm", 
+		&game->img_width, &game->img_height);
+    game->exit = mlx_xpm_file_to_image(game->mlx, "imgs/exit.xpm", 
+		&game->img_width, &game->img_height);
+    game->collectible = mlx_xpm_file_to_image(game->mlx, 
+		"imgs/collectible.xpm", &game->img_width, &game->img_height);
     
-    if (!game->wall || !game->floor || !game->player || !game->exit || !game->collectible)
+    if (!game->wall || !game->floor || !game->player 
+		|| !game->exit || !game->collectible)
     {
         printf("Error al cargar las imágenes\n");
         exit(EXIT_FAILURE);
     
     }
-/*  printf("(wall): %dx%d\n", game->img_width, game->img_height);
-    printf("(floor): %dx%d\n", game->img_width, game->img_height);
-    printf("(player): %dx%d\n", game->img_width, game->img_height);
-    printf("(exit): %dx%d\n", game->img_width, game->img_height);
-    printf("(collectible): %dx%d\n", game->img_width, game->img_height);    */
     printf("OK\n");
 }
 

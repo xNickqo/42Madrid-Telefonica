@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:44:34 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/06 22:04:57 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:30:25 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	read_file(int fd, t_game *game)
 	}
 	/* printf(" %dx%d\n", game->num_filas, game->num_columnas);
 	printf("P: (%d, %d)\n", game->start.x, game->start.y);
-    printf("E: (%d, %d)\n", game->end.x, game->end.y); */
+	printf("E: (%d, %d)\n", game->end.x, game->end.y); */
 	if (!map_validator(game))
 	{
 		printf("MAPA NO VALIDO!\n");

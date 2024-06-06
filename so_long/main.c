@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:06:06 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/06 22:02:31 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:34:14 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	is_ber_file(int argc, char *argv[])
 {
 	if (argc != 2)
 	{
-		printf("Debes usar un solo argumento tal que: %s <archivo>.ber\n", argv[0]);
+		printf("Error, debe ser: %s <archivo>.ber\n", argv[0]);
         exit(EXIT_FAILURE);
 	}
 	if(!strstr(argv[1], ".ber"))
