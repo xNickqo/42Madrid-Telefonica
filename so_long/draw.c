@@ -6,13 +6,12 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:34:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/05 18:28:29 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:01:51 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-// Función para cargar imágenes y verificar su carga
 void load_images(t_game *game)
 {
     printf("Cargando imágenes... ");
@@ -29,7 +28,7 @@ void load_images(t_game *game)
         exit(EXIT_FAILURE);
     
     }
-/*     printf("(wall): %dx%d\n", game->img_width, game->img_height);
+/*  printf("(wall): %dx%d\n", game->img_width, game->img_height);
     printf("(floor): %dx%d\n", game->img_width, game->img_height);
     printf("(player): %dx%d\n", game->img_width, game->img_height);
     printf("(exit): %dx%d\n", game->img_width, game->img_height);
@@ -53,7 +52,6 @@ void free_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->collectible);
 }
 
-// Función para dibujar el mapa y verificar las coordenadas
 void draw_map(t_game *game)
 {
 	int	i;
@@ -61,7 +59,6 @@ void draw_map(t_game *game)
 	int	x;
 	int	y;
 
-	printf("Dibujando mapa... ");
 	i = 0;
 	while (i < game->num_filas)
 	{
@@ -84,5 +81,4 @@ void draw_map(t_game *game)
 		}
 		i++;
 	}
-	printf("OK\n");
 }

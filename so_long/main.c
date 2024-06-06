@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:06:06 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/05 17:00:00 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/06 22:02:31 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,22 @@
 
 int	handle_key(int key, t_game *game)
 {
-	(void)game;
 	if (key == 65307)
 	{
 		free_images(game);
 		exit(0);
 	}
+	else if (key == 'w')
+		move_up(game);
+	else if (key == 's')
+		move_down(game);
+	else if (key == 'a')
+		move_left(game);
+	else if (key == 'd')
+		move_right(game);
+
+	draw_map(game); // Redibujar el mapa después de cada movimiento
+
 	return (0);
 }
 
@@ -63,6 +73,11 @@ int	main(int argc, char *argv[])
 	}
 
 	load_images(&game);
+
+	// Inicializar la posición del jugador
+	game.p.x = game.start.x;
+	game.p.y = game.start.y;
+	game.p.collected = 0;
 
 	draw_map(&game);
 

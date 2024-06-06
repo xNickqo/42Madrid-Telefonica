@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:36:54 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/05 15:44:35 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/06 21:49:48 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@
 #define TILE_SIZE 16
 
 /*Estructuras*/
+typedef struct
+{
+    int x;
+    int y;
+    int collected;
+} t_player;
+
 typedef struct
 {
     int  x;
@@ -54,6 +61,9 @@ typedef struct
     void	*player;
     void	*exit;
     void	*collectible;
+
+    //Player
+    t_player    p;
 } t_game;
 
 /*main*/
@@ -92,5 +102,11 @@ char	*read_line(char *buffer);
 char	*restbuff(char	*buffer);
 char	*fd_error(char *buffer, char *line);
 char	*get_next_line(int fd);
+
+/* Movimiento */
+void    move_up(t_game *game);
+void    move_down(t_game *game);
+void    move_left(t_game *game);
+void    move_right(t_game *game);
 
 #endif
