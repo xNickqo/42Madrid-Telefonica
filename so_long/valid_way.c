@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 18:20:30 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/11 19:40:54 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:52:07 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ bool	is_valid_path(t_game *game)
 			break;
 		i++;
 	}
-	if (all_visited)
+	/* if (all_visited)
 		ft_printf("Todas las celdas 'C' y 'E' han sido visitadas\n");
 	else
-		ft_printf("No todas las celdas 'C' y 'E' han sido visitadas\n");
+		ft_printf("No todas las celdas 'C' y 'E' han sido visitadas\n"); */
     //ft_printf("Matriz visited:\n");
     //print_visited(visited, game->num_filas, game->num_columnas);
 	return (all_visited);

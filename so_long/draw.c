@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:34:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/11 19:38:48 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:56:39 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void load_images(t_game *game)
 {
-    ft_printf("Cargando imágenes... ");
     game->wall = mlx_xpm_file_to_image(game->mlx, "imgs/wall.xpm", 
 		&game->img_width, &game->img_height);
     game->floor = mlx_xpm_file_to_image(game->mlx, "imgs/floor.xpm", 
@@ -31,15 +30,13 @@ void load_images(t_game *game)
     {
         ft_printf("Error al cargar las imágenes\n");
         exit(EXIT_FAILURE);
-    
     }
-    ft_printf("OK\n");
 }
 
 
 void free_images(t_game *game)
 {
-    ft_printf("Liberando imagenes.\n");
+    ft_printf("Liberando imagenes... ");
 	if (game->wall)
 		mlx_destroy_image(game->mlx, game->wall);
 	if (game->floor)
@@ -50,6 +47,7 @@ void free_images(t_game *game)
 		mlx_destroy_image(game->mlx, game->exit);
 	if (game->collectible)
 		mlx_destroy_image(game->mlx, game->collectible);
+	ft_printf("OK.\n");
 }
 
 void draw_map(t_game *game)
