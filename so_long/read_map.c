@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:35:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/06 22:06:45 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:40:25 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,22 +84,22 @@ bool	map_validator(t_game *game)
 {
 	if (!check_walls(game))
 	{
-		printf("Error: el mapa no esta rodeado por muros\n");
+		ft_printf("Error: el mapa no esta rodeado por muros\n");
 		return (false);
 	}
 	if (has_duplicates(game))
 	{
-		printf("Error: hay elementos duplicados o inexistentes\n");
+		ft_printf("Error: hay elementos duplicados o inexistentes\n");
 		return (false);
 	}
 	if (!is_valid_path(game))
 	{
-		printf("Error: el camino no es valido\n");	
+		ft_printf("Error: el camino no es valido\n");	
 		return (false);
 	}
 	if (!is_rectangular(game))
 	{
-		printf("Error: el mapa es cuadrado\n");
+		ft_printf("Error: el mapa es cuadrado\n");
 		return(false);
 	}
 	return (true);

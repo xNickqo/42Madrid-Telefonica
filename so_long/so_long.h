@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:36:54 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/06 22:29:59 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:38:20 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct
 
     //Player
     t_player	p;
+    int         move_count;
 } t_game;
 
 /*main*/
@@ -93,8 +94,14 @@ bool	check_counts(int start_count, int exit_count, int obj_count);
 int     open_file(char *filename);
 void	read_file(int fd, t_game *game);
 
+/* Movimiento */
+void	move_up(t_game *game);
+void	move_down(t_game *game);
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+
 /*GNL*/
-size_t	ft_strlen(char	*str);
+size_t	ft_strlen_gnl(char	*str);
 char	*ft_strchr(char *str, int c);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_join(char *res, char *s1, char *s2);
@@ -103,10 +110,18 @@ char	*restbuff(char	*buffer);
 char	*fd_error(char *buffer, char *line);
 char	*get_next_line(int fd);
 
-/* Movimiento */
-void	move_up(t_game *game);
-void	move_down(t_game *game);
-void	move_left(t_game *game);
-void	move_right(t_game *game);
+/*Printf*/
+int		ft_printf(char const *format, ...);
+void	ft_char(va_list args, int *count);
+void	ft_str(va_list args, int *count);
+void	ft_ptr(va_list args, int *count);
+void	ft_int(va_list args, int *count);
+void	ft_unsignedint(va_list args, int *count);
+void	ft_x(va_list args, int *count);
+void	ft_xupper(va_list args, int *count);
+size_t	ft_strlen(const char *str);
+char	*ft_itoa(int n);
+char	*ft_uitoa(unsigned int n);
+char	*ft_uitoa_hex(unsigned int n, int letra);
 
 #endif

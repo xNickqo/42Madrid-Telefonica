@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:44:34 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/06 22:30:25 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:40:09 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	read_file(int fd, t_game *game)
 	game->num_columnas = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		printf("%s", line);
+		ft_printf("%s", line);
 		i = 0;
 		while (line[i] != '\0')
 		{
@@ -43,15 +43,15 @@ void	read_file(int fd, t_game *game)
 		if (i > game->num_columnas)
 			game->num_columnas = i - 1;
 	}
-	/* printf(" %dx%d\n", game->num_filas, game->num_columnas);
-	printf("P: (%d, %d)\n", game->start.x, game->start.y);
-	printf("E: (%d, %d)\n", game->end.x, game->end.y); */
+	/* ft_printf(" %dx%d\n", game->num_filas, game->num_columnas);
+	ft_printf("P: (%d, %d)\n", game->start.x, game->start.y);
+	ft_printf("E: (%d, %d)\n", game->end.x, game->end.y); */
 	if (!map_validator(game))
 	{
-		printf("MAPA NO VALIDO!\n");
+		ft_printf("MAPA NO VALIDO!\n");
 		exit(EXIT_FAILURE);
 	}
-	printf("El mapa es valido. OK!\n");
+	ft_printf("El mapa es valido. OK!\n");
 }
 
 int	open_file(char *filename)

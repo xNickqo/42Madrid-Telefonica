@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 21:42:47 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/06 22:25:17 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:39:51 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void    move_player(t_game *game, int new_x, int new_y)
 {
-    if (game->map[new_y][new_x] == '1') // Si es un muro, no se mueve
+    if (game->map[new_y][new_x] == '1')
         return ;
-    if (game->map[new_y][new_x] == 'C') // Recoge coleccionable
+    if (game->map[new_y][new_x] == 'C')
         game->p.collected++;
     if (game->map[new_y][new_x] == 'E')
     {
@@ -31,6 +31,10 @@ void    move_player(t_game *game, int new_x, int new_y)
     game->p.x = new_x;
     game->p.y = new_y;
     game->map[new_y][new_x] = 'P'; // Actualiza la nueva posición
+
+    game->move_count++;
+    ft_printf("Movimiento nº %d\n", game->move_count);
+    
 }
 
 void    move_up(t_game *game)

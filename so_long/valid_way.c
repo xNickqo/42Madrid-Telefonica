@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 18:20:30 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/06 22:40:44 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:40:54 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
     {
         for (j = 0; j < num_columnas; j++)
         {
-            printf("%d ", visited[i][j]);
+            ft_printf("%d ", visited[i][j]);
         }
-        printf("\n");
+        ft_printf("\n");
     }
 } */
 
@@ -39,21 +39,21 @@ bool	dfs(t_game *game, int x, int y,
 	int		i;
 	int		new_x;
 	int		new_y;
-	//printf("Estas en: (%d, %d)\n", x, y);
+	//ft_printf("Estas en: (%d, %d)\n", x, y);
 	visited[y][x] = true;
 	if (game->map[y][x] == 'C')
 	{
-		//printf("Coleccionable encontrado en: (%d, %d)\n", x, y);
+		//ft_printf("Coleccionable encontrado en: (%d, %d)\n", x, y);
 		(*obj)--;
 	}
 	if (game->map[y][x] == 'E')
 	{
 		if (*obj == 0)
 		{
-			//printf("Encontraste la salida CON TODOS los coleccionables\n");
+			//ft_printf("Encontraste la salida CON TODOS los coleccionables\n");
 			return (true);
 		}
-		//printf("Encontraste la salida pero SIN los coleccionables\n");
+		//ft_printf("Encontraste la salida pero SIN los coleccionables\n");
 	}
 	t_pos moves[4] = {{0, 1}, {1, 0},{0, -1}, {-1, 0}};
 	i = 0;
@@ -68,7 +68,7 @@ bool	dfs(t_game *game, int x, int y,
 		}
 		i++;
 	}
-	//printf("Retrocediendo desde (%d, %d)\n", x, y);
+	//ft_printf("Retrocediendo desde (%d, %d)\n", x, y);
 	return (false);
 }
 
@@ -104,10 +104,10 @@ bool	is_valid_path(t_game *game)
 		i++;
 	}
 	if (all_visited)
-		printf("Todas las celdas 'C' y 'E' han sido visitadas\n");
+		ft_printf("Todas las celdas 'C' y 'E' han sido visitadas\n");
 	else
-		printf("No todas las celdas 'C' y 'E' han sido visitadas\n");
-    //printf("Matriz visited:\n");
+		ft_printf("No todas las celdas 'C' y 'E' han sido visitadas\n");
+    //ft_printf("Matriz visited:\n");
     //print_visited(visited, game->num_filas, game->num_columnas);
 	return (all_visited);
 }

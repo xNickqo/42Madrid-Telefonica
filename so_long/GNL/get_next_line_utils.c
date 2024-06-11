@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 18:09:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/05/16 19:35:26 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/11 19:17:35 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 /*FUNCIONES DE AYUDA*/
 
-size_t	ft_strlen(char	*str)
+size_t	ft_strlen_gnl(char	*str)
 {
 	size_t	i;
 
@@ -51,7 +51,7 @@ char	*ft_strchr(char *str, int c)
 		i++;
 	}
 	if (c == '\0')
-		return ((char *)str + ft_strlen(str));
+		return ((char *)str + ft_strlen_gnl(str));
 	return (0);
 }
 
@@ -69,7 +69,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	if (!s1 || !s2)
 		return (NULL);
-	res = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	res = (char *)malloc(ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1);
 	if (!res)
 		return (NULL);
 	res = ft_join(res, s1, s2);
@@ -90,9 +90,9 @@ char	*ft_join(char *res, char *s1, char *s2)
 	i = 0;
 	while (s2[i] != '\0')
 	{
-		res[ft_strlen(s1) + i] = s2[i];
+		res[ft_strlen_gnl(s1) + i] = s2[i];
 		i++;
 	}
-	res[ft_strlen(s1) + i] = '\0';
+	res[ft_strlen_gnl(s1) + i] = '\0';
 	return (res);
 }
