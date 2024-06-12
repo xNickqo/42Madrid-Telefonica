@@ -6,11 +6,19 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:06:06 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/11 19:39:30 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:28:34 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	handle_exit(t_game *game)
+{
+	free_images(game);
+	mlx_destroy_window(game->mlx, game->window);
+	exit(0);
+	return (0);
+}
 
 int	handle_key(int key, t_game *game)
 {
@@ -83,6 +91,7 @@ int	main(int argc, char *argv[])
 
 	draw_map(&game);
 
+	mlx_hook(game.window, 17, 0, handle_exit, &game);
 	mlx_key_hook(game.window, handle_key, &game);
 	
 	mlx_loop(game.mlx);
