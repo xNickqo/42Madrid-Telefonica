@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:36:54 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/11 19:38:20 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/06/16 22:04:47 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 #define MAX_FILAS 100
 #define MAX_COLUMNAS 100
-#define TILE_SIZE 16
+#define TILE_SIZE 50
 
 /*Estructuras*/
 typedef struct
