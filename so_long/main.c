@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:06:06 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/12 18:28:34 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/07/04 21:23:48 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,26 @@ int	handle_key(int key, t_game *game)
 		exit(0);
 	}
 	else if (key == 'w')
+	{
+		game->player = game->player_back;
 		move_up(game);
+	}
 	else if (key == 's')
+	{
+		game->player = game->player_front;
 		move_down(game);
+	}
 	else if (key == 'a')
+	{
+		game->player = game->player_left;
 		move_left(game);
+	}
 	else if (key == 'd')
+	{
+		game->player = game->player_right;
 		move_right(game);
-
+	}
 	draw_map(game);
-
 	return (0);
 }
 
@@ -46,9 +56,9 @@ void	is_ber_file(int argc, char *argv[])
 	if (argc != 2)
 	{
 		ft_printf("Error, debe ser: %s <archivo>.ber\n", argv[0]);
-        exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
-	if(!strstr(argv[1], ".ber"))
+	if (!strstr(argv[1], ".ber"))
 	{
 		ft_printf("La extension del archivo es invalida\n");
 		exit(EXIT_FAILURE);
@@ -72,7 +82,6 @@ int	main(int argc, char *argv[])
 		ft_printf("Error al inicializar Minilibx\n");
 		return (1);
 	}
-
 	game.window = mlx_new_window(game.mlx, game.width, game.height, "Juego");
 	if (game.window == NULL)
 	{

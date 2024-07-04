@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:36:54 by niclopez          #+#    #+#             */
-/*   Updated: 2024/06/16 22:04:47 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/07/04 20:58:39 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ typedef struct
     int     img_height;
     void	*wall;
     void	*floor;
-    void	*player;
+    void    *player;
+    void	*player_front;
+    void	*player_right;
+    void	*player_left;
+    void	*player_back;
     void	*exit;
     void	*collectible;
 
