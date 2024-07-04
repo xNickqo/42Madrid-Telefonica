@@ -1,5 +1,5 @@
 # Nombre del archivo de salida
-NAME = juego
+NAME = GAME.exe
 
 # Directorios
 MLX_DIR = ./minilibx/minilibx-linux

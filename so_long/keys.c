@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 02:35:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/07/05 00:57:08 by niclopez         ###   ########.fr       */
+/*   Created: 2024/07/04 23:33:01 by niclopez          #+#    #+#             */
+/*   Updated: 2024/07/05 00:03:59 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	open_file(char *filename)
+int	handle_exit(t_game *game)
 {
-	int	fd;
-
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Error al abrir el archivo");
-		exit(EXIT_FAILURE);
-	}
-	return (fd);
+	free_images(game);
+	mlx_destroy_window(game->mlx, game->window);
+	exit(0);
+	return (0);
 }
 
-void	read_map(char *filename, t_game *game)
+int	handle_key(int key, t_game *game)
 {
-	int		fd;
-
-	fd = open_file(filename);
-	read_file(fd, game);
-	if (!map_validator(game))
+	if (key == 65307)
 	{
-		ft_printf("MAPA NO VALIDO!\n");
-		exit(EXIT_FAILURE);
+		free_images(game);
+		exit(0);
 	}
-	close(fd);
-	ft_printf("El mapa es valido. OK!\n");
+	else if (key == 'w')
+		move_up(game);
+	else if (key == 's')
+		move_down(game);
+	else if (key == 'a')
+		move_left(game);
+	else if (key == 'd')
+		move_right(game);
+	draw_map(game);
+	return (0);
 }
