@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:36:54 by niclopez          #+#    #+#             */
-/*   Updated: 2024/07/05 01:02:02 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/13 19:29:38 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@
 # include <stdbool.h>
 # include <string.h>
 
-# define MAX_FILAS 100
-# define MAX_COLUMNAS 100
+# define MX_ROWS 100
+# define MX_COLS 100
 # define TILE_SIZE 50
-
 /*Estructuras*/
 typedef	struct
 {
@@ -42,37 +41,38 @@ typedef struct
 
 typedef struct
 {
-	void	*mlx;
-	void	*window;
-	int		width;
-	int		height;
-	char	map[MAX_FILAS][MAX_COLUMNAS];
-	int		num_filas;
-	int		num_columnas;
-	t_pos	start;
-	t_pos	end;
-	int		obj_count;
+	void		*mlx;
+	void		*window;
+	int			width;
+	int			height;
+	char		map[MX_ROWS][MX_COLS];
+	int			rows;
+	int			cols;
+	t_pos		start;
+	t_pos		end;
+	int			obj_count;
 
-    // Imgs
-	int		img_width;
-	int		img_height;
-	void	*wall;
-	void	*floor;
-	void	*player;
-	void	*player_front;
-	void	*player_right;
-	void	*player_left;
-	void	*player_back;
-	void	*exit;
-	void	*collectible;
+	//Imgs
+	int			img_width;
+	int			img_height;
+	void		*wall;
+	void		*floor;
+	void		*player;
+	void		*player_front;
+	void		*player_right;
+	void		*player_left;
+	void		*player_back;
+	void		*exit;
+	void		*collectible;
 
-    //Player
+	//Player
 	t_player	p;
 	int			move_count;
 } t_game;
 
 /*MAIN*/
 void	is_ber_file(int argc, char *argv[]);
+void	init_game(t_game *game, char *map_path);
 
 /*Keys*/
 int		handle_exit(t_game *game);
@@ -84,10 +84,16 @@ void	free_images(t_game *game);
 void	draw_tile(t_game *game, int i, int j);
 void	draw_map(t_game *game);
 
+/*dfs*/
+bool	valid(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS]);
+bool	dfs(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS]);
+bool	obj_cond(t_game *game, int x, int y);
+void	init_moves(t_pos moves[4]);
+
 /*valid_way*/
-//void	print_visited(bool visited[MAX_FILAS][MAX_COLUMNAS], int num_filas, int num_columnas);
-bool	is_valid_pos(t_game *game, int x, int y, bool visited[MAX_FILAS][MAX_COLUMNAS]);
-bool	dfs(t_game *game,  int x, int y, bool visited[MAX_FILAS][MAX_COLUMNAS], int *obj);
+void	init_visited(t_game *game, bool visited[MX_ROWS][MX_COLS]);
+bool	check_visited(t_game *game, bool visited[MX_ROWS][MX_COLS]);
+void	print_visited(t_game *game, bool visited[MX_ROWS][MX_COLS]);
 bool	is_valid_path(t_game *game);
 
 /*read_map*/

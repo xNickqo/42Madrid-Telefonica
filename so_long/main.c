@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:06:06 by niclopez          #+#    #+#             */
-/*   Updated: 2024/07/04 23:39:17 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/13 19:23:20 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,37 +26,31 @@ void	is_ber_file(int argc, char *argv[])
 	}
 }
 
+void	init_game(t_game *game, char *map_path)
+{
+	read_map(map_path, game);
+	game->mlx = mlx_init();
+	if (game->mlx == NULL)
+		ft_printf("Error al inicializar Minilibx\n");
+	game->height = game->rows * TILE_SIZE;
+	game->width = game->cols * TILE_SIZE;
+	game->window = mlx_new_window(game->mlx, game->width, game->height, "");
+	if (game->window == NULL)
+		ft_printf("Error al crear la ventana\n");
+	load_images(game);
+	game->p.x = game->start.x;
+	game->p.y = game->start.y;
+	game->p.collected = 0;
+	game->move_count = 0;
+}
+
 int	main(int argc, char *argv[])
 {
 	t_game	game;
 
 	is_ber_file(argc, argv);
-	read_map(argv[1], &game);
-
-	game.mlx = mlx_init();
-	if (game.mlx == NULL)
-	{
-		ft_printf("Error al inicializar Minilibx\n");
-		return (1);
-	}
-	game.width = game.num_columnas * TILE_SIZE;
-	game.height = game.num_filas * TILE_SIZE;
-	game.window = mlx_new_window(game.mlx, game.width, game.height, "Juego");
-	if (game.window == NULL)
-	{
-		ft_printf("Error al crear la ventana\n");
-		return (1);
-	}
-
-	load_images(&game);
-
-	game.p.x = game.start.x;
-	game.p.y = game.start.y;
-	game.p.collected = 0;
-	game.move_count = 0;
-
+	init_game(&game, argv[1]);
 	draw_map(&game);
-
 	mlx_hook(game.window, 17, 0, handle_exit, &game);
 	mlx_key_hook(game.window, handle_key, &game);
 	mlx_loop(game.mlx);

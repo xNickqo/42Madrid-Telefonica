@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 21:35:49 by niclopez          #+#    #+#             */
-/*   Updated: 2024/07/04 21:48:10 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/13 19:21:37 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ bool	has_duplicates(t_game *game)
 	exit_count = 0;
 	game->obj_count = 0;
 	i = 0;
-	while (i < game->num_filas)
+	while (i < game->rows)
 	{
 		j = 0;
-		while (j < game->num_columnas)
+		while (j < game->cols)
 		{
 			if (game->map[i][j] == 'P')
 				start_count++;
@@ -57,17 +57,17 @@ bool	check_walls(t_game *game)
 	int	i;
 
 	i = 0;
-	while (i < game->num_filas)
+	while (i < game->rows)
 	{
 		if (game->map[i][0] != '1'
-			|| game->map[i][game->num_columnas - 1] != '1')
+			|| game->map[i][game->cols - 1] != '1')
 			return (false);
 		i++;
 	}
 	i = 0;
-	while (i < game->num_columnas)
+	while (i < game->cols)
 	{
-		if (game->map[0][i] != '1' || game->map[game->num_filas - 1][i] != '1')
+		if (game->map[0][i] != '1' || game->map[game->rows - 1][i] != '1')
 			return (false);
 		i++;
 	}
@@ -76,7 +76,7 @@ bool	check_walls(t_game *game)
 
 bool	is_rectangular(t_game *game)
 {
-	if (game->num_filas == game->num_columnas)
+	if (game->rows == game->cols)
 		return (false);
 	return (true);
 }

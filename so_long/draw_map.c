@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:34:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/07/05 00:03:34 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/13 19:23:48 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ void	draw_map(t_game *game)
 	int	j;
 
 	i = 0;
-	while (i < game->num_filas)
+	while (i < game->rows)
 	{
 		j = 0;
-		while (j < game->num_columnas)
+		while (j < game->cols)
 		{
 			draw_tile(game, i, j);
 			j++;
