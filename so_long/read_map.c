@@ -6,15 +6,65 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:35:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/07/05 00:57:08 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:34:01 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	open_file(char *filename)
+void	print_game_info(t_game *game)
 {
-	int	fd;
+	ft_printf(" %dx%d\n", game->rows, game->cols);
+	ft_printf("P: (%d, %d)\n", game->start.x, game->start.y);
+	ft_printf("E: (%d, %d)\n", game->end.x, game->end.y);
+}
+
+void	process_line(t_game *game, char *line)
+{
+	int	i;
+
+	ft_printf("%s", line);
+	i = 0;
+	while (line[i] != '\0')
+	{
+		game->map[game->rows][i] = line[i];
+		if (line[i] == 'P')
+		{
+			game->start.x = i;
+			game->start.y = game->rows;
+		}
+		if (line[i] == 'E')
+		{
+			game->end.x = i;
+			game->end.y = game->rows;
+		}
+		(i)++;
+	}
+	free(line);
+	game->rows++;
+	if (i > game->cols)
+		game->cols = i - 1;
+}
+
+void	read_file(int fd, t_game *game)
+{
+	char	*line;
+
+	game->rows = 0;
+	game->cols = 0;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		process_line(game, line);
+	}
+	print_game_info(game);
+}
+
+void	read_map(char *filename, t_game *game)
+{
+	int		fd;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -22,14 +72,6 @@ int	open_file(char *filename)
 		perror("Error al abrir el archivo");
 		exit(EXIT_FAILURE);
 	}
-	return (fd);
-}
-
-void	read_map(char *filename, t_game *game)
-{
-	int		fd;
-
-	fd = open_file(filename);
 	read_file(fd, game);
 	if (!map_validator(game))
 	{

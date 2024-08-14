@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:06:06 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/13 19:23:20 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:49:04 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ void	is_ber_file(int argc, char *argv[])
 	}
 }
 
-void	init_game(t_game *game, char *map_path)
+void	init_game(t_game *game)
 {
-	read_map(map_path, game);
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
 		ft_printf("Error al inicializar Minilibx\n");
@@ -49,7 +48,8 @@ int	main(int argc, char *argv[])
 	t_game	game;
 
 	is_ber_file(argc, argv);
-	init_game(&game, argv[1]);
+	read_map(argv[1], &game);
+	init_game(&game);
 	draw_map(&game);
 	mlx_hook(game.window, 17, 0, handle_exit, &game);
 	mlx_key_hook(game.window, handle_key, &game);

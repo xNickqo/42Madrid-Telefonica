@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   valid_way.c                                        :+:      :+:    :+:   */
+/*   is_valid_path.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 18:20:30 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/13 19:26:21 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:44:10 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
         ft_printf("\n");
     }
 }*/
-
 
 /*
 -------------------------------------------------------------------------------
@@ -82,7 +81,7 @@ bool	check_visited(t_game *game, bool visited[MX_ROWS][MX_COLS])
 bool	is_valid_path(t_game *game)
 {
 	bool	visited[MX_ROWS][MX_COLS];
-
+	
 	init_visited(game, visited);
 	dfs(game, game->start.x, game->start.y, visited);
 	return (check_visited(game, visited));

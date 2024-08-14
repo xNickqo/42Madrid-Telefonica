@@ -6,11 +6,15 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:59:48 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/13 19:27:53 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:51:40 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/*ft_printf("Coleccionable encontrado en: (%d, %d)\n", x, y);
+ft_printf("Encontraste la salida CON TODOS los coleccionables\n");
+ft_printf("Encontraste la salida pero SIN los coleccionables\n");*/
 
 bool	obj_cond(t_game *game, int x, int y)
 {
@@ -86,9 +90,6 @@ bool	valid(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS])
 */
 /*
 ft_printf("Estas en: (%d, %d)\n", x, y);
-ft_printf("Coleccionable encontrado en: (%d, %d)\n", x, y);
-ft_printf("Encontraste la salida CON TODOS los coleccionables\n");
-ft_printf("Encontraste la salida pero SIN los coleccionables\n");
 ft_printf("Retrocediendo desde (%d, %d)\n", x, y); 
 */
 

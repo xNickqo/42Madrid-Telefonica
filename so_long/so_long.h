@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:36:54 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/13 19:29:38 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:49:25 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ typedef struct
 
 /*MAIN*/
 void	is_ber_file(int argc, char *argv[]);
-void	init_game(t_game *game, char *map_path);
+void	init_game(t_game *game);
 
-/*Keys*/
+/*handle_eys*/
 int		handle_exit(t_game *game);
 int		handle_key(int key, t_game *game);
 
@@ -90,28 +90,26 @@ bool	dfs(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS]);
 bool	obj_cond(t_game *game, int x, int y);
 void	init_moves(t_pos moves[4]);
 
-/*valid_way*/
+/*is_valid_path*/
 void	init_visited(t_game *game, bool visited[MX_ROWS][MX_COLS]);
 bool	check_visited(t_game *game, bool visited[MX_ROWS][MX_COLS]);
 void	print_visited(t_game *game, bool visited[MX_ROWS][MX_COLS]);
 bool	is_valid_path(t_game *game);
 
 /*read_map*/
-int		open_file(char *filename);
+void	process_line(t_game *game, char *line);
+void	read_file(int fd, t_game *game);
 void	read_map(char *filename, t_game *game);
 
-/*valid_map*/
+/*map_validator*/
 bool	has_duplicates(t_game *game);
 bool	map_validator(t_game *game);
 bool	is_rectangular(t_game *game);
 bool	check_walls(t_game *game);
 bool	check_counts(int start_count, int exit_count, int obj_count);
 
-/*read_file*/
-void	process_line(t_game *game, char *line);
-void	read_file(int fd, t_game *game);
-
 /*player_move*/
+void	player_move(t_game *game, int new_x, int new_y);
 void	move_up(t_game *game);
 void	move_down(t_game *game);
 void	move_left(t_game *game);
