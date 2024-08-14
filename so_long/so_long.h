@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:36:54 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/14 16:49:25 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:51:58 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ void	draw_tile(t_game *game, int i, int j);
 void	draw_map(t_game *game);
 
 /*dfs*/
-bool	valid(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS]);
+bool	pos_validator(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS]);
 bool	dfs(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS]);
-bool	obj_cond(t_game *game, int x, int y);
+bool	conditionals(t_game *game, int x, int y);
 void	init_moves(t_pos moves[4]);
 
 /*is_valid_path*/

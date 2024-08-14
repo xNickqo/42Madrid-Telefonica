@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_map.c                                         :+:      :+:    :+:   */
+/*   f_draw_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:34:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/13 19:23:48 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:51:44 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/*	
+------------------------------------------------------------------------------
+							Carga de imagenes
+------------------------------------------------------------------------------
+*/
 
 void	load_images(t_game *game)
 {
@@ -39,6 +45,12 @@ void	load_images(t_game *game)
 		exit(EXIT_FAILURE);
 	}
 }
+
+/*	
+------------------------------------------------------------------------------
+							Liberar imagenes
+------------------------------------------------------------------------------
+*/
 
 void	free_images(t_game *game)
 {
@@ -81,6 +93,14 @@ void	draw_tile(t_game *game, int i, int j)
 		mlx_put_image_to_window(game->mlx,
 			game->window, game->collectible, x, y);
 }
+
+/*	
+------------------------------------------------------------------------------
+			Esta funcion recorre el mapa posicion por posicion 
+								y 
+			cargar las imagenes en su debida posicion
+------------------------------------------------------------------------------
+*/
 
 void	draw_map(t_game *game)
 {

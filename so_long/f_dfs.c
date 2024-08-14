@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dfs.c                                              :+:      :+:    :+:   */
+/*   f_dfs.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:59:48 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/14 16:51:40 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:51:42 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*	
+------------------------------------------------------------------------------
+	Si mientras recorre nuevas posiciones encuentra un objeto, reducira
+	en uno el contador.
+	Si encuentra la salida(E) recojiendo todos los objetos(C) retornara
+	TRUE, sino FALSE
+------------------------------------------------------------------------------
+*/
 /*ft_printf("Coleccionable encontrado en: (%d, %d)\n", x, y);
 ft_printf("Encontraste la salida CON TODOS los coleccionables\n");
 ft_printf("Encontraste la salida pero SIN los coleccionables\n");*/
 
-bool	obj_cond(t_game *game, int x, int y)
+bool	conditionals(t_game *game, int x, int y)
 {
 	int		obj;
 
@@ -27,6 +35,16 @@ bool	obj_cond(t_game *game, int x, int y)
 		return (true);
 	return (false);
 }
+
+/*	
+------------------------------------------------------------------------------
+				moves[4] = {(1, 0), (0, 1), (-1, 0), (0, -1)}
+								
+								X (0, 1) 
+					(-1, 0)X   X (1, 0)
+						(0, -1)	X
+------------------------------------------------------------------------------
+*/
 
 void	init_moves(t_pos moves[4])
 {
@@ -42,7 +60,7 @@ void	init_moves(t_pos moves[4])
 
 /*	
 ------------------------------------------------------------------------------
-	Validar si la poscion de visited[x][y] es valida 
+				Validar la poscion de visited[x][y]
 
 	Es decir:
 		-Verifica los limites de la matriz tanto vertical como horizontal
@@ -50,7 +68,8 @@ void	init_moves(t_pos moves[4])
 		-Verfica que la posicion no haya sido visitada anteriormente
 ------------------------------------------------------------------------------
 */
-bool	valid(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS])
+
+bool	pos_validator(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS])
 {
 	if (x < 0 || x >= game->cols)
 		return (false);
@@ -102,14 +121,14 @@ bool	dfs(t_game *game, int x, int y,
 	t_pos	moves[4];
 
 	visited[y][x] = true;
-	obj_cond(game, x, y);
+	conditionals(game, x, y);
 	init_moves(moves);
 	i = 0;
 	while (i < 4)
 	{
 		new_x = x + moves[i].x;
 		new_y = y + moves[i].y;
-		if (valid(game, new_x, new_y, visited))
+		if (pos_validator(game, new_x, new_y, visited))
 		{
 			if (dfs(game, new_x, new_y, visited))
 				return (true);

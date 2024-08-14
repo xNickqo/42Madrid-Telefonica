@@ -6,11 +6,18 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:06:06 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/14 16:49:04 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:51:53 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/*
+-----------------------------------------------------------------------------
+	Verifica que uses los parametros correctamente para lanzar el 
+	programa y que el archivo sea "nombre_archivo.ber"
+-----------------------------------------------------------------------------
+*/
 
 void	is_ber_file(int argc, char *argv[])
 {
@@ -42,6 +49,12 @@ void	init_game(t_game *game)
 	game->p.collected = 0;
 	game->move_count = 0;
 }
+
+/*
+-----------------------------------------------------------------------------
+						FUNCION PRINCIPAL
+-----------------------------------------------------------------------------
+*/
 
 int	main(int argc, char *argv[])
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_path.c                                    :+:      :+:    :+:   */
+/*   f_is_valid_path.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 18:20:30 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/14 16:44:10 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:51:47 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@
 }*/
 
 /*
--------------------------------------------------------------------------------
-	Se encarga de llamar a dfs y verificar si todas las celdas 'C' y 'E' 
-	han sido visitadas 
--------------------------------------------------------------------------------
+----------------------------------------------------------------------
+			Inicializa el array "visited" en FALSE
+----------------------------------------------------------------------
 */
 
 void	init_visited(t_game *game, bool visited[MX_ROWS][MX_COLS])
@@ -50,13 +49,19 @@ void	init_visited(t_game *game, bool visited[MX_ROWS][MX_COLS])
 	}
 }
 
+/*
+---------------------------------------------------------------------
+	Verifica que todas las posiciones C y E hayan sido visitadas
+
+	Si C o E no han sido visitadas devolvera FALSE, sino TRUE
+---------------------------------------------------------------------
+*/
+
 bool	check_visited(t_game *game, bool visited[MX_ROWS][MX_COLS])
 {
 	int		i;
 	int		j;
-	bool	all_visited;
-
-	all_visited = true;
+	
 	i = 0;
 	while (i < game->rows)
 	{
@@ -65,18 +70,19 @@ bool	check_visited(t_game *game, bool visited[MX_ROWS][MX_COLS])
 		{
 			if ((game->map[i][j] == 'C' || game->map[i][j] == 'E')
 				&& !visited[i][j])
-			{
-				all_visited = false;
-				break ;
-			}
+				return (false);
 			j++;
 		}
-		if (!all_visited)
-			break ;
 		i++;
 	}
 	return (true);
 }
+
+/*
+---------------------------------------------------------------------------
+	Se encarga de llamar a dfs y verificar si el camino es valido 
+---------------------------------------------------------------------------
+*/
 
 bool	is_valid_path(t_game *game)
 {

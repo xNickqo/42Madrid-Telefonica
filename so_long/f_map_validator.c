@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_validator.c                                    :+:      :+:    :+:   */
+/*   f_map_validator.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 21:35:49 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/14 16:43:35 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:51:49 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,16 @@ bool	is_rectangular(t_game *game)
 		return (false);
 	return (true);
 }
+
+/*
+------------------------------------------------------------------
+	Funcion que se encarga de verificar que:
+		-El mapa esté rodeado por muros
+		-Exixtan elementos duplicados o inexistentes
+		-El jugador tenga un camino valido
+		-El mapa sea rectangular
+------------------------------------------------------------------
+*/
 
 bool	map_validator(t_game *game)
 {

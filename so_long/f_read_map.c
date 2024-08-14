@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_map.c                                         :+:      :+:    :+:   */
+/*   f_read_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:35:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/14 16:34:01 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:51:52 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ void	print_game_info(t_game *game)
 	ft_printf("P: (%d, %d)\n", game->start.x, game->start.y);
 	ft_printf("E: (%d, %d)\n", game->end.x, game->end.y);
 }
+
+/*
+----------------------------------------------------------------------------
+	Se encarga de introducir el mapa en el array linea por linea
+	y localizar tanto el punto de inicio como la salida.
+----------------------------------------------------------------------------
+*/
 
 void	process_line(t_game *game, char *line)
 {
@@ -61,6 +68,12 @@ void	read_file(int fd, t_game *game)
 	}
 	print_game_info(game);
 }
+
+/*
+-------------------------------------------------------------
+	Lectura y validacion del mapa
+-------------------------------------------------------------
+*/
 
 void	read_map(char *filename, t_game *game)
 {

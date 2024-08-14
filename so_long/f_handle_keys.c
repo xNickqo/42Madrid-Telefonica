@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys.c                                             :+:      :+:    :+:   */
+/*   f_handle_keys.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 23:33:01 by niclopez          #+#    #+#             */
-/*   Updated: 2024/07/05 00:03:59 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:51:45 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/*	
+------------------------------------------------------------------------------
+			El boton X hara una finalizacion limpia del programa	
+------------------------------------------------------------------------------
+*/
 
 int	handle_exit(t_game *game)
 {
@@ -19,6 +25,13 @@ int	handle_exit(t_game *game)
 	exit(0);
 	return (0);
 }
+
+/*	
+------------------------------------------------------------------------------
+		La tecla ESC hara una finalizacion limpia del programa y se 
+			estableceran que teclas seran las de movimiento
+------------------------------------------------------------------------------
+*/
 
 int	handle_key(int key, t_game *game)
 {
