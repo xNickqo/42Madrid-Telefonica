@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:36:54 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/14 19:51:58 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/18 18:26:40 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@
 # define MX_COLS 100
 # define TILE_SIZE 50
 /*Estructuras*/
-typedef	struct
+typedef struct player
 {
 	int	x;
 	int	y;
 	int	collected;
-} t_player;
+}	t_player;
 
-typedef struct
+typedef struct position
 {
 	int	x;
 	int	y;
-} t_pos;
+}	t_pos;
 
-typedef struct
+typedef struct main
 {
 	void		*mlx;
 	void		*window;
@@ -68,47 +68,48 @@ typedef struct
 	//Player
 	t_player	p;
 	int			move_count;
-} t_game;
+}	t_game;
 
 /*MAIN*/
 void	is_ber_file(int argc, char *argv[]);
 void	init_game(t_game *game);
 
-/*handle_eys*/
+/*f_handle_keys*/
 int		handle_exit(t_game *game);
 int		handle_key(int key, t_game *game);
 
-/*draw_map*/
+/*f_draw_map*/
 void	load_images(t_game *game);
 void	free_images(t_game *game);
 void	draw_tile(t_game *game, int i, int j);
 void	draw_map(t_game *game);
 
-/*dfs*/
-bool	pos_validator(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS]);
+/*f_dfs*/
+bool	pos_validator(t_game *game, int x, int y,
+			bool visited[MX_ROWS][MX_COLS]);
 bool	dfs(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS]);
 bool	conditionals(t_game *game, int x, int y);
 void	init_moves(t_pos moves[4]);
 
-/*is_valid_path*/
+/*f_is_valid_path*/
 void	init_visited(t_game *game, bool visited[MX_ROWS][MX_COLS]);
 bool	check_visited(t_game *game, bool visited[MX_ROWS][MX_COLS]);
 void	print_visited(t_game *game, bool visited[MX_ROWS][MX_COLS]);
 bool	is_valid_path(t_game *game);
 
-/*read_map*/
+/*f_read_map*/
 void	process_line(t_game *game, char *line);
 void	read_file(int fd, t_game *game);
 void	read_map(char *filename, t_game *game);
 
-/*map_validator*/
+/*f_map_validator*/
 bool	has_duplicates(t_game *game);
 bool	map_validator(t_game *game);
 bool	is_rectangular(t_game *game);
 bool	check_walls(t_game *game);
 bool	check_counts(int start_count, int exit_count, int obj_count);
 
-/*player_move*/
+/*f_player_move*/
 void	player_move(t_game *game, int new_x, int new_y);
 void	move_up(t_game *game);
 void	move_down(t_game *game);
@@ -125,7 +126,7 @@ char	*restbuff(char	*buffer);
 char	*fd_error(char *buffer, char *line);
 char	*get_next_line(int fd);
 
-/*Printf*/
+/*ft_printf*/
 int		ft_printf(char const *format, ...);
 void	ft_char(va_list args, int *count);
 void	ft_str(va_list args, int *count);

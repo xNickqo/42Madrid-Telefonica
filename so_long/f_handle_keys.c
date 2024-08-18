@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 23:33:01 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/14 19:51:45 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/18 18:23:00 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	handle_exit(t_game *game)
 
 /*	
 ------------------------------------------------------------------------------
-		La tecla ESC hara una finalizacion limpia del programa y se 
-			estableceran que teclas seran las de movimiento
+		La tecla ESC(65307 en Linux) hara una finalizacion limpia del 
+		programa y se estableceran que teclas seran las de movimiento
 ------------------------------------------------------------------------------
 */
 

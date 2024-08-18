@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 21:35:49 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/14 19:51:49 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/18 18:24:23 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	has_duplicates(t_game *game)
 	int	exit_count;
 	int	i;
 	int	j;
-	
+
 	start_count = 0;
 	exit_count = 0;
 	game->obj_count = 0;
@@ -82,13 +82,13 @@ bool	is_rectangular(t_game *game)
 }
 
 /*
-------------------------------------------------------------------
-	Funcion que se encarga de verificar que:
-		-El mapa esté rodeado por muros
-		-Exixtan elementos duplicados o inexistentes
-		-El jugador tenga un camino valido
-		-El mapa sea rectangular
-------------------------------------------------------------------
+------------------------------------------------------------------------------
+				Funcion que se encarga de verificar que:
+					-El mapa esté rodeado por muros
+					-Exixtan elementos duplicados o inexistentes
+					-El jugador tenga un camino valido
+					-El mapa sea rectangular
+------------------------------------------------------------------------------
 */
 
 bool	map_validator(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 18:59:48 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/14 19:51:42 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/08/18 18:23:35 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 	Si encuentra la salida(E) recojiendo todos los objetos(C) retornara
 	TRUE, sino FALSE
 ------------------------------------------------------------------------------
-*/
-/*ft_printf("Coleccionable encontrado en: (%d, %d)\n", x, y);
+
+ft_printf("Coleccionable encontrado en: (%d, %d)\n", x, y);
 ft_printf("Encontraste la salida CON TODOS los coleccionables\n");
-ft_printf("Encontraste la salida pero SIN los coleccionables\n");*/
+ft_printf("Encontraste la salida pero SIN los coleccionables\n");
+*/
 
 bool	conditionals(t_game *game, int x, int y)
 {
@@ -40,9 +41,9 @@ bool	conditionals(t_game *game, int x, int y)
 ------------------------------------------------------------------------------
 				moves[4] = {(1, 0), (0, 1), (-1, 0), (0, -1)}
 								
-								X (0, 1) 
+								X (0, -1) 
 					(-1, 0)X   X (1, 0)
-						(0, -1)	X
+						(0, 1)	X
 ------------------------------------------------------------------------------
 */
 
@@ -69,7 +70,8 @@ void	init_moves(t_pos moves[4])
 ------------------------------------------------------------------------------
 */
 
-bool	pos_validator(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS])
+bool	pos_validator(t_game *game, int x, int y,
+	bool visited[MX_ROWS][MX_COLS])
 {
 	if (x < 0 || x >= game->cols)
 		return (false);
@@ -83,7 +85,7 @@ bool	pos_validator(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS])
 }
 
 /* 
---------------------------------------------------------------------------
+------------------------------------------------------------------------------
 	La funcion dfs se encarga de explorar el mapa desde una posicion 
 	inical('P') y verificar si es posible llegar a la salida('E') 
 	cumpliendo con la condicion de recojer todos los objetos('C').
@@ -105,9 +107,8 @@ bool	pos_validator(t_game *game, int x, int y, bool visited[MX_ROWS][MX_COLS])
 	la 'E', cumpliendo con todas las condiciones de recolección de objetos.
 	Retorna false si no existe una ruta válida desde la posición actual 
 	hacia la salida.
-----------------------------------------------------------------------------
-*/
-/*
+------------------------------------------------------------------------------
+
 ft_printf("Estas en: (%d, %d)\n", x, y);
 ft_printf("Retrocediendo desde (%d, %d)\n", x, y); 
 */
