@@ -9,10 +9,10 @@ OBJ_DIR = ./OBJ
 
 # Archivos fuente
 SRC = $(wildcard $(SRC_DIR)/*.c)
-GNL_SRC = $(wildcard $(LIBFT_DIR)/*.c)
+LIBFT_SRC = $(wildcard $(LIBFT_DIR)/*.c)
 PRINTF_SRC = $(wildcard $(PRINTF_DIR)/*.c)
 
-ALL_SRC = $(SRC) $(GNL_SRC) $(PRINTF_SRC)
+ALL_SRC = $(LIBFT_SRC) $(PRINTF_SRC) $(SRC)
 
 OBJ = $(ALL_SRC:%.c=$(OBJ_DIR)/%.o)
 
@@ -20,7 +20,7 @@ OBJ = $(ALL_SRC:%.c=$(OBJ_DIR)/%.o)
 CC = gcc
 
 # Flags que se le pasaran al compilador
-CFLAGS = -Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(SRC_DIR) -I$(PRINTF_DIR)
+CFLAGS = -Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(SRC_DIR)
 
 # Construye la librería principal
 all: $(NAME)

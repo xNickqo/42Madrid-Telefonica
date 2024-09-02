@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:49:33 by niclopez          #+#    #+#             */
-/*   Updated: 2024/09/02 19:13:00 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/02 23:33:47 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,24 @@ int main(int argc, char *argv[])
 	int	i = 1;
 	while (i < argc)
 	{
-		int	num = atoi(argv[i]);
+		int	num = ft_atoi(argv[i]);
 		push(&a, num);
 		i++;
 	}
 
-	sa(&a);
-	pb(&a, &b);
+	p(&a, &b);
+	s(&a);
 
-	printf("Pila a: \n");
-	t_node *current = a.last;
-	while (current)
-	{
-		printf("%d\n", current->value);
-		current = current->next;
-	}
+	printlst(&a);
+	printlst(&b);
 
-	printf("Pila b: \n");
-	current = b.last;
-	while (current)
-	{
-		printf("%d\n", current->value);
-		current = current->next;
-	}
+	free_stack(&a);
+	free_stack(&b);
+    
+    return (0);
+}
 
-
-	/*Estrategias o Algoritmos Comunes
+/*Estrategias o Algoritmos Comunes
 		Hay varias estrategias que puedes seguir para desarrollar tu solución. Aquí 
 		te explico algunas de las más comunes:
 
@@ -89,8 +81,3 @@ int main(int argc, char *argv[])
 		Desventajas: Puede ser más difícil de comprender e implementar, pero es una 
 		de las mejores en términos de número de operaciones para listas grandes.
 */
-
-	free_stack(&a);
-    
-    return (0);
-}
