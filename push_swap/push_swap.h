@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:50:00 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/18 20:58:58 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/02 19:07:20 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,6 @@
 #	include<limits.h>
 #	include<stdio.h>
 
-typedef struct s_list
-{
-	int	*sa;
-	int	*sb;
-	int	*ss;
-	int	*pa;
-	int	*pb;
-	int	*ra;
-	int	*rb;
-	int	*rr;
-	int	*rra;
-	int	*rrb;
-	int	*rrr;
-
-	int *argc;
-
-}	t_list;
-
 typedef struct s_node
 {
 	int value;
@@ -43,12 +25,14 @@ typedef struct s_node
 } t_node;
 
 typedef struct s_stack {
-    t_node *top;
+    t_node *last;
 } t_stack;
 
-
-int	ft_atoi(const char *str);
-size_t	ft_strlen(const char *str);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	push(t_stack *stack, int value);
+void    free_stack(t_stack *stack);
+void    s(t_stack *stack);
+void    p(t_stack *src, t_stack *dest);
+void    r(t_stack *stack);
+void	rr(t_stack *stack);
 
 #endif

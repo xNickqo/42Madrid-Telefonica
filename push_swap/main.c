@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:49:33 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/18 20:56:38 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/02 19:13:00 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,83 @@
 
 int main(int argc, char *argv[])
 {
+	t_stack	a;
+	t_stack b;
+	a.last = NULL;
+	b.last = NULL;
+
     if (argc < 2)
 	{
 		printf("Error. Debes inrocudir minimo un argumento");
         return (1);
 	}
     
-	//Convertir argumentos a numeros y almacenar en la pila 'a'
 	int	i = 1;
 	while (i < argc)
 	{
 		int	num = atoi(argv[i]);
-		printf("%d\n", num);
+		push(&a, num);
 		i++;
 	}
 
-	//Estructura de datos para las pilas y cargaras 'a' con los numeros
+	sa(&a);
+	pb(&a, &b);
 
-	//Llamaras a la funcion que implementara el algoritmo de ordenamiento
-	push_swap(a);
+	printf("Pila a: \n");
+	t_node *current = a.last;
+	while (current)
+	{
+		printf("%d\n", current->value);
+		current = current->next;
+	}
 
+	printf("Pila b: \n");
+	current = b.last;
+	while (current)
+	{
+		printf("%d\n", current->value);
+		current = current->next;
+	}
+
+
+	/*Estrategias o Algoritmos Comunes
+		Hay varias estrategias que puedes seguir para desarrollar tu solución. Aquí 
+		te explico algunas de las más comunes:
+
+		1. Sort Simple (para pocos elementos)
+		Descripción: Para listas pequeñas (por ejemplo, 3 a 5 elementos), 
+		puedes simplemente enumerar todos los posibles órdenes y programar 
+		una secuencia de movimientos para cada posible orden inicial.
+		Ventajas: Muy eficiente en términos de número de operaciones porque 
+		está específicamente diseñada para estos casos.
+		Desventajas: No es escalable para listas grandes.
+
+		2. Insertion Sort
+		Descripción: Similar al algoritmo de inserción clásico. Mantienes una 
+		pila a donde intentas ordenar elementos mientras empujas los elementos menores a 
+		la pila b. Luego, los devuelves a a en el orden correcto.
+		Ventajas: Relativamente sencillo de implementar.
+		Desventajas: Puede no ser óptimo en términos de número de operaciones 
+		para listas grandes.
+
+		3. Quick Sort (versión simplificada)
+		Descripción: Elige un pivote y divide la pila a en dos subpilas, moviendo elementos 
+		mayores al pivote a la pila b. Recursivamente, ordenas estas subpilas y luego 
+		las combinas.
+		Ventajas: Buen rendimiento para listas de tamaño mediano a grande.
+		Desventajas: Puede ser más complejo de implementar y optimizar.
+
+		4. Radix Sort (versión binaria)
+		Descripción: Trabaja sobre los bits individuales de los números, dividiendo 
+		los elementos en subpilas b basadas en el bit significativo actual y luego 
+		moviéndolos de regreso a a.
+		Ventajas: Es particularmente eficiente para listas grandes y con números 
+		que tienen un rango amplio.
+		Desventajas: Puede ser más difícil de comprender e implementar, pero es una 
+		de las mejores en términos de número de operaciones para listas grandes.
+*/
+
+	free_stack(&a);
     
     return (0);
 }
