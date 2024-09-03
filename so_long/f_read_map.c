@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:35:29 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/18 18:25:04 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/03 20:10:27 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,13 @@ void	read_file(int fd, t_game *game)
 
 	game->rows = 0;
 	game->cols = 0;
+	game->start.x = -1;
+	game->start.y = -1;
+	game->end.x = -1;
+	game->end.y = -1;
+	game->start_count = 0;
+	game->exit_count = 0;
+	game->obj_count = 0;
 	while (1)
 	{
 		line = get_next_line(fd);

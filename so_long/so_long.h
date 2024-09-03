@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:36:54 by niclopez          #+#    #+#             */
-/*   Updated: 2024/09/03 17:11:40 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/03 20:10:07 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <string.h>
-
 
 # define MX_ROWS 100
 # define MX_COLS 100
@@ -53,6 +52,8 @@ typedef struct main
 	t_pos		start;
 	t_pos		end;
 	int			obj_count;
+	int			start_count;
+	int			exit_count;
 
 	//Imgs
 	int			img_width;
