@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 02:36:54 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/18 18:26:40 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:11:40 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SO_LONG_H
 
 # include <mlx.h>
+# include <ft_printf.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -21,6 +22,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <string.h>
+
 
 # define MX_ROWS 100
 # define MX_COLS 100

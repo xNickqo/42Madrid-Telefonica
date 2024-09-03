@@ -9,9 +9,30 @@ SRC_DIR = .
 OBJ_DIR = ./OBJ
 
 # Archivos fuente
-SRC = $(wildcard $(SRC_DIR)/*.c)
-GNL_SRC = $(wildcard $(GNL_DIR)/*.c)
-PRINTF_SRC = $(wildcard $(PRINTF_DIR)/*.c)
+SRC = 	$(SRC_DIR)/f_dfs.c \
+		$(SRC_DIR)/f_draw_map.c \
+		$(SRC_DIR)/main.c \
+		$(SRC_DIR)/f_handle_keys.c \
+		$(SRC_DIR)/f_is_valid_path.c \
+		$(SRC_DIR)/f_map_validator.c \
+		$(SRC_DIR)/f_player_move.c \
+		$(SRC_DIR)/f_read_map.c 
+
+GNL_SRC = 	$(GNL_DIR)/get_next_line.c \
+			$(GNL_DIR)/get_next_line_utils.c
+
+PRINTF_SRC = 	$(PRINTF_DIR)/ft_char.c \
+				$(PRINTF_DIR)/ft_int.c \
+				$(PRINTF_DIR)/ft_itoa.c \
+				$(PRINTF_DIR)/ft_printf.c \
+				$(PRINTF_DIR)/ft_ptr.c \
+				$(PRINTF_DIR)/ft_str.c \
+				$(PRINTF_DIR)/ft_strlen.c \
+				$(PRINTF_DIR)/ft_uitoa_hex.c \
+				$(PRINTF_DIR)/ft_uitoa.c \
+				$(PRINTF_DIR)/ft_unsignedint.c \
+				$(PRINTF_DIR)/ft_x.c \
+				$(PRINTF_DIR)/ft_xupper.c
 
 ALL_SRC = $(SRC) $(GNL_SRC) $(PRINTF_SRC)
 
