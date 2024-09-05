@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst.c                                           :+:      :+:    :+:   */
+/*   ft_list.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,69 +13,88 @@
 #include "push_swap.h"
 
 
-/*Crea un nuevo nodo en la lista con malloc()
+#include "push_swap.h"
 
-    La variable miembro 'content' se inicializa
-    con el contenido del parametro 'content'. La
-    variable 'next' con NULL*/
-
-t_lst	*ft_lstnew(int value)
+// Creates new node and returns the pointer of it
+t_list	*ft_lstnew(int value)
 {
-	t_lst	*new;
+	t_list	*new;
 
-	new = (t_lst *)malloc(sizeof(t_lst));
+	new = (t_list *) malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
 	new->value = value;
+	new->index = -1;
 	new->next = NULL;
 	return (new);
 }
 
-/*Añade el nodo 'new' al principio de la lista 'lst'*/
-
-void	ft_lstadd_front(t_lst **lst, t_lst *new)
+// Adds the specified node to a stack (list) making it the head
+void	ft_lstadd_front(t_list **stack, t_list *new)
 {
-    if (lst && new)
-    {
-        new->next = *lst;
-        *lst = new;
-    }
+	new->next = *stack;
+	*stack = new;
 }
 
-
-/*Itera una lista 'lst' y aplica la funcion 'f' en el contenido
-de cada nodo*/
-
-void	ft_lstiter(t_lst *lst, void (*f)(int))
+// Returns the last node of a list 
+t_list	*ft_lstlast(t_list *head)
 {
-	while (lst != NULL)
+	t_list	*tmp;
+
+	tmp = head;
+	while (tmp->next)
 	{
-		f(lst->value);
-		lst = lst->next;
+		tmp = tmp->next;
+		if (tmp->next == NULL)
+			return (tmp);
+	}
+	return (tmp);
+}
+
+// Adds the specified node to a stack (list) making it the last node
+void	ft_lstadd_back(t_list **stack, t_list *new)
+{
+	t_list	*n;
+
+	if (*stack)
+	{
+		n = ft_lstlast(*stack);
+		n->next = new;
+		new->next = NULL;
+	}
+	else
+	{
+		*stack = new;
+		(*stack)->next = NULL;
 	}
 }
 
-/*Devuelve el ultimo nodo de la lista*/
-
-t_lst	*ft_lstlast(t_lst *lst)
+// Returns the size of the Linked List
+int	ft_lstsize(t_list *head)
 {
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
+	size_t	i;
+	t_list	*tmp;
+
+	tmp = head;
+	i = 0;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
 }
 
-void    printlst(t_stack *stack)
+// Prints the Linked List
+void	printList(t_list *head)
 {
-	t_lst *current = stack->last;
-    printf("----------------\n");
-    printf("      PILA \n");
-    printf("----------------\n");
-    while (current != NULL)
-    {
-        printf("       %d\n", (int)current->value);
-        current = current->next;
-    }
-	printf("\n");
+	t_list	*tmp;
+
+	tmp = head;
+	while (tmp != NULL)
+	{
+		ft_putnbr_fd(tmp->value, 1);
+		ft_putendl_fd("", 1);
+		tmp = tmp->next;
+	}
 }

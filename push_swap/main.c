@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:49:33 by niclopez          #+#    #+#             */
-/*   Updated: 2024/09/02 23:33:47 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:14:34 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,29 @@
 
 int main(int argc, char *argv[])
 {
-	t_stack	a;
-	t_stack b;
-	a.last = NULL;
-	b.last = NULL;
+	t_list	**a;
+	t_list **b;
+	*a = NULL;
+	*b = NULL;
 
     if (argc < 2)
-	{
-		printf("Error. Debes inrocudir minimo un argumento");
-        return (1);
-	}
-    
+        return (-1);
 	int	i = 1;
 	while (i < argc)
 	{
 		int	num = ft_atoi(argv[i]);
-		push(&a, num);
+		init_values(&a, num);
 		i++;
 	}
 
-	p(&a, &b);
-	s(&a);
+	pb(a, b);
+	ss(a);
 
-	printlst(&a);
-	printlst(&b);
+	printList(a);
+	printList(b);
 
-	free_stack(&a);
-	free_stack(&b);
+	free_stack(a);
+	free_stack(b);
     
     return (0);
 }

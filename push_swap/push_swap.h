@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:50:00 by niclopez          #+#    #+#             */
-/*   Updated: 2024/09/02 23:30:57 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/05 20:04:50 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,41 @@
 #	include"libft.h"
 #	include"ft_printf.h"
 
-typedef struct s_lst
+// Stack
+typedef struct s_list
 {
 	int				value;
-	struct s_lst	*next;
-}					t_lst;
+	int				index;
+	struct s_list	*next;
+}				t_list;
 
-typedef struct s_stack
-{
-	t_lst *last;
-} 			t_stack;
+// Util functions
+t_list	*ft_lstnew(int value);
+t_list	*ft_lstlast(t_list *head);
+void	ft_lstadd_front(t_list **stack, t_list *new);
+void	ft_lstadd_back(t_list **stack, t_list *new);
+void	printList(t_list *head);
+int		ft_lstsize(t_list *head);
 
-t_lst		*ft_lstnew(int value);
-void		ft_lstadd_front(t_lst **lst, t_lst *new);
-t_lst		*ft_lstlast(t_lst *lst);
-void		ft_lstiter(t_lst *lst, void (*f)(int));
-void    	printlst(t_stack *stack);
+// Instruction functions
+int		swap(t_list **stack);
+int		push(t_list **stack_to, t_list **stack_from);
+int		rotate(t_list **stack);
+int		reverseRotate(t_list **stack);
 
-void	push(t_stack *stack, int value);
-void    free_stack(t_stack *stack);
-void    s(t_stack *stack);
-void    p(t_stack *src, t_stack *dest);
-void    r(t_stack *stack);
-void	rr(t_stack *stack);
+int		sa(t_list **stack_a);
+int		sb(t_list **stack_b);
+int		ss(t_list **stack_a, t_list **stack_b);
+int		pa(t_list **stack_a, t_list **stack_b);
+int		pb(t_list **stack_b, t_list **stack_a);
+int		ra(t_list **stack_a);
+int		rb(t_list **stack_b);
+int		rr(t_list **stack_a, t_list **stack_b);
+int		rra(t_list **stack_a);
+int		rrb(t_list **stack_b);
+int		rrr(t_list **stack_a, t_list **stack_b);
+
+void	init_values(t_list *stack, int value);
+void	free_stack(t_list **stack);
 
 #endif
