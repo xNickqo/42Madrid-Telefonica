@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 21:42:47 by niclopez          #+#    #+#             */
-/*   Updated: 2024/08/18 18:24:37 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/05 19:28:00 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	player_move(t_game *game, int new_x, int new_y)
 		if (game->p.collected == game->obj_count)
 		{
 			ft_printf("Encontraste la salida con TODOS los coleccionables\n");
+			free_images(game);
 			mlx_destroy_window(game->mlx, game->window);
 			exit(0);
 		}
