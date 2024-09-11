@@ -6,38 +6,68 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:49:33 by niclopez          #+#    #+#             */
-/*   Updated: 2024/09/05 20:14:34 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/11 20:24:41 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*Crea una lista e introduce los valores dentro*/
+void init_values(t_list **lst, int value)
+{
+    t_list  *new_node;
+
+    new_node = ft_lstnew(value);
+    if (new_node)
+        ft_lstadd_front(lst, new_node);
+}
+
+/*Libera la memoria de reservada de una pila*/
+void	free_stack(t_list **lst)
+{
+	t_list	*list;
+	t_list	*tmp;
+
+	list = *lst;
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp);
+	}
+	*lst = NULL;
+}
+
+
 int main(int argc, char *argv[])
 {
-	t_list	**a;
-	t_list **b;
-	*a = NULL;
-	*b = NULL;
+	int		i;
+	t_list	*a;
+	t_list	*b;
+
+	a = NULL;
+	b = NULL;
 
     if (argc < 2)
-        return (-1);
-	int	i = 1;
+		return (-1);
+	
+	i = 1;
 	while (i < argc)
 	{
 		int	num = ft_atoi(argv[i]);
 		init_values(&a, num);
 		i++;
 	}
-
-	pb(a, b);
-	ss(a);
+	pa(&a, &b);
+	pa(&a, &b);
+	/* rra(&a);
+	pa(&a, &b); */
 
 	printList(a);
 	printList(b);
 
-	free_stack(a);
-	free_stack(b);
-    
+	free_stack(&a);
+	free_stack(&b);
     return (0);
 }
 

@@ -12,10 +12,10 @@
 
 #include "push_swap.h"
 
-
-#include "push_swap.h"
-
-// Creates new node and returns the pointer of it
+/* Crea un nuevo nodo en la lista con malloc() 
+	la variable miembro 'value' se inicializa 
+	con el contenido del parametro 'value'. La
+	variable 'next' con NULL*/
 t_list	*ft_lstnew(int value)
 {
 	t_list	*new;
@@ -29,72 +29,68 @@ t_list	*ft_lstnew(int value)
 	return (new);
 }
 
-// Adds the specified node to a stack (list) making it the head
-void	ft_lstadd_front(t_list **stack, t_list *new)
+/*Añade el nodo 'new' al principio de la lista 'lst'*/
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	new->next = *stack;
-	*stack = new;
+	new->next = *lst;
+	*lst = new;
 }
 
-// Returns the last node of a list 
-t_list	*ft_lstlast(t_list *head)
+/*Devuelve el ultimo nodo de la lista*/
+t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	*tmp;
-
-	tmp = head;
-	while (tmp->next)
-	{
-		tmp = tmp->next;
-		if (tmp->next == NULL)
-			return (tmp);
-	}
-	return (tmp);
+	if (lst == NULL)
+		return (NULL);
+	if (lst->next == NULL)
+		return (lst);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
 
-// Adds the specified node to a stack (list) making it the last node
-void	ft_lstadd_back(t_list **stack, t_list *new)
+/*Añade el nodo 'new' al final de la lista 'lst'*/
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*n;
+	t_list	*last;
 
-	if (*stack)
+	if (new != NULL)
 	{
-		n = ft_lstlast(*stack);
-		n->next = new;
-		new->next = NULL;
-	}
-	else
-	{
-		*stack = new;
-		(*stack)->next = NULL;
+		if (*lst == 0)
+			*lst = new;
+		else
+		{
+			last = ft_lstlast(*lst);
+			last->next = new;
+		}
 	}
 }
 
-// Returns the size of the Linked List
-int	ft_lstsize(t_list *head)
+/* Cuenta el numero de nodos de una lista */
+int	ft_lstsize(t_list *lst)
 {
-	size_t	i;
-	t_list	*tmp;
-
-	tmp = head;
+	int	i;
+	
 	i = 0;
-	while (tmp)
+	while (lst != NULL)
 	{
-		tmp = tmp->next;
 		i++;
+		lst = lst->next;
 	}
 	return (i);
 }
 
-// Prints the Linked List
-void	printList(t_list *head)
+/* Imprime la lista */
+void	printList(t_list *lst)
 {
 	t_list	*tmp;
 
-	tmp = head;
+	printf("----------------\n");
+	tmp = lst;
 	while (tmp != NULL)
 	{
 		ft_putnbr_fd(tmp->value, 1);
-		ft_putendl_fd("", 1);
+		ft_printf(" ");
 		tmp = tmp->next;
 	}
+	printf("\n");
 }
