@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:49:33 by niclopez          #+#    #+#             */
-/*   Updated: 2024/09/11 20:24:41 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:18:07 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ int main(int argc, char *argv[])
 		init_values(&a, num);
 		i++;
 	}
-	pa(&a, &b);
-	pa(&a, &b);
+	pb(&b, &a);
 	/* rra(&a);
 	pa(&a, &b); */
 
-	printList(a);
-	printList(b);
+	printList(a, b);
+	ft_printf("- -\n");
+	ft_printf("a b\n");
 
 	free_stack(&a);
 	free_stack(&b);

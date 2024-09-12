@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:50:00 by niclopez          #+#    #+#             */
-/*   Updated: 2024/09/11 17:50:33 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:13:00 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_list	*ft_lstnew(int value);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
-void	printList(t_list *lst);
+void	printList(t_list *a, t_list *b);
 int		ft_lstsize(t_list *lst);
 
 // Instruction functions
