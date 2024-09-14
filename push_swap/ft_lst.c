@@ -80,22 +80,40 @@ int	ft_lstsize(t_list *lst)
 }
 
 /* Imprime la lista */
-void	printList(t_list *a, t_list *b)
+void printList(t_list *a, t_list *b)
 {
-	t_list	*tmp_a;
-	t_list	*tmp_b;
+    t_list *tmp_a = a;
+    t_list *tmp_b = b;
 
-	printf("\n----------------\n");
-	tmp_a = a;
-	tmp_b = b;
-	while (tmp_a != NULL || tmp_b != NULL)
-	{
-		ft_putnbr_fd(tmp_a->value, 1);
-		ft_printf(" ");
-		ft_putnbr_fd(tmp_b->value, 1);
-		printf("\n");
-		tmp_a = tmp_a->next;
-		tmp_b = tmp_b->next;
-	}
-	
+    printf("\n----------------\n");
+    printf("A: ");
+    if (tmp_a == NULL)
+        printf("Empty\n");
+    else
+    {
+        while (tmp_a)
+        {
+            printf("%d", tmp_a->value);
+            if (tmp_a->next)
+                printf(" -> ");
+            tmp_a = tmp_a->next;
+        }
+        printf(" -> NULL\n");
+    }
+
+    printf("b: ");
+    if (tmp_b == NULL)
+        printf("Empty\n");
+    else
+    {
+        while (tmp_b)
+        {
+            printf("%d", tmp_b->value);
+            if (tmp_b->next)
+                printf(" -> ");
+            tmp_b = tmp_b->next;
+        }
+        printf(" -> NULL\n");
+    }
+    printf("----------------\n");
 }

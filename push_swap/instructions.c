@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 19:53:02 by niclopez          #+#    #+#             */
-/*   Updated: 2024/09/11 20:18:35 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/14 20:13:40 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ int	swap(t_list **lst)
 
 	first = *lst;
 	second = first->next;
-
-	if (!first && !second)
-		return (-1);
 
 	tmp_val = first->value;
 	tmp_index = first->index;
@@ -82,7 +79,7 @@ int	push(t_list **src, t_list **dest)
 
 int	pa(t_list **a, t_list **b)
 {
-	if (push(a, b) == -1)
+	if (push(b, a) == -1)
 		return (-1);
 	ft_putendl_fd("pa", 1);
 	return (0);
@@ -90,7 +87,7 @@ int	pa(t_list **a, t_list **b)
 
 int	pb(t_list **a, t_list **b)
 {
-	if (push(b, a) == -1)
+	if (push(a, b) == -1)
 		return (-1);
 	ft_putendl_fd("pb", 1);
 	return (0);
@@ -98,20 +95,21 @@ int	pb(t_list **a, t_list **b)
 
 /* Rota los elementos a de la lista 1 valor hacia la derecha y el ultimo valor se vuelve
 	el primero*/
-int	rotate(t_list **lst)
+int rotate(t_list **lst)
 {
-	t_list	*list;
-	t_list	*last;
+    t_list *list;
+    t_list *last;
 
-	if (ft_lstsize(*lst) < 2)
-		return (-1);
-	list = *lst;
-	last = ft_lstlast(list);
-	*lst = list->next;
-	list->next = NULL;
-	last->next = list;
-	return (0);
+    if (ft_lstsize(*lst) < 2)
+        return (-1);
+    list = *lst;
+    last = ft_lstlast(list);
+    *lst = list->next;
+    list->next = NULL;
+    last->next = list;
+    return (0);
 }
+
 
 int	ra(t_list **a)
 {
@@ -150,18 +148,15 @@ int	reverseRotate(t_list **lst)
 	if (ft_lstsize(*lst) < 2)
 		return (-1);
 	list = *lst;
-	prev = ft_lstlast(list);
-	while (list)
+	prev = NULL;
+	while (list->next != NULL)
 	{
-		if (list->next->next == NULL)
-		{
-			 list->next = NULL;
-			 break ;
-		}
+		prev = list;
 		list = list->next;
 	}
-	prev->next = *lst;
-	*lst = prev;
+	prev->next = NULL;
+	list->next = *lst;
+	*lst = list;
 	return (0);
 }
 
