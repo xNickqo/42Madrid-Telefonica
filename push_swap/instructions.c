@@ -6,13 +6,42 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 19:53:02 by niclopez          #+#    #+#             */
-/*   Updated: 2024/09/14 20:13:40 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/15 18:54:12 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/* Intercambia los primeros elementos entre la lista A y la B */
+/*					INSTRUCCIONES
+
+sa (swap a) : si hay 2 números, intercambia los primeros 2 elementos en la 
+	parte superior de la pila a.
+
+sb (swap b) : si hay 2 números, intercambia los primeros 2 elementos en la 
+	parte superior de la pila b.
+
+ss : sa y sb al mismo tiempo.
+pa (push a) : si b no está vacío, toma el primer elemento encima de b 
+	y lo coloca en a.
+
+pb (push b) : si a no está vacío, toma el primer elemento encima de a 
+	y lo coloca en b.
+
+ra (rotar a) : desplaza todos los elementos de la pila a una posición 
+	hacia arriba. El primer elemento se convierte en el último.
+
+rb (rotar b) : desplaza todos los elementos de la pila b una posición
+	hacia arriba. El primer elemento se convierte en el último.
+
+rr : ra y rb al mismo tiempo.
+rra (rotación inversa a) : desplaza todos los elementos de la pila una 
+	posición hacia abajo. La pila a. El último elemento se convierte en el primero.
+
+rrb (rotación inversa b) : desplaza todos los elementos de la pila b una 
+	posición hacia abajo. El último elemento se convierte en el primero.
+	
+rrr : rra y rrb al mismo tiempo */
+
 int	swap(t_list **lst)
 {
 	t_list	*first;
@@ -63,7 +92,6 @@ int	ss(t_list **a, t_list **b)
 	return (0);
 }
 
-/* Coje el primer elemento de 'src' y l pone en 'dest' */
 int	push(t_list **src, t_list **dest)
 {
 	t_list	*tmp;
@@ -93,8 +121,6 @@ int	pb(t_list **a, t_list **b)
 	return (0);
 }
 
-/* Rota los elementos a de la lista 1 valor hacia la derecha y el ultimo valor se vuelve
-	el primero*/
 int rotate(t_list **lst)
 {
     t_list *list;
@@ -109,7 +135,6 @@ int rotate(t_list **lst)
     last->next = list;
     return (0);
 }
-
 
 int	ra(t_list **a)
 {
@@ -138,8 +163,6 @@ int	rr(t_list **a, t_list **b)
 	return (0);
 }
 
-
-/* Al contrario que con rotate */
 int	reverseRotate(t_list **lst)
 {
 	t_list	*list;

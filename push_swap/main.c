@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:49:33 by niclopez          #+#    #+#             */
-/*   Updated: 2024/09/14 20:23:46 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/09/15 18:54:19 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,22 +151,156 @@ void simple_sort(t_list **a, t_list **b)
 {
     int min;
 
-    // Mueve elementos de `a` a `b` hasta que `a` tenga 3 o menos elementos
     while (ft_lstsize(*a) > 3)
     {
         min = get_min_pos(*a);
         move_to_top(a, min);
-        pb(a, b); // Asegúrate de que `pb` toma `a` como primer argumento
+        pb(a, b);
+		printList(*a, *b);
     }
-
-    // Ordena los 3 elementos restantes en `a`
     small_sort(a);
 
-    // Mueve los elementos de `b` de vuelta a `a`
     while (ft_lstsize(*b) > 0)
-        pa(a, b); // Asegúrate de que `pa` toma `a` como primer argumento
+	{
+        pa(a, b);
+		printList(*a, *b);
+	}
 }
 
+
+/* Mover los elementos menores que el pivote a la pila 'b' 
+	y mantener los mayores en la 'a'*/
+int partition(t_list **a, t_list **b, int pivot)
+{
+    int size;
+    int pushed;
+    int moved;
+
+    size = ft_lstsize(*a);
+    pushed = 0;
+    moved = 0;
+
+    while (moved < size)
+    {
+        if ((*a)->value < pivot)
+        {
+            pb(a, b);
+            pushed++;
+        }
+        else
+        {
+            ra(a);
+        }
+        moved++;
+		printList(*a, *b);
+		ft_printf("Pivote: %d, Elemento actual: %d\n", pivot, (*a)->value);
+    }
+    return (pushed);
+}
+
+/* Selecciona un pivote aleatorio de la lista */
+int get_random_pivot(t_list *a)
+{
+    int size = ft_lstsize(a);
+    int random_index = rand() % size;
+    t_list *tmp = a;
+
+    for (int i = 0; i < random_index; i++)
+	{
+        tmp = tmp->next;
+    }
+    return tmp->value;
+}
+
+/* Calcula la media de los valores en la lista */
+int	get_pivot_mean(t_list *a)
+{
+	int	size;
+	int	pivot;
+	t_list	*tmp;
+	int	sum;
+
+	sum = 0;
+	size = ft_lstsize(a);
+	if(size <= 1)
+		return (0);
+
+	tmp = a;
+	while (tmp)
+	{
+		sum += tmp->value;
+		tmp = tmp->next;
+	}
+	pivot = sum / size;
+	return (pivot);
+}
+
+/* selecciona tres elementos de la lista (el primero, el del medio y el último) y 
+	devuelve la mediana de estos tres elementos como el pivote */
+int get_pivot_median_of_three(t_list *a)
+{
+    t_list *first, *middle, *last;
+    int size = ft_lstsize(a);
+    int values[3];
+	int	i;
+
+    if (size < 3)
+        return get_pivot_mean(a);
+
+    first = a;
+    middle = a;
+    last = a;
+
+    // Avanzar `middle` a la mitad de la lista.
+	i = 0;
+    while (i < size / 2)
+	{
+        middle = middle->next;
+		i++;
+    }
+	
+    // Avanzar `last` al final de la lista.
+    last = ft_lstlast(a);
+
+    // Recoge los valores.
+    values[0] = first->value;
+    values[1] = middle->value;
+    values[2] = last->value;
+
+    // Encuentra la mediana.
+    if ((values[0] > values[1]) != (values[0] > values[2])) return values[0];
+    if ((values[1] > values[0]) != (values[1] > values[2])) return values[1];
+    return values[2];
+}
+
+/* Ordena recursivamente ambas pilas utilizando partition */
+void quick_sort(t_list **a, t_list **b)
+{
+    int pivot;
+    int pushed;
+
+    if (is_sorted(*a) || ft_lstsize(*a) <= 1)
+        return;
+
+    if (ft_lstsize(*a) > 50)
+		pivot = get_random_pivot(*a);
+	else
+		pivot = get_pivot_median_of_three(*a);
+
+    pushed = partition(a, b, pivot);
+
+	if (ft_lstsize(*a) > 1)
+    	quick_sort(a, b);
+
+	if (ft_lstsize(*b) > 1)
+    	quick_sort(b, a);
+
+    while (pushed > 0)
+    {
+        pa(a, b);
+        pushed--;
+    }
+}
 
 
 int main(int argc, char *argv[])
@@ -188,52 +322,57 @@ int main(int argc, char *argv[])
         init_values(&a, num);
         i++;
     }
-
-    // Solo llama a `simple_sort` si la lista no está ordenada
+	
     if (!is_sorted(a))
-        simple_sort(&a, &b);
+    {
+		if (argc <= 6)
+			simple_sort(&a, &b);
+		else
+			quick_sort(&a, &b);
+	}
 
     printList(a, b);
+
     free_stack(&a);
     free_stack(&b);
-
     return (0);
 }
 
 
-/*Estrategias o Algoritmos Comunes
-		Hay varias estrategias que puedes seguir para desarrollar tu solución. Aquí 
-		te explico algunas de las más comunes:
+/*Lista de verificación de errores
+El programa debe trabajar con varios argumentos numéricos
+	./push_swap 1 3 5 +9 20 -4 50 60 04 08
 
-		1. Sort Simple (para pocos elementos)
-		Descripción: Para listas pequeñas (por ejemplo, 3 a 5 elementos), 
-		puedes simplemente enumerar todos los posibles órdenes y programar 
-		una secuencia de movimientos para cada posible orden inicial.
-		Ventajas: Muy eficiente en términos de número de operaciones porque 
-		está específicamente diseñada para estos casos.
-		Desventajas: No es escalable para listas grandes.
+El programa también funciona si recibe una sola lista de caracteres como parámetro.
+	./push_swap "3 4 6 8 9 74 -56 +495"
 
-		2. Insertion Sort
-		Descripción: Similar al algoritmo de inserción clásico. Mantienes una 
-		pila a donde intentas ordenar elementos mientras empujas los elementos menores a 
-		la pila b. Luego, los devuelves a a en el orden correcto.
-		Ventajas: Relativamente sencillo de implementar.
-		Desventajas: Puede no ser óptimo en términos de número de operaciones 
-		para listas grandes.
+El programa NO debería funcionar si encuentra otro carácter
+	./push_swap 1 3 perro 35 80 -3
+	./push_swap un
+	./cambio de inserción 1 2 3 5 67b778 947
+	.push_swap " 12 4 6 8 54fhd 4354 "
+	./cambio de empuje 1--45 32
+		Estos ejemplos deberían devolver "Error\n"
 
-		3. Quick Sort (versión simplificada)
-		Descripción: Elige un pivote y divide la pila a en dos subpilas, moviendo elementos 
-		mayores al pivote a la pila b. Recursivamente, ordenas estas subpilas y luego 
-		las combinas.
-		Ventajas: Buen rendimiento para listas de tamaño mediano a grande.
-		Desventajas: Puede ser más complejo de implementar y optimizar.
+El programa NO debería funcionar si encuentra un número doble
+	./push_swap 1 3 58 9 3
+	./push_swap 3 03
+	./push_swap " 49 128 50 38 49"
+		Estos ejemplos deberían devolver "Error\n"
+	./push_swap "95 99 -9 10 9"
+		Este ejemplo debería funcionar porque -9 y 9 no son iguales
 
-		4. Radix Sort (versión binaria)
-		Descripción: Trabaja sobre los bits individuales de los números, dividiendo 
-		los elementos en subpilas b basadas en el bit significativo actual y luego 
-		moviéndolos de regreso a a.
-		Ventajas: Es particularmente eficiente para listas grandes y con números 
-		que tienen un rango amplio.
-		Desventajas: Puede ser más difícil de comprender e implementar, pero es una 
-		de las mejores en términos de número de operaciones para listas grandes.
+El programa debería funcionar con INT MAX y INT MIN
+	./push_swap 2147483647 2 4 7
+	./push_swap 99 -2147483648 23 545
+	./push_swap "2147483647 843 56544 24394"
+		Estos ejemplos deberían funcionar y ordenar tu lista.
+	./cambio de empuje 54867543867438 3
+	./push_swap-2147483647765 4 5
+	./push_swap "214748364748385 28 47 29"
+		Estos ejemplos deberían devolver "Error\n"
+
+No se ha especificado nada cuando se mezclan cadenas y enteros. 
+Depende de usted lo que desee hacer.
+	./push_swap "1 2 4 3" 76 90 "348 05
 */
