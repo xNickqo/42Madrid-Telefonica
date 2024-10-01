@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list.c                                           :+:      :+:    :+:   */
+/*   ft_lst.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:13:16 by niclopez          #+#    #+#             */
-/*   Updated: 2024/09/02 23:42:02 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/01 19:55:36 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 int	ft_lstsize(t_list *lst)
 {
 	int	i;
-	
+
 	i = 0;
 	while (lst != NULL)
 	{
@@ -80,18 +80,21 @@ int	ft_lstsize(t_list *lst)
 }
 
 /* Imprime la lista */
-void printList(t_list *a, t_list *b) {
-    ft_putstr_fd("\nA: ", 1);
-    while (a) {
-        ft_putnbr_fd(a->value, 1);
-        if (a->next) ft_putstr_fd(" -> ", 1);
-        a = a->next;
+void	printlst(t_list *a, t_list *b)
+{
+	ft_putstr_fd("\nA: ", 1);
+	while (a)
+	{
+		ft_putnbr_fd(a->value, 1);
+		if (a->next) ft_putstr_fd(" -> ", 1);
+		a = a->next;
     }
-    ft_putstr_fd("\nB: ", 1);
-    while (b) {
-        ft_putnbr_fd(b->value, 1);
-        if (b->next) ft_putstr_fd(" -> ", 1);
-        b = b->next;
+	ft_putstr_fd("\nB: ", 1);
+	while (b)
+	{
+		ft_putnbr_fd(b->value, 1);
+		if (b->next) ft_putstr_fd(" -> ", 1);
+		b = b->next;
     }
-    ft_putstr_fd("\n", 1);
+	ft_putstr_fd("\n\n", 1);
 }
