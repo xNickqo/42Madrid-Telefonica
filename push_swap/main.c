@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:49:33 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/01 23:54:17 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/04 19:08:38 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,27 +106,20 @@ int main(int argc, char *argv[])
     a = NULL;
     b = NULL;
 	check_args(argc, argv);
-	if (argc == 2)
+	
+	i = 1;
+	while (i < argc)
 	{
-		process_args(argv[1], &a);
+		process_args(argv[i], &a);
+		i++;
 	}
-	else
-	{
-		i = 1;
-		while (i < argc)
-		{
-			int num = ft_atoi(argv[i]);
-			init_values(&a, num);
-			i++;
-		}
-	}
-    
+
     if (!is_sorted(a))
     {
 		if (argc <= 6)
 			simple_sort(&a, &b);
 		else
-			ft_putendl_fd("Todavia no esta termiando", 1);
+			quick_sort(&a);
 	}
 
 	ft_printf("\n\nLista ordenada:");

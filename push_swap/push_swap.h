@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:50:00 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/01 22:26:58 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/04 19:20:13 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,9 @@ int		get_min_pos(t_list *a);
 void	move_to_top(t_list **a, int pos);
 void	small_sort(t_list **a);
 void	simple_sort(t_list **a, t_list **b);
+
+void move_to_temp_stacks(t_list **src, t_list **less, t_list **greater, int pivot);
+void quick_sort_rec(t_list **src);
+void quick_sort(t_list **lst) ;
 
 #endif
