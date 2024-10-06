@@ -14,7 +14,27 @@
 
 void quick_sort(t_list **a, t_list **b)
 {
-    
+    t_list *pivot_node;
+    int 	pivot_value;
+
+	printlst(*a, *b);
+
+    pivot_node = ft_lstlast(*a);
+    pivot_value = pivot_node->value;
+    printf("Pivote: %i\n", pivot_value);
+
+	int	i = 0;
+	while (i < ft_lstsize(*a))
+	{
+		if ((*a)->value > pivot_value)
+			pb(a, b);
+		else
+			ra(a);
+		
+		i++;
+	}
+	
+    printlst(*a, *b);
 }
 
 
