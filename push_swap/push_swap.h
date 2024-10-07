@@ -74,8 +74,7 @@ void	move_to_top(t_list **a, int pos);
 void	small_sort(t_list **a);
 void	simple_sort(t_list **a, t_list **b);
 
-void move_to_temp_stacks(t_list **src, t_list **less, t_list **greater, int pivot);
-void quick_sort_rec(t_list **src);
-void quick_sort(t_list **lst) ;
+void quick_sort(t_list **a, t_list **b);
+int	median_of_three(t_list **a);
 
 #endif

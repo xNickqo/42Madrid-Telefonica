@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
 		if (argc <= 6)
 			simple_sort(&a, &b);
 		else
-			quick_sort(&a);
+			quick_sort(&a, &b);
 	}
 
 	ft_printf("\n\nLista ordenada:");
