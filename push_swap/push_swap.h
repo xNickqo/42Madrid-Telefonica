@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:50:00 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/04 19:20:13 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/07 19:58:06 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ void	small_sort(t_list **a);
 void	simple_sort(t_list **a, t_list **b);
 
 void quick_sort(t_list **a, t_list **b);
-int	median_of_three(t_list **a);
+void quicksort_b(t_list **b, t_list **a);
+void sort_three_in_b(t_list **b);
+void quicksort_a(t_list **a, t_list **b);
+void sort_three_in_a(t_list **a);
+int median_of_numbers(t_list *a, int size);
 
 #endif

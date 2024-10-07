@@ -6,75 +6,53 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:58:11 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/04 19:39:11 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/07 20:08:53 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	median_of_three(t_list **a)
-{
-	t_list	*current;
-	int		size;
-	int		median_index;
-	int		first_median;
-	int		second_median;
-	int		*values;
-	int		i;
-	int		median;
+// Función para obtener el pivote como la media entre el valor mínimo y máximo
+int get_pivot(t_list **a)
+{ 
+    t_list *tmp = *a;
+    int min_value = tmp->value;
+    int max_value = tmp->value;
 
-	current = *a;
-	size = ft_lstsize(current);
-	median_index = size / 2;
-	first_median = 0;
-	second_median = 0;
-	values = malloc(size * sizeof(int));
-	i = 0;
-	//Llena el array con los valores de la lista
-	while (current != NULL)
-	{
-		values[i++] = current->value;
-		current = current->next;
-	}
-	if (size / 2 == 0)
-	{
-		first_median = values[median_index - 1];
-		second_median = values[median_index];
-		free(values);
-		return (first_median + second_median) / 2;
-	}
-	else
-	{
-		median = values[median_index];
-		free(values);
-		return (median);
-	}
+    while (tmp)
+    {
+        if (tmp->value < min_value)
+            min_value = tmp->value;
+        if (tmp->value > max_value)
+            max_value = tmp->value;
+        tmp = tmp->next;
+    }
+    return (min_value + max_value) / 2;
 }
 
 void quick_sort(t_list **a, t_list **b)
 {
-    int 	pivot;
+    printlst(*a, *b);
 
-	printlst(*a, *b);
-
-    pivot = median_of_three(a);
-
+    int pivot = get_pivot(a);
     printf("Pivote: %i\n", pivot);
 
-	int	i = 0;
-	int	initial_size = ft_lstsize(*a);
-	while (i < initial_size)
-	{
-		if ((*a)->value > pivot)
-			pb(a, b);
-		else
-			ra(a);
-		
+    int size = ft_lstsize(*a);
+    int i = 0;
+    while (i < size)
+    {
+        t_list *current = *a;
+
+        if (current->value > pivot)
+        {
+            pb(a, b);
+        }
+        else
+        {
+            ra(a);
+        }
 		i++;
-	}
-	
+    }
+
     printlst(*a, *b);
 }
-
-
-
