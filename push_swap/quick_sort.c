@@ -24,7 +24,8 @@ void quick_sort(t_list **a, t_list **b)
     printf("Pivote: %i\n", pivot_value);
 
 	int	i = 0;
-	while (i < ft_lstsize(*a))
+	int	initial_size = ft_lstsize(*a);
+	while (i < initial_size)
 	{
 		if ((*a)->value > pivot_value)
 			pb(a, b);
