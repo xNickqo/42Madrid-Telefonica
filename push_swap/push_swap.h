@@ -6,19 +6,19 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:50:00 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/07 19:58:06 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:39:05 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 #	define PUSH_SWAP_H
 
-#	include<unistd.h>
-#	include<stdlib.h>
-#	include<limits.h>
-#	include<stdio.h>
-#	include"libft.h"
-#	include"ft_printf.h"
+#	include <unistd.h>
+#	include <stdlib.h>
+#	include <limits.h>
+#	include <stdio.h>
+#	include "libft.h"
+#	include "ft_printf.h"
 
 // Stack
 typedef struct s_list
@@ -75,10 +75,11 @@ void	small_sort(t_list **a);
 void	simple_sort(t_list **a, t_list **b);
 
 void quick_sort(t_list **a, t_list **b);
-void quicksort_b(t_list **b, t_list **a);
-void sort_three_in_b(t_list **b);
-void quicksort_a(t_list **a, t_list **b);
-void sort_three_in_a(t_list **a);
-int median_of_numbers(t_list *a, int size);
+void sort_b(t_list **b);
+void sort_a(t_list **a);
+int get_pivot(t_list **a);
+int is_closer_to_end(t_list **lst, t_list *target);
+void move_to_top_a(t_list **a, t_list *target);
+void move_to_top_b(t_list **b, t_list *target);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:58:11 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/07 22:26:22 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:47:05 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,84 +30,108 @@ int get_pivot(t_list **a)
     return (min_value + max_value) / 2;
 }
 
+// Calcula si es más eficiente hacer rotate o reverse rotate
+int is_closer_to_end(t_list **lst, t_list *target)
+{
+    int size = ft_lstsize(*lst);
+    int pos = 0;
+    t_list *tmp = *lst;
+
+    // Encontrar la posición del nodo
+    while (tmp)
+    {
+        if (tmp == target)
+            break ;
+        tmp = tmp->next;
+        pos++;
+    }
+
+    // Si el nodo está en la segunda mitad, es más eficiente usar reverse rotate
+    return (pos > size / 2);
+}
+
+void move_to_top_a(t_list **a, t_list *target)
+{
+    if (is_closer_to_end(a, target))  // Si está más cerca del final, usamos rra
+    {
+        while (*a != target)
+        {
+            rra(a);
+            printlst(*a, NULL);
+        }
+    }
+    else  // Si está más cerca del principio, usamos ra
+    {
+        while (*a != target)
+        {
+            ra(a);
+            printlst(*a, NULL);
+        }
+    }
+}
+
+void move_to_top_b(t_list **b, t_list *target)
+{
+    if (is_closer_to_end(b, target))  // Si está más cerca del final, usamos rrb
+    {
+        while (*b != target)
+        {
+            rrb(b);
+            printlst(NULL, *b);
+        }
+    }
+    else  // Si está más cerca del principio, usamos rb
+    {
+        while (*b != target)
+        {
+            rb(b);
+            printlst(NULL, *b);
+        }
+    }
+}
+
 void sort_a(t_list **a)
 {
-    int size = ft_lstsize(*a);
-    int i;
-
-    // Si la lista A tiene menos de 2 elementos, no es necesario ordenar
-    if (size < 2)
+    t_list *min_node = *a;
+    t_list *current = min_node->next;
+    
+    if (ft_lstsize(*a) < 2)
         return;
-
-    // Utiliza la selección para ordenar la lista
-	i = 0;
-    while (i < size)
+    while (current)
     {
-        t_list *min_node = *a;
-        t_list *current = min_node->next;
-        
-        // Encontrar el nodo con el valor mínimo
-        while (current)
-        {
-            if (current->value < min_node->value)
-                min_node = current;
-            current = current->next;
-        }
-
-        // Llevar el nodo mínimo a la parte superior de la lista
-        if (min_node != *a)
-        {
-            while (*a != min_node)
-                ra(a);
-            // Después de llevar el mínimo al frente, ordena el resto
-            sort_a(&(*a)->next);
-        }
-		i++;
+        if (current->value < min_node->value)
+            min_node = current;
+        current = current->next;
+        printlst(*a, NULL);
     }
+    move_to_top_a(a, min_node);
+    sort_a(&(*a)->next);
 }
 
 void sort_b(t_list **b)
 {
-    int size = ft_lstsize(*b);
-    int i;
-
-    // Si la lista B tiene menos de 2 elementos, no es necesario ordenar
-    if (size < 2)
-        return;
-
-    // Utiliza la selección para ordenar la lista
-	i = 0;
-    while (i < size)
+    t_list *max_node = *b;
+    t_list *current = max_node->next;
+    
+    if (ft_lstsize(*b) < 2)
+        return ;
+    while (current)
     {
-        t_list *max_node = *b;
-        t_list *current = max_node->next;
-
-        // Encontrar el nodo con el valor máximo
-        while (current)
-        {
-            if (current->value > max_node->value)
-                max_node = current;
-            current = current->next;
-        }
-
-        // Llevar el nodo máximo a la parte superior de la lista
-        if (max_node != *b)
-        {
-            while (*b != max_node)
-                rb(b);
-            // Después de llevar el máximo al frente, ordena el resto
-            sort_b(&(*b)->next);
-        }
-		i++;
+        if (current->value > max_node->value)
+            max_node = current;
+        current = current->next;
+        printlst(NULL, *b);
     }
+    move_to_top_b(b, max_node);
+    sort_b(&(*b)->next);
 }
+
 
 void quick_sort(t_list **a, t_list **b)
 {
 	ft_putendl_fd("\nLista desordeanda: ", 1);
     printlst(*a, *b);
 
-	//Particion de las listas dependiendo del pivote
     int pivot = get_pivot(a);
     printf("Pivote: %i\n", pivot);
 
@@ -116,16 +140,17 @@ void quick_sort(t_list **a, t_list **b)
     while (i < size)
     {
         t_list *current = *a;
-
-        if (current->value < pivot)
+        
+        if (current->value > pivot)
         {
             ra(a);
-			i++;
         }
         else
         {
             pb(a, b);
         }
+        printlst(*a, *b);
+        i++;
     }
 	ft_putendl_fd("\nLista dividida: ", 1);
 	printlst(*a, *b);
@@ -140,6 +165,7 @@ void quick_sort(t_list **a, t_list **b)
     while (ft_lstsize(*b) > 0)
     {
         pa(a, b);
+        printlst(*a, *b);
     }
 	ft_putendl_fd("\nLista ordeanda: ", 1);
     printlst(*a, *b);

@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug C",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/exec",  // Asegúrate de que este sea el ejecutable correcto
+            "args": ["1", "4", "3", "5", "6", "8", "2", "7", "-2"],  // Argumentos para tu programa
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",
+                    "description": "Enable pretty printing for gdb",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "make"  // Ejecuta 'make' antes de iniciar el depurador
+        }
+    ]
+}
+
