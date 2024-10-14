@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 21:37:37 by niclopez          #+#    #+#             */
-/*   Updated: 2024/09/12 20:15:34 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:39:50 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_putendl_fd(char *s, int fd)
 		write(fd, s, 1);
 		s++;
 	}
-	write(fd, " ", 1);
+	write(fd, "\n", 1);
 }
 /*
 int	main(void)

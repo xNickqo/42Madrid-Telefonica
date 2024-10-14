@@ -1,5 +1,5 @@
 # Nombre del archivo de salida
-NAME = exec
+NAME = push_swap
 
 # Directorios
 LIBFT_DIR = ./LIBFT

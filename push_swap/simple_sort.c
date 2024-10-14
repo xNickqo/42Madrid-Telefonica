@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:59:42 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/01 20:05:50 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/14 21:35:26 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,13 +120,13 @@ void	simple_sort(t_list **a, t_list **b)
         min = get_min_pos(*a);
         move_to_top(a, min);
         pb(a, b);
-		printlst(*a, *b);
+		/* printlst(*a, *b); */
     }
     small_sort(a);
 
     while (ft_lstsize(*b) > 0)
 	{
         pa(a, b);
-		printlst(*a, *b);
+		/* printlst(*a, *b); */
 	}
 }
