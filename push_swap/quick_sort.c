@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:58:11 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/14 22:12:36 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/15 20:07:51 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void move_to_top_b(t_list **b, t_list *target)
         while (*b != target)
         {
             rrb(b);
-            /* printlst(NULL, *b); */
+            printlst(NULL, *b);
         }
     }
     else  // Si está más cerca del principio, usamos rb
@@ -90,7 +90,7 @@ void move_to_top_b(t_list **b, t_list *target)
         while (*b != target)
         {
             rb(b);
-            /* printlst(NULL, *b); */
+            printlst(NULL, *b);
         }
     }
 }
@@ -107,7 +107,7 @@ void sort_a(t_list **a)
         if (current->value < min_node->value)
             min_node = current;
         current = current->next;
-        /* printlst(*a, NULL); */
+        printlst(*a, NULL);
     }
     move_to_top_a(a, min_node);
     sort_a(&(*a)->next);
@@ -125,7 +125,7 @@ void sort_b(t_list **b)
         if (current->value > max_node->value)
             max_node = current;
         current = current->next;
-        /* printlst(NULL, *b); */
+        printlst(NULL, *b);
     }
     move_to_top_b(b, max_node);
     sort_b(&(*b)->next);
@@ -134,11 +134,11 @@ void sort_b(t_list **b)
 
 void quick_sort(t_list **a, t_list **b)
 {
-	/* ft_putendl_fd("\nLista desordeanda: ", 1); */
-    /* printlst(*a, *b); */
+	ft_putendl_fd("\nLista desordeanda: ", 1);
+    printlst(*a, *b);
 
     int pivot = get_pivot(a);
-    /* printf("Pivote: %i\n", pivot); */
+    printf("Pivote: %i\n", pivot);
 
     int size = ft_lstsize(*a);
     int i = 0;
@@ -154,24 +154,24 @@ void quick_sort(t_list **a, t_list **b)
         {
             pb(a, b);
         }
-        /* printlst(*a, *b); */
+        printlst(*a, *b);
         i++;
     }
-	/* ft_putendl_fd("\nLista dividida: ", 1); */
-	/* printlst(*a, *b); */
+	ft_putendl_fd("\nLista dividida: ", 1);
+	printlst(*a, *b);
 
 	//Ordenamos ambas listas
 	sort_a(a);
 	sort_b(b);
-	/* ft_putendl_fd("\nLista dividida y ordenada: ", 1); */
-	/* printlst(*a, *b); */
+	ft_putendl_fd("\nLista dividida y ordenada: ", 1);
+	printlst(*a, *b);
 
 	//Pasamos todos los valores a la lista A
     while (ft_lstsize(*b) > 0)
     {
         pa(a, b);
-        /* printlst(*a, *b); */
+        printlst(*a, *b);
     }
-	/* ft_putendl_fd("\nLista ordeanda: ", 1); */
-    /* printlst(*a, *b); */
+	ft_putendl_fd("\nLista ordeanda: ", 1);
+    printlst(*a, *b);
 }

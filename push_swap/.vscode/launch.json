@@ -2,25 +2,23 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug C",
+            "name": "Debug Exec",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/exec",  // Asegúrate de que este sea el ejecutable correcto
-            "args": ["1", "4", "3", "5", "6", "8", "2", "7", "-2"],  // Argumentos para tu programa
+            "program": "${workspaceFolder}/exec", // Ruta al ejecutable
+            "args": ["-9", "14", "0", "-1", "2", "7", "19", "4", "10", "3", "-14", "-5", "-3", "-7", "-12", "-13", "1", "18", "-8", "-2"], // Argumentos a pasar
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}", // Directorio de trabajo
             "environment": [],
             "externalConsole": false,
-            "MIMode": "gdb",
+            "MIMode": "gdb", // Utiliza GDB para depuración
             "setupCommands": [
                 {
+                    "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
-                    "description": "Enable pretty printing for gdb",
                     "ignoreFailures": true
                 }
-            ],
-            "preLaunchTask": "make"  // Ejecuta 'make' antes de iniciar el depurador
+            ]
         }
     ]
 }
-

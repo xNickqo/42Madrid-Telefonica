@@ -1,5 +1,5 @@
 # Nombre del archivo de salida
-NAME = push_swap
+NAME = exec
 
 # Directorios
 LIBFT_DIR = ./LIBFT
@@ -20,7 +20,7 @@ OBJ = $(ALL_SRC:%.c=$(OBJ_DIR)/%.o)
 CC = gcc
 
 # Flags que se le pasaran al compilador
-CFLAGS = -Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(SRC_DIR)
+CFLAGS = -g -Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(SRC_DIR)
 
 # Construye la librería principal
 all: $(NAME)
