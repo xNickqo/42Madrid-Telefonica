@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 19:59:42 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/14 21:35:26 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:13:58 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	move_to_top(t_list **a, int pos)
 {
 	int	size;
 	int	i;
+
 	size = ft_lstsize(*a);
 	if (pos <= size / 2)
 	{
@@ -67,13 +68,36 @@ void	move_to_top(t_list **a, int pos)
 	}
 }
 
-/* Esta funcion maneja los casos de cuando tienes 2 o 3 elementos en la pila 'a'*/
-void	small_sort(t_list **a)
+void	sort_three(t_list **a)
 {
 	int	first;
 	int	second;
 	int	third;
 
+	first = (*a)->value;
+	second = (*a)->next->value;
+	third = (*a)->next->next->value;
+	if (first > second && second < third && first < third)
+		sa(a);
+	else if (first > second && second > third && first > third)
+	{
+		sa(a);
+		rra(a);
+	}
+	else if (first > second && second < third && first > third)
+		ra(a);
+	else if (first < second && second > third && first < third)
+	{
+		sa(a);
+		ra(a);
+	}
+	else if (first < second && second > third && first > third)
+		rra(a);
+}
+
+/* Esta funcion maneja los casos de cuando tienes 2 o 3 elementos 'a'*/
+void	small_sort(t_list **a)
+{
 	if (is_sorted(*a))
 		return ;
 	if (ft_lstsize(*a) == 2)
@@ -83,25 +107,7 @@ void	small_sort(t_list **a)
 	}
 	else if (ft_lstsize(*a) == 3)
 	{
-		first = (*a)->value;
-		second = (*a)->next->value;
-		third = (*a)->next->next->value;
-		if (first > second && second < third && first < third)
-			sa(a);  // Caso 3 2 1
-		else if (first > second && second > third && first > third)
-		{
-			sa(a);
-			rra(a); // Caso 2 3 1
-		}
-		else if (first > second && second < third && first > third)
-			ra(a); // Caso 2 3 1
-		else if (first < second && second > third && first < third)
-		{
-			sa(a);
-			ra(a); // Caso 1 3 2
-		}
-		else if (first < second && second > third && first > third)
-			rra(a); // Caso 3 1 2
+		sort_three(a);
 	}
 }
 
@@ -113,20 +119,17 @@ void	small_sort(t_list **a)
 */
 void	simple_sort(t_list **a, t_list **b)
 {
-    int min;
+	int	min;
 
-    while (ft_lstsize(*a) > 3)
-    {
-        min = get_min_pos(*a);
-        move_to_top(a, min);
-        pb(a, b);
-		/* printlst(*a, *b); */
-    }
-    small_sort(a);
-
-    while (ft_lstsize(*b) > 0)
+	while (ft_lstsize(*a) > 3)
 	{
-        pa(a, b);
-		/* printlst(*a, *b); */
+		min = get_min_pos(*a);
+		move_to_top(a, min);
+		pb(a, b);
+	}
+	small_sort(a);
+	while (ft_lstsize(*b) > 0)
+	{
+		pa(a, b);
 	}
 }

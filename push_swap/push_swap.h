@@ -6,19 +6,19 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:50:00 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/14 19:39:05 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/21 20:09:49 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-#	define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#	include <unistd.h>
-#	include <stdlib.h>
-#	include <limits.h>
-#	include <stdio.h>
-#	include "libft.h"
-#	include "ft_printf.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
+# include <stdio.h>
+# include "libft.h"
+# include "ft_printf.h"
 
 // Stack
 typedef struct s_list
@@ -64,7 +64,10 @@ void	are_valid_args(char *argv);
 
 // MAIN
 void	init_values(t_list **lst, int value);
-void	free_stack(t_list **lst);
+int		process_args(char *argv, t_list **lst);
+
+// Utils
+void	free_stacks(t_list **a, t_list **b);
 void	ft_error(char *message, t_list **a, t_list **b);
 int		is_sorted(t_list *a);
 
@@ -74,12 +77,9 @@ void	move_to_top(t_list **a, int pos);
 void	small_sort(t_list **a);
 void	simple_sort(t_list **a, t_list **b);
 
-void quick_sort(t_list **a, t_list **b);
-void sort_b(t_list **b);
-void sort_a(t_list **a);
-int get_pivot(t_list **a);
-int is_closer_to_end(t_list **lst, t_list *target);
-void move_to_top_a(t_list **a, t_list *target);
-void move_to_top_b(t_list **b, t_list *target);
+void	radix_sort(t_list **a, t_list **b);
+void	process_bits(t_list **a, t_list **b, int i, int size);
+int		get_max_bits(t_list **lst);
+void	assign_indexes(t_list **lst);
 
 #endif

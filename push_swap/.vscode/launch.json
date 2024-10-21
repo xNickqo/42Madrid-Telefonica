@@ -5,8 +5,8 @@
             "name": "Debug Exec",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/exec", // Ruta al ejecutable
-            "args": ["-9", "14", "0", "-1", "2", "7", "19", "4", "10", "3", "-14", "-5", "-3", "-7", "-12", "-13", "1", "18", "-8", "-2"], // Argumentos a pasar
+            "program": "${workspaceFolder}/push_swap", // Ruta al ejecutable
+            "args": ["1", "2", "5", "3", "-2", "0"], // Argumentos a pasar
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}", // Directorio de trabajo
             "environment": [],

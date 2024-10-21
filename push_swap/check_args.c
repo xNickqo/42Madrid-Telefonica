@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 20:45:14 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/01 23:41:42 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/21 20:39:47 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ void	are_valid_args(char *argv)
 	while (argv[i])
 	{
 		if (ft_is_sign(argv[i]) && argv[i - 1] != ' ' && i != 0)
-			ft_error("Error: signo mal colocado", NULL, NULL);
+			ft_error("Error: Misplaced sign", NULL, NULL);
 		if (ft_is_sign(argv[i]) && !ft_isdigit(argv[i + 1]))
-			ft_error("Error: signo sin numero", NULL, NULL);
+			ft_error("Error: Sign without number or repeated", NULL, NULL);
 		if (ft_isdigit(argv[i]) || argv[i] == ' ')
 			consecutive_signs = 0;
 		if (ft_is_sign(argv[i]) && consecutive_signs < 2)
 			consecutive_signs++;
 		if (!ft_isdigit(argv[i]) && !ft_is_sign(argv[i]) && argv[i] != ' ')
-			ft_error("Error: caracter no valido", NULL, NULL);	
+			ft_error("Error: Invalid character", NULL, NULL);
 		i++;
 	}
 }
@@ -59,15 +59,15 @@ void	check_args(int argc, char **argv)
 	int	i;
 
 	if (argc == 1)
-		ft_error("Error: debe haber argumentos", NULL, NULL);
-	i = 1;
-	while(i < argc)
+		ft_error("Error: Missing arguments", NULL, NULL);
+	i = argc - 1;
+	while (i >= 1)
 	{
 		if (argv[i][0] == '\0')
-			ft_error("Error el argumento no puede estra vacio", NULL, NULL);
+			ft_error("Error: Empty argument", NULL, NULL);
 		if (is_only_spaces(argv[i]))
-			ft_error("Error el argumento no debe contener solo espacios", NULL, NULL);
+			ft_error("Error: Argument with only spaces", NULL, NULL);
 		are_valid_args(argv[i]);
-		i++;
+		i--;
 	}
 }
