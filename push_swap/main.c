@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:49:33 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/21 20:41:32 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:59:44 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	process_args(char *argv, t_list **lst)
 {
 	char	**split;
 	int		i;
-	int		num;
+	long	num;
 	int		count;
 	int		len;
 
@@ -83,8 +83,6 @@ int	main(int argc, char *argv[])
 		else
 			radix_sort(&a, &b);
 	}
-	/* ft_printf("\n\nLista ordenada:");
-    printlst(a, b); */
 	free_stacks(&a, &b);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 20:45:14 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/21 20:39:47 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:02:09 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	are_valid_args(char *argv)
 
 void	check_args(int argc, char **argv)
 {
-	int	i;
+	int		i;
+	long	tmp;
 
 	if (argc == 1)
 		ft_error("Error: Missing arguments", NULL, NULL);
@@ -67,6 +68,9 @@ void	check_args(int argc, char **argv)
 			ft_error("Error: Empty argument", NULL, NULL);
 		if (is_only_spaces(argv[i]))
 			ft_error("Error: Argument with only spaces", NULL, NULL);
+		tmp = ft_atoi(argv[i]);
+		if (tmp < -2147483648 || tmp > 2147483647)
+			ft_error("Error: Number exceed limits", NULL, NULL);
 		are_valid_args(argv[i]);
 		i--;
 	}
