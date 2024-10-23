@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:49:33 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/22 20:34:27 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/22 20:49:25 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,10 @@ void	checker(t_list **a, t_list **b)
 		}
 		tmp = tmp->next;	
 	}
-	if (b != NULL)
-	{	
+	if (ft_lstsize(*b) != 0)
 		ft_printf("KO\n");
-		return ;
-	}
 	else
-	{	
-		ft_printf("KO\n");
-		return ;
-	}
+		ft_printf("OK\n");
 }
 
 /*Crea una lista e introduce los valores dentro si no estan repetidos*/

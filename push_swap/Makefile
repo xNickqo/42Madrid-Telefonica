@@ -8,9 +8,40 @@ SRC_DIR = .
 OBJ_DIR = ./OBJ
 
 # Archivos fuente
-SRC = $(wildcard $(SRC_DIR)/*.c)
-LIBFT_SRC = $(wildcard $(LIBFT_DIR)/*.c)
-PRINTF_SRC = $(wildcard $(PRINTF_DIR)/*.c)
+SRC = $(SRC_DIR)/check_args.c \
+      $(SRC_DIR)/list_utils.c \
+      $(SRC_DIR)/main.c \
+      $(SRC_DIR)/radix_sort.c \
+      $(SRC_DIR)/simple_sort.c \
+	  $(SRC_DIR)/push.c \
+	  $(SRC_DIR)/reverse_rotate.c \
+	  $(SRC_DIR)/rotate.c \
+	  $(SRC_DIR)/swap.c \
+	  $(SRC_DIR)/utils.c
+
+PRINTF_SRC = $(PRINTF_DIR)/ft_printf.c \
+      $(PRINTF_DIR)/ft_char.c \
+      $(PRINTF_DIR)/ft_int.c \
+      $(PRINTF_DIR)/ft_ptr.c \
+      $(PRINTF_DIR)/ft_str.c \
+	  $(PRINTF_DIR)/ft_uitoa.c \
+	  $(PRINTF_DIR)/ft_uitoa_hex.c \
+	  $(PRINTF_DIR)/ft_unsignedint.c \
+	  $(PRINTF_DIR)/ft_x.c \
+	  $(PRINTF_DIR)/ft_xupper.c \
+	  $(PRINTF_DIR)/ft_itoa.c \
+	  $(PRINTF_DIR)/ft_strlen.c
+
+LIBFT_SRC = $(LIBFT_DIR)/ft_atoi.c \
+      $(LIBFT_DIR)/ft_isdigit.c \
+      $(LIBFT_DIR)/ft_putchar_fd.c \
+      $(LIBFT_DIR)/ft_putendl_fd.c \
+	  $(LIBFT_DIR)/ft_putnbr_fd.c \
+	  $(LIBFT_DIR)/ft_split.c \
+	  $(LIBFT_DIR)/ft_strchr.c \
+	  $(LIBFT_DIR)/ft_striteri.c \
+	  $(LIBFT_DIR)/ft_putstr_fd.c \
+	  $(LIBFT_DIR)/ft_strlcpy.c
 
 ALL_SRC = $(LIBFT_SRC) $(PRINTF_SRC) $(SRC)
 
