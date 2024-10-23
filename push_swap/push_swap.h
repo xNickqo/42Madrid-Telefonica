@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:50:00 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/21 20:09:49 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:22:54 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
-void	printlst(t_list *a, t_list *b);
+//void	printlst(t_list *a, t_list *b);
 
 // Instruction functions
 int		swap(t_list **lst);

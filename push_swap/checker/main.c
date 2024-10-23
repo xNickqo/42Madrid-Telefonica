@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 19:49:33 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/22 20:49:25 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:25:04 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	checker(t_list **a, t_list **b)
 	tmp = *a;
 	while (tmp && tmp->next)
 	{
-		if(tmp->value > tmp->next->value)
-		{	
+		if (tmp->value > tmp->next->value)
+		{
 			ft_printf("KO\n");
 			return ;
 		}
-		tmp = tmp->next;	
+		tmp = tmp->next;
 	}
 	if (ft_lstsize(*b) != 0)
 		ft_printf("KO\n");

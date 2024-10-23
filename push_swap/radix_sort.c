@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/04 18:58:11 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/22 19:53:53 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:23:27 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,6 @@ void	process_bits(t_list **a, t_list **b, int i, int size)
 	3. Mientras el indice del bit sea menor que el max_bits procesa los bits
 		de esa posicion y mueve todo a la lista A y asi reiteradamente cambiando
 		de posicion de bit, es decir, primero con 0 luego 100, luego 1000...
-
-   	github explicacion: https://github.com/42YerevanProjects/push_swap/tree/master
 */
 void	radix_sort(t_list **a, t_list **b)
 {

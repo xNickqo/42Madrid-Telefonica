@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 22:13:16 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/22 16:10:38 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:24:21 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	ft_lstsize(t_list *lst)
 	return (i);
 }
 
-void	printlst(t_list *a, t_list *b)
+/* void	printlst(t_list *a, t_list *b)
 {
 	ft_putstr_fd("\nA: ", 1);
 	while (a)
@@ -97,3 +97,4 @@ void	printlst(t_list *a, t_list *b)
 	}
 	ft_putstr_fd("\n\n", 1);
 }
+ */
