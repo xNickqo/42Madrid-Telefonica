@@ -6,9 +6,17 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:29:01 by niclopez          #+#    #+#             */
-/*   Updated: 2024/11/27 20:27:32 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/12/02 18:14:44 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* 	
+	open, close, read, write,
+	malloc, free, perror,
+	strerror, access, dup, dup2,
+	execve, exit, fork, pipe,
+	unlink, wait, waitpid 
+*/
 
 #ifndef PIPEX_H
 # define PIPEX_H

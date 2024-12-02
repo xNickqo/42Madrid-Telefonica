@@ -6,11 +6,12 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:22:46 by niclopez          #+#    #+#             */
-/*   Updated: 2024/11/27 20:57:55 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:24:09 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
 
 /*Uso de dup2 para redirigir los descriptores de archivo: 
 En las funciones child y parent, estás llamando a dup2 para redirigir los 
@@ -40,6 +41,13 @@ void	exec(char *command, char **env)
 	}
 
 	//Funcion que encuentre la ubicacion del comando a usar
+	char *path = "/bin/ls";
+	if ((execve(path, split, env) == -1))
+	{
+		ft_putstr_fd("Command not found:  ", 2);
+		ft_putendl_fd(split[0], 2);
+		ft_free(split);
+	}
 	
 }
 
@@ -47,10 +55,18 @@ void	child(char **argv, int *parent_fd, char **env)
 {
 	int	fd;
 
+	// Abrimos el archivo de lectura 
 	fd = open_file(argv[1], 0);
+
+	// Redirige la entrada estandar (STDIN) al archivo (argv[1])
 	dup2(fd, 0);
+
+	// Redirige la salida estandar (STDOUT) al descriptor de escritura de la pipe
 	dup2(parent_fd[1], 1);
+
 	close(parent_fd[0]);
+
+	// Ejecuta el comando especificado
 	exec(argv[2], env);
 }
 
@@ -58,17 +74,25 @@ void	parent(char **argv, int *parent_fd, char **env)
 {
 	int		fd;
 
+	// Abrimos el archvo de escritura
 	fd = open_file(argv[4], 1);
+
+	// Redirige  la salida estandar (STDOUT) al archivo (argv[4])
 	dup2(fd, 1);
+
+	// Redirige la entrada estandar (STDIN) a la lectura de la pipe , haciendo que el comando se lea desde la pipe
 	dup2(parent_fd[0], 0);
+	
 	close(parent_fd[1]);
+
+	// Ejecuta el comando especificado
 	exec(argv[3], env);
 }
 
 int	main(int argc, char **argv, char **env)
 {
 	int	parent_fd[2];
-	int	pid;
+	pid_t	pid;
 
 	if(argc != 5)
 		return 1;
@@ -80,7 +104,7 @@ int	main(int argc, char **argv, char **env)
 	if(pid == -1)
 		return 1;
 	
-	if (!pid)
+	if (pid == 0)
 		child(argv, parent_fd, env);
 	parent(argv, parent_fd, env);
 	
