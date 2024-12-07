@@ -6,11 +6,17 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 20:20:34 by niclopez          #+#    #+#             */
-/*   Updated: 2024/12/02 18:45:10 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/12/07 21:06:46 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	ft_error(char *msg, int exit_code)
+{
+    perror(msg);
+    exit(exit_code);
+}
 
 void	ft_free(char **split)
 {
@@ -25,19 +31,21 @@ void	ft_free(char **split)
 	free(split);
 }
 
-
-int	open_file(char* file, int n)
+int open_file(char *file, int mode)
 {
-	int ret;
+    int fd;
 
-	if(n == 0)
-		ret = open(file, O_RDONLY);
-	if(n == 1)
-		ret = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if(ret == -1)
-	{
-		perror("Error, can't open the file");
-		return 1;
-	}
-	return (ret);
+    if (mode == 0)
+    {
+        fd = open(file, O_RDONLY, 0777);
+        if (fd == -1)
+            ft_error("Error opening input file", EXIT_FAILURE);
+    }
+    if (mode == 1)
+    {
+        fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+        if (fd == -1)
+            ft_error("Error opening output file", EXIT_FAILURE);
+    }
+    return (fd);
 }

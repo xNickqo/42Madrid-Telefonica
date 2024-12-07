@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:29:01 by niclopez          #+#    #+#             */
-/*   Updated: 2024/12/02 18:14:44 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/12/07 19:19:58 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include "libft.h"
 # include "ft_printf.h"
 
+void	ft_error(char *msg, int exit_code);
 void	ft_free(char **split);
 int	    open_file(char* file, int n);
 
