@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 14:29:01 by niclopez          #+#    #+#             */
-/*   Updated: 2024/10/22 18:10:27 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/12/09 21:38:17 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 #include <stdio.h>
 
 /*Convierte una cadena de caracteres(numeros) en int*/
-
 long	ft_atoi(const char *str)
 {
 	long	resultado;
-	int	signo;
+	int		signo;
 
 	signo = 1;
 	resultado = 0;

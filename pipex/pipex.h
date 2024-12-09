@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:29:01 by niclopez          #+#    #+#             */
-/*   Updated: 2024/12/07 19:19:58 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/12/09 21:38:15 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 	execve, exit, fork, pipe,
 	unlink, wait, waitpid 
 */
-
 #ifndef PIPEX_H
 # define PIPEX_H
 
@@ -32,8 +31,10 @@
 # include "libft.h"
 # include "ft_printf.h"
 
+char	*get_env_path(char **env);
+char	*find_cmd(char *cmd, char **env);
 void	ft_error(char *msg, int exit_code);
 void	ft_free(char **split);
-int	    open_file(char* file, int n);
+int		open_file(char *file, int n);
 
 #endif
