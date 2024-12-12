@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:22:46 by niclopez          #+#    #+#             */
-/*   Updated: 2024/12/12 17:21:58 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/12/12 21:28:08 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	parent(char **argv, int *p_fd, char **env)
 int	main(int argc, char **argv, char **env)
 {
 	int		p_fd[2];
-	pid_t	pid;
+	pid_t	pid[2];
 	int		status;
 
 	if (argc != 5)
@@ -138,16 +138,26 @@ int	main(int argc, char **argv, char **env)
 	}
 	if (pipe(p_fd) == -1)
 		ft_error("Error creating the pipe", EXIT_FAILURE);
-	pid = fork();
-	if (pid == -1)
-		ft_error("Error in pid", EXIT_FAILURE);
-	if (pid == 0)
+	pid[0] = fork();
+	if (pid[0] == -1)
+		ft_error("Error in pid[0]", EXIT_FAILURE);
+	if (pid[0] == 0)
 		child(argv, p_fd, env);
-	else
-	{
-		if (waitpid(pid, &status, 0) == -1)
-			ft_error("Error waiting for child process", EXIT_FAILURE);
+	
+	
+	pid[1] = fork();
+	if (pid[1] == -1)
+		ft_error("Error in pid[1]", EXIT_FAILURE);
+	if (pid[1] == 0)
 		parent(argv, p_fd, env);
+	
+	close(p_fd[0]);
+	close(p_fd[1]);
+
+	int i = 0;
+	while(i < 2)
+	{
+		waitpid(pid[i], &status, 0);
+		i++;
 	}
-	exit(EXIT_SUCCESS);
 }
