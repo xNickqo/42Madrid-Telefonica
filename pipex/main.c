@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:22:46 by niclopez          #+#    #+#             */
-/*   Updated: 2024/12/09 21:38:13 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:21:58 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,11 @@ void	child(char **argv, int *p_fd, char **env)
 	char	*infile;
 
 	infile = argv[1];
+	fd = open_file(infile, 0);
+	dup2(fd, STDIN_FILENO);
+	close(fd);
 	fd = open_file(infile, 1);
-	dup2(fd, STDOUT_FILENO);
+	dup2(p_fd[1], STDOUT_FILENO);
 	close(fd);
 	close(p_fd[0]);
 	exec(argv[2], env);
@@ -97,7 +100,7 @@ void	parent(char **argv, int *p_fd, char **env)
 	infile = argv[1];
 	outfile = argv[4];
 	fd = open_file(infile, 0);
-	dup2(fd, STDIN_FILENO);
+	dup2(p_fd[0], STDIN_FILENO);
 	close(fd);
 	fd = open_file(outfile, 1);
 	dup2(fd, STDOUT_FILENO);
@@ -146,6 +149,5 @@ int	main(int argc, char **argv, char **env)
 			ft_error("Error waiting for child process", EXIT_FAILURE);
 		parent(argv, p_fd, env);
 	}
-	close(p_fd[0]);
-	close(p_fd[1]);
+	exit(EXIT_SUCCESS);
 }
