@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:22:46 by niclopez          #+#    #+#             */
-/*   Updated: 2024/12/12 21:28:08 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/12/18 17:09:19 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,19 @@ void	parent(char **argv, int *p_fd, char **env)
 	exec(argv[3], env);
 }
 
+void	waitchilds(pid_t *pid)
+{
+	int	status;
+	int	i;
+
+	i = 0;
+	while (i < 2)
+	{
+		waitpid(pid[i], &status, 0);
+		i++;
+	}
+}
+
 /* 
 	Función: main
 	Descripción:
@@ -129,7 +142,6 @@ int	main(int argc, char **argv, char **env)
 {
 	int		p_fd[2];
 	pid_t	pid[2];
-	int		status;
 
 	if (argc != 5)
 	{
@@ -143,21 +155,12 @@ int	main(int argc, char **argv, char **env)
 		ft_error("Error in pid[0]", EXIT_FAILURE);
 	if (pid[0] == 0)
 		child(argv, p_fd, env);
-	
-	
 	pid[1] = fork();
 	if (pid[1] == -1)
 		ft_error("Error in pid[1]", EXIT_FAILURE);
 	if (pid[1] == 0)
 		parent(argv, p_fd, env);
-	
 	close(p_fd[0]);
 	close(p_fd[1]);
-
-	int i = 0;
-	while(i < 2)
-	{
-		waitpid(pid[i], &status, 0);
-		i++;
-	}
+	waitchilds(pid);
 }
