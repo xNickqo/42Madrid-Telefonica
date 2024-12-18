@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:22:46 by niclopez          #+#    #+#             */
-/*   Updated: 2024/12/18 17:09:19 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:40:47 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ void	child(char **argv, int *p_fd, char **env)
 
 	infile = argv[1];
 	fd = open_file(infile, 0);
-	dup2(fd, STDIN_FILENO);
+	if (dup2(fd, STDIN_FILENO) == -1)
+		ft_error("Error in dup2 child read", EXIT_FAILURE);
 	close(fd);
-	fd = open_file(infile, 1);
-	dup2(p_fd[1], STDOUT_FILENO);
-	close(fd);
+	if (dup2(p_fd[1], STDOUT_FILENO) == -1)
+		ft_error("Error in dup2 child write", EXIT_FAILURE);
 	close(p_fd[0]);
 	exec(argv[2], env);
 }
@@ -95,15 +95,13 @@ void	parent(char **argv, int *p_fd, char **env)
 {
 	int		fd;
 	char	*outfile;
-	char	*infile;
 
-	infile = argv[1];
 	outfile = argv[4];
-	fd = open_file(infile, 0);
-	dup2(p_fd[0], STDIN_FILENO);
-	close(fd);
+	if(dup2(p_fd[0], STDIN_FILENO) == -1)
+		ft_error("Error in dup2 child2 read", EXIT_FAILURE);
 	fd = open_file(outfile, 1);
-	dup2(fd, STDOUT_FILENO);
+	if(dup2(fd, STDOUT_FILENO) == -1)
+		ft_error("Error in dup2 child2 write", EXIT_FAILURE);
 	close(fd);
 	close(p_fd[1]);
 	exec(argv[3], env);

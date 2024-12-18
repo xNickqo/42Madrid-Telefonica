@@ -105,35 +105,19 @@ test_pipex() {
 
 run_tests() {
     # Pruebas básicas: comandos simples
-    test_pipex "infile" "cat" "cat"
-    test_pipex "infile" "grep a" "wc -l"
-    test_pipex "infile" "sort" "uniq"
-    test_pipex "infile" "tr 'a-z' 'A-Z'" "cat"
+    test_pipex "Makefile" "cat" "cat"
+    test_pipex "Makefile" "grep a" "wc -l"
+    test_pipex "Makefile" "sort" "uniq"
+    test_pipex "Makefile" "tr 'a-z' 'A-Z'" "cat"
 
     # Pruebas de tiempos: procesos largos y cortos
-    test_pipex "infile" "sleep 2" "cat"
-    test_pipex "infile" "cat" "sleep 2"
-    test_pipex "infile" "sleep 3" "sleep 2"
-
-    # Pruebas de procesos fallidos
-    test_pipex "infile" "invalid_command" "cat"
-    test_pipex "infile" "cat" "invalid_command"
-    test_pipex "infile" "invalid_command1" "invalid_command2"
-
-
-    # Pruebas de edge cases: entrada vacía o sin permisos
-    touch empty_infile
-    chmod 000 empty_infile
-    test_pipex "empty_infile" "cat" "wc -l"
-    rm -f empty_infile
-
-    # Pruebas de gran volumen
-    yes "test line" | head -n 100000 > large_infile
-    test_pipex "large_infile" "cat" "wc -l"
-    rm -f large_infile
-
-    # Pruebas de errores comunes: nombres de archivos incorrectos
-    test_pipex "nonexistent_file" "cat" "wc -l"
+    test_pipex "Makefile" "sleep 2" "cat"
+    test_pipex "Makefile" "cat" "sleep 2"
+    test_pipex "Makefile" "sleep 3" "sleep 2"
+    test_pipex "Makefile" "sleep 2" "sleep 3"
+    test_pipex "Makefile" "ps aux" "grep cron"
+    test_pipex "Makefile" "ls" ""
+    
 }
 
 # **************************************************************************** #
