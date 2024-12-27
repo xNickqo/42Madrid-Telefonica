@@ -6,24 +6,22 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 20:20:34 by niclopez          #+#    #+#             */
-/*   Updated: 2024/12/18 20:33:59 by niclopez         ###   ########.fr       */
+/*   Updated: 2024/12/27 19:57:39 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 /* 
-	Función: get_env_path
-	Descripción:
-		Busca la variable 'PATH' en el entorno recibido como argumento.
-		- Recorre el arreglo 'env' para encontrar la variable 
-			que comienza con "PATH=".
-	Parámetros:
-		- 'env': Arreglo de cadenas que representan el entorno del sistema.
-	Retorna:
-		- Un puntero al valor de la variable 'PATH' en el entorno. 
-			(EXCLUYENDO 'PATH=').
-*/
+Busca y devuelve el valor de la variable de entorno "PATH".
+Si no se encuentra "PATH", termina el programa con un mensaje de error.
+  
+Paso a paso:
+ * 1. Itera sobre cada elemento del array `env`.
+ * 2. Busca el valor "PATH=" en cada elemento de `env` mediante `ft_strncmp`.
+ * 3. Si lo encuentra, devuelve la parte de la cadena después de "PATH=".
+ * 4. Si no lo encuentra en ningún elemento, termina el programa.
+ */
 char	*get_env_path(char **env)
 {
 	int	i;
@@ -46,20 +44,22 @@ char	*get_env_path(char **env)
 }
 
 /* 
-	Función: find_cmd
-	Descripción:
-		Busca la ruta completa de un comando ejecutable.
-		- Obtiene el valor de la variable 'PATH' con 'get_env_path()'.
-		- Divide el 'PATH' en rutas individuales usando 'ft_split()'.
-		- Recorre cada ruta, concatenándola con el nombre del 
-			comando 'cmd' para generar una posible ruta completa.
-		- Verifica si el archivo en esa ruta es ejecutable utilizando `access`.
-	Parámetros:
-		- 'cmd': El comando que se desea encontrar.
-		- 'env': Arreglo de cadenas que representan el entorno del sistema.
-	Retorna:
-		- Un puntero a la ruta completa del comando, o NULL si no se encuentra.
-*/
+Busca el comando especificado en el entorno utilizando el PATH.
+Devuelve la ruta completa del comando si es encontrada, sino devuelve NULL.
+
+Paso a paso:
+ * 1. Obtiene la variable de entorno "PATH" llamando a `get_env_path`.
+ * 2. Divide la cadena "PATH" en diferentes directorios usando `ft_split`.
+ * 3. Itera sobre cada directorio en el array `paths`.
+ * 4. Para cada directorio, concatena el directorio con el comando 
+ * 		utilizando `ft_strjoin`.
+ * 5. Verifica si el archivo existe y tiene permisos de ejecución 
+ * 		usando `access(cmd_path, X_OK)`.
+ * 6. Si lo encuentra, libera el array de directorios `paths` y retorna 
+ * 		la ruta del comando.
+ * 7. Si no encuentra el comando en ninguno de los directorios, 
+ * 		libera el array de directorios y devuelve `NULL`.
+ */
 char	*find_cmd(char *cmd, char **env)
 {
 	char	*path_env;
@@ -88,16 +88,15 @@ char	*find_cmd(char *cmd, char **env)
 	return (NULL);
 }
 
-/* Muestra un mensaje de error en la salida estándar de errores (sterr) 
-	utilizando `perror` y finaliza la ejecución del programa 
-	con un código de salida especificado.*/
+/* Muestra un mensaje de error y termina el programa con el código de 
+salida proporcionado. */
 void	ft_error(char *msg, int exit_code)
 {
 	perror(msg);
 	exit(exit_code);
 }
 
-/* Libera la memoria asignada a un arreglo de cadenas. */
+/* Libera la memoria ocupada por un arreglo de cadenas (split) de strings. */
 void	ft_free(char **split)
 {
 	size_t	i;
@@ -111,19 +110,8 @@ void	ft_free(char **split)
 	free(split);
 }
 
-/* 
-	Función: open_file
-	Descripción:
-		Abre un archivo en el modo especificado.
-		- Si el modo es 0, se abre el archivo en modo LECTURA.
-		- Si el modo es 1, se abre el archivo en modo ESCRITURA, 
-		  	creando el archivo si no existe o truncándolo si ya existe.
-	Parámetros:
-		- 'file': El nombre del archivo a abrir.
-		- 'mode': El modo en que se abrirá el archivo.
-	Retorna:
-		- El descriptor de archivo abierto.
-*/
+/* Abre un archivo en modo lectura (0) o escritura (1) y retorna el 
+descriptor de archivo.*/
 int	open_file(char *file, int mode)
 {
 	int	fd;

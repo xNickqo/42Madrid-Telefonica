@@ -19,6 +19,11 @@ SEP_LINE="${YELLOW}--------------------------------------------------${NC}"
 #                                  Funciones                                   #
 # **************************************************************************** #
 
+# Redondea un número a 4 decimales
+round() {
+    echo "$1" | awk '{print sprintf("%.4f", $1)}'
+}
+
 # Imprime los contenidos de los archivos para compararlos
 print_files() {
     echo -e "${SEP_LINE}"
@@ -81,17 +86,23 @@ test_pipex() {
     ./pipex "$infile" "$cmd1" "$cmd2" "$outfile" 2>/dev/null
     end_time=$(date +%s.%N)
     pipex_duration=$(echo "$end_time - $start_time" | bc)
-    pipex_duration=$(printf "%.4f" "$pipex_duration")
+    pipex_duration=$(round "$pipex_duration")
 
     # Ejecuta el equivalente en bash y mide el tiempo
     start_time=$(date +%s.%N)
     < "$infile" bash -c "$cmd1 | $cmd2" > bash_out 2>/dev/null
     end_time=$(date +%s.%N)
     bash_duration=$(echo "$end_time - $start_time" | bc)
-    bash_duration=$(printf "%.4f" "$bash_duration")
+    bash_duration=$(round "$bash_duration")
 
     # Muestra los tiempos
     echo -e "Pipex: ${CYAN}$pipex_duration${NC}s | Bash: ${CYAN}$bash_duration${NC}s"
+
+    # Mostrar los resultados de ambos
+    echo -e "${BLUE}[Pipex Output]:${NC}"
+    cat "$outfile"
+    echo -e "${CYAN}[Bash Output]:${NC}"
+    cat "bash_out"
 
     # Compara salidas
     compare_outputs "$outfile" "bash_out" "$transformer"
@@ -109,6 +120,7 @@ run_tests() {
     test_pipex "Makefile" "grep a" "wc -l"
     test_pipex "Makefile" "sort" "uniq"
     test_pipex "Makefile" "tr 'a-z' 'A-Z'" "cat"
+    test_pipex "Makefile" "ls -lRa" "wc -l"
 
     # Pruebas de tiempos: procesos largos y cortos
     test_pipex "Makefile" "sleep 2" "cat"
