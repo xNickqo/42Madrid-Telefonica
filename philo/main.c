@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 22:29:40 by niclopez          #+#    #+#             */
-/*   Updated: 2025/01/29 23:17:22 by niclopez         ###   ########.fr       */
+/*   Updated: 2025/01/30 10:53:25 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,65 @@ pthread_mutex_unlock
 #include <sys/time.h>
 #include <pthread.h>
 
-void *saludo_hilo(){
-	printf("hola mundo desde un hilo\n");
+#define NUM_PHILOS 5
+
+pthread_mutex_t tenedores[NUM_PHILOS];
+
+void tomar_tenedores(int id) {
+    // Para evitar deadlock, los filósofos pares toman primero el derecho
+    if (id % 2 == 0) {
+        pthread_mutex_lock(&tenedores[(id + 1) % NUM_PHILOS]); // Tenedor derecho
+        pthread_mutex_lock(&tenedores[id]); // Tenedor izquierdo
+    } else {
+        pthread_mutex_lock(&tenedores[id]); // Tenedor izquierdo
+        pthread_mutex_lock(&tenedores[(id + 1) % NUM_PHILOS]); // Tenedor derecho
+    }
 }
 
-int	main(int argc, char **argv){
-	pthread_t hilo;
+void soltar_tenedores(int id) {
+    pthread_mutex_unlock(&tenedores[id]); // Soltar tenedor izquierdo
+    pthread_mutex_unlock(&tenedores[(id + 1) % NUM_PHILOS]); // Soltar tenedor derecho
+}
 
-	int res = pthread_create(&hilo, NULL, saludo_hilo, NULL);
-	printf("pthread_create: %d\n", res);
+void *filosofo(void *arg) {
+    int id = *(int *)arg;
 
+    while (1) {
+        printf("Filósofo %d está pensando...\n", id);
+        usleep(1000000); // Simula el pensamiento
 
-	pthread_join(hilo, NULL);
-	printf("pthread_join: %d\n", pthread_join(hilo, NULL));
+        printf("Filósofo %d intenta tomar los tenedores...\n", id);
+        tomar_tenedores(id);
 
-	return 0;
+        printf("Filósofo %d está comiendo...\n", id);
+        usleep(1000000); // Simula la comida
+
+        printf("Filósofo %d terminó de comer y suelta los tenedores...\n", id);
+        soltar_tenedores(id);
+    }
+}
+
+int	main(int argc, char **argv)
+{
+	pthread_t philos[NUM_PHILOS];
+	int id[NUM_PHILOS];
+	int i;
+
+	i = 0;
+	while(i < NUM_PHILOS)
+	{
+		pthread_mutex_init(&tenedores[i], NULL);
+		id[i] = i;
+		i++;
+	}
+
+	while(i > NUM_PHILOS)
+	{
+		pthread_create(&philos[i], NULL, filosofo, &id[i]);
+		pthread_join(philos[i], NULL);
+		pthread_mutex_destroy(&tenedores[i]);
+		i++;
+	}
+
+	return (0);
 }
