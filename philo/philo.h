@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 21:25:43 by niclopez          #+#    #+#             */
-/*   Updated: 2025/01/30 23:08:38 by niclopez         ###   ########.fr       */
+/*   Updated: 2025/02/28 00:00:12 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,8 @@ typedef struct s_philo {
     pthread_mutex_t *right_fork;
 }   t_philo;
 
+int	check_params(t_data *params, int argc, char *argv[]);
+int	ft_isint(const char *str);
+long	ft_atoi(const char *str);
 
 #endif
