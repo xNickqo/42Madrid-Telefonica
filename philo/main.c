@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 22:29:40 by niclopez          #+#    #+#             */
-/*   Updated: 2025/02/28 00:54:22 by niclopez         ###   ########.fr       */
+/*   Updated: 2025/02/28 00:56:23 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void print_status(int id, char *status)
 	pthread_mutex_unlock(&print_mutex);
 }
 
-void *philosopher_routine(void *arg) {
+void *philosopher_routine(void *arg)
+{
     t_philo	*p;
 
 	p = (t_philo *)arg;
@@ -81,7 +82,8 @@ void *philosopher_routine(void *arg) {
     return (NULL);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
 	t_data	data;
 	t_philo	*philos;
 	int		i;
@@ -143,5 +145,3 @@ int main(int argc, char **argv) {
 
     return (0);
 }
-
-
