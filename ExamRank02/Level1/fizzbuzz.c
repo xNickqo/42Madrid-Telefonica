@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:44:30 by niclopez          #+#    #+#             */
-/*   Updated: 2024/12/18 17:53:09 by niclopez         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:06:01 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ If the number is both a multiple of 3 and a multiple of 5, it prints 'fizzbuzz' 
 
 #include <unistd.h>
 
-void write_num(int num){
+void putnbr(int num){
     char str[10] = "0123456789";
     if(num > 9)
-        write_num(num / 10);
+        putnbr(num / 10);
     write(1, &str[num % 10], 1);
 }
 
@@ -40,7 +40,7 @@ int main (int argc, char **argv){
         else if(i % 15 == 0)
             write(1,"fizzbuzz",8);
         else
-            write_num(i);
+            putnbr(i);
         i++;
         write(1, "\n", 1);
     }
