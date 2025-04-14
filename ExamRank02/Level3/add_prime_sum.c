@@ -6,9 +6,36 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 23:37:48 by niclopez          #+#    #+#             */
-/*   Updated: 2025/03/04 18:49:04 by niclopez         ###   ########.fr       */
+/*   Updated: 2025/04/14 20:31:28 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+
+Assignment name  : add_prime_sum
+Expected files   : add_prime_sum.c
+Allowed functions: write, exit
+--------------------------------------------------------------------------------
+
+Write a program that takes a positive integer as argument and displays the sum
+of all prime numbers inferior or equal to it followed by a newline.
+
+If the number of arguments is not 1, or the argument is not a positive number,
+just display 0 followed by a newline.
+
+Yes, the examples are right.
+
+Examples:
+
+$>./add_prime_sum 5
+10
+$>./add_prime_sum 7 | cat -e
+17$
+$>./add_prime_sum | cat -e
+0$
+$>
+
+*/
 
 #include <unistd.h>
 

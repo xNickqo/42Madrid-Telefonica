@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 18:54:57 by niclopez          #+#    #+#             */
-/*   Updated: 2025/03/11 15:26:14 by niclopez         ###   ########.fr       */
+/*   Updated: 2025/04/14 20:39:36 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,46 @@ $>*/
 #include <unistd.h>
 #include <stdio.h>
 
+int ft_strlen(char *s){
+    int i = 0;
+    while(s[i])
+        i++;
+    return i;
+}
+
+int is_space(char c) {
+    return (c == ' ' || c == '\t');
+}
+
 int main(int argc, char **argv){
     char *str = argv[1];
     if(argc == 2){
-        int i = 0;
-        while(str[i])
-            i++;
-        while(str[i] == ' ' || str[i] == '\t')
+        int i = ft_strlen(str);
+        
+        //Ignoramos los espacios del final
+        while(is_space(str[i]))
             i--;
+
         int final = i - 1;
 
-        int space = 0;
+        //Saltamos los espacios al comienzo
         int j = 0;
         while (str[j] == ' ' || str[j] == '\t')
             j++;
-        while (j <= final) {
-            if (str[j] == ' ' || str[j] == '\t') {
+
+        int start = j;
+        int space = 0;
+        while (start <= final) {
+            if (is_space(str[start])) {
                 if (!space) {
                     write(1, " ", 1);
                     space = 1;
                 }
             } else {
-                write(1, &str[j], 1);
+                write(1, &str[start], 1);
                 space = 0;
             }
-            j++;
+            start++;
         }
     }
     write(1, "\n", 1);
