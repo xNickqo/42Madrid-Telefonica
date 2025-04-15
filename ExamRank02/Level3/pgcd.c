@@ -31,7 +31,43 @@ $
 #include <stdio.h>
 #include <stdlib.h>
 
-void	pgcd(int a, int b)
+// Función para calcular el GCD (Máximo Común Divisor) usando el algoritmo de Euclides
+int pgcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+int main(int argc, char **argv) {
+    if (argc == 3) {
+        // Usamos malloc para almacenar los números de entrada
+        int *num1 = (int *)malloc(sizeof(int));
+        int *num2 = (int *)malloc(sizeof(int));
+        
+        if (num1 == NULL || num2 == NULL) 
+            return 1;
+        
+        *num1 = atoi(argv[1]);
+        *num2 = atoi(argv[2]);
+        
+        if (*num1 > 0 && *num2 > 0) {
+            printf("%d\n", pgcd(*num1, *num2));
+        }
+        
+        free(num1);
+        free(num2);
+    } else {
+        printf("\n");
+    }
+    
+    return 0;
+}
+
+
+/* void	ft_pgcd(int a, int b)
 {
 	int i;
 	int gcd;
@@ -54,3 +90,4 @@ int main(int argc, char **argv){
     printf("\n");
     return 0;
 }
+ */
