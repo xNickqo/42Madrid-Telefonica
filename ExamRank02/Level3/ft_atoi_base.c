@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:29:48 by niclopez          #+#    #+#             */
-/*   Updated: 2025/04/14 20:48:25 by niclopez         ###   ########.fr       */
+/*   Updated: 2025/04/16 20:50:30 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,6 @@ int is_space(char c) {
     return (c == ' ') || (c == '\t');
 }
 
-int is_alpha(char c) {
-    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
-}
-
 int is_digit(char c) {
     return (c >= '0' && c <= '9');
 }
@@ -72,12 +68,10 @@ int ft_atoi_base(const char *str, int str_base) {
 
         if (is_digit(str[i])) {
             digit_value = str[i] - '0';
-        } else if (is_alpha(str[i])) {
-            if (str[i] >= 'a' && str[i] <= 'f') {
-                digit_value = str[i] - 'a' + 10;
-            } else if (str[i] >= 'A' && str[i] <= 'F') {
-                digit_value = str[i] - 'A' + 10;
-            }
+        } else if (str[i] >= 'a' && str[i] <= 'f') {
+            digit_value = str[i] - 'a' + 10;
+        } else if (str[i] >= 'A' && str[i] <= 'F') {
+            digit_value = str[i] - 'A' + 10;
         }
         //printf("Carácter: %c -> Valor: %d\n", str[i], digit_value);
         

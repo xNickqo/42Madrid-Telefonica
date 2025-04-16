@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rot13.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 17:53:56 by niclopez          #+#    #+#             */
-/*   Updated: 2025/03/03 19:52:00 by niclopez         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 /*
 Write a program that takes a string and displays it, replacing each of its
@@ -27,9 +16,11 @@ int main(int argc, char **argv) {
         int i = 0;
         while (argv[1][i]) {
             char c = argv[1][i];
-            
+
+            // Si es minúscula
             if (c >= 'a' && c <= 'z')
                 c = ((c - 'a' + 13) % 26) + 'a';
+            // Si es mayúscula
             else if (c >= 'A' && c <= 'Z')
                 c = ((c - 'A' + 13) % 26) + 'A';
 

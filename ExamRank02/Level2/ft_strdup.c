@@ -1,17 +1,20 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 23:23:12 by niclopez          #+#    #+#             */
-/*   Updated: 2025/03/03 23:33:15 by niclopez         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*
 
+Assignment name  : ft_strdup
+Expected files   : ft_strdup.c
+Allowed functions: malloc
+--------------------------------------------------------------------------------
+
+Reproduce the behavior of the function strdup (man strdup).
+
+Your function must be declared as follows:
+
+char    *ft_strdup(char *src);
+
+*/
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h> 
 
 char    *ft_strdup(char *src){
     char    *new_src;
@@ -21,7 +24,7 @@ char    *ft_strdup(char *src){
     while (src[i])
         i++;
 
-    new_src = (char *)malloc(sizeof(char) * i + 1);
+    new_src = (char *)malloc(sizeof(char) * (i + 1));
     if(new_src == 0)
         return 0;
     
@@ -35,9 +38,29 @@ char    *ft_strdup(char *src){
     return new_src;
 }
 
-int main(){
-    char *str = "hola mundo";
+int main() {
+    char *tests[] = {
+        "Hola mundo",
+        "",
+        "1234567890",
+        "Una línea más larga con varios caracteres.",
+        "Espacios     múltiples\t\t y tabs\n",
+        NULL
+    };
 
-    char *new_str = ft_strdup(str);
-    printf("Esto es una copia de la cadena original: %s\n", new_str);
+    int i = 0;
+    while (tests[i]) {
+        char *original = strdup(tests[i]);
+        char *copy = ft_strdup(tests[i]);
+
+        printf("Original : \"%s\"\n", original);
+        printf("ft_strdup: \"%s\"\n", copy);
+        printf("¿Iguales?: %s\n\n", strcmp(original, copy) == 0 ? "Sí" : "No");
+
+        free(original);
+        free(copy);
+        i++;
+    }
+
+    return 0;
 }

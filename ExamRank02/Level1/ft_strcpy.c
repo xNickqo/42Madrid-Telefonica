@@ -1,22 +1,25 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/18 18:05:14 by niclopez          #+#    #+#             */
-/*   Updated: 2024/12/18 18:10:05 by niclopez         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*
 
-char strcpy(char *dest, char *src){
+Assignment name  : ft_strcpy
+Expected files   : ft_strcpy.c
+Allowed functions: 
+--------------------------------------------------------------------------------
+
+Reproduce the behavior of the function strcpy (man strcpy).
+
+Your function must be declared as follows:
+
+char    *ft_strcpy(char *s1, char *s2);
+
+*/
+
+char strcpy(char *s1, char *s2)
+{
     int i = 0;
-    while (src[i] != '\0')
-    {
-        src[i] = dest[i];
+    while (s2[i] != '\0'){
+        s1[i] = s2[i];
         i++;
     }
-    src[i] = '\0';
-    return src;
+    s1[i] = '\0';
+    return s1;
 }

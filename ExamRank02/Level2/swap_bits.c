@@ -1,39 +1,28 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   swap_bits.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 19:53:50 by niclopez          #+#    #+#             */
-/*   Updated: 2025/01/21 20:01:10 by niclopez         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*
 
-#include <stdio.h>
+Assignment name  : swap_bits
+Expected files   : swap_bits.c
+Allowed functions:
+--------------------------------------------------------------------------------
 
-unsigned char	swap_bits(unsigned char octet){
-    return ((octet >> 4) | (octet << 4));
-}
+Write a function that takes a byte, swaps its halves (like the example) and
+returns the result.
 
-void print_bits(unsigned char octet) {
-    int i = 7;
-    while(i >= 0) {
-        printf("%d", (octet >> i) & 1);
-        i--;
-    }
+Your function must be declared as follows:
 
-    printf("\n");
-}
+unsigned char	swap_bits(unsigned char octet);
 
-int main() {
-    unsigned char bits = 0b01000101;
-    printf("Original: ");
-    print_bits(bits);
+Example:
 
-    unsigned char swapped = swap_bits(bits);
-    printf("Swapped:  ");
-    print_bits(swapped);
+  1 byte
+_____________
+ 0100 | 0001
+     \ /
+     / \
+ 0001 | 0100
 
-    return 0;
+*/
+
+unsigned char swap_bits(unsigned char octet) {
+	return ((octet >> 4) | (octet << 4));
 }

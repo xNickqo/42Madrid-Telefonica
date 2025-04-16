@@ -1,16 +1,23 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 21:53:50 by niclopez          #+#    #+#             */
-/*   Updated: 2025/03/03 22:45:04 by niclopez         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*
+
+Assignment name  : ft_atoi
+Expected files   : ft_atoi.c
+Allowed functions: None
+--------------------------------------------------------------------------------
+
+Write a function that converts the string argument str to an integer (type int)
+and returns it.
+
+It works much like the standard atoi(const char *str) function, see the man.
+
+Your function must be declared as follows:
+
+int	ft_atoi(const char *str);
+
+*/
 
 #include <stdio.h>
+#include <stdlib.h>
 
 int ft_atoi(const char *str){
     int	resultado;
@@ -20,16 +27,13 @@ int ft_atoi(const char *str){
 	resultado = 0;
 	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
 		str++;
-    int signo_count = 0;
-    while (*str == '-' || *str == '+') {
-        if (*str == '-') {
-            signo_count++;
-        }
+    
+    if (*str == '-' || *str == '+') {
+        if (*str == '-')
+            signo = -1;
         str++;
     }
-    if (signo_count % 2 != 0) {
-        signo = -1;
-    }
+	
 	while (*str >= '0' && *str <= '9')
 	{
 		resultado = resultado * 10 + (*str - '0');
@@ -39,9 +43,34 @@ int ft_atoi(const char *str){
 }
 
 int main(){
-    char	a[] = "   --+2147483648    ";
+
+    /* char	a[] = "   --+2147483648    ";
 	int	num;
 
 	num = ft_atoi(a);
-	printf("%d", num);
+	printf("%d", num); */
+
+	const char *tests[] = {
+        "42",
+        "   \t\n\r\v\f+123",
+        "   -42",
+        "   ---+--+1234ab567",
+        "2147483647",
+        "-2147483648",
+        "   --+2147483648    ",
+        "+-12",
+        "++--+--123",
+        "00000123",
+        "abcd",
+        "",
+        NULL
+    };
+
+    for (int i = 0; tests[i] != NULL; i++) {
+        int std = atoi(tests[i]);
+        int mine = ft_atoi(tests[i]);
+        printf("Input: %-25s | atoi: %-12d | ft_atoi: %-12d\n", tests[i], std, mine);
+    }
+
+	return 0;
 }

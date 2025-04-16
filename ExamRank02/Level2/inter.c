@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   inter.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 20:03:45 by niclopez          #+#    #+#             */
-/*   Updated: 2025/04/11 14:57:33 by niclopez         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include <unistd.h>
 
@@ -36,7 +25,8 @@ int main(int argc, char **argv){
     if(argc == 3){
         int i = 0;
         while(argv[1][i]){
-            int j = 0;
+            // Verificar si el carácter está en el segundo string
+			int j = 0;
             int contador = 0;
             while(argv[2][j]){
                 if(argv[2][j] == argv[1][i]){
@@ -56,8 +46,11 @@ int main(int argc, char **argv){
                 }
                 z++;
             }
+
             if (contador == 1 && ya_impreso == 0) 
                 write(1, &argv[1][i], 1);
+
+			
             i++;
         }
     }

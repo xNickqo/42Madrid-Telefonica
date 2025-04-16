@@ -6,7 +6,7 @@
 /*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 23:37:48 by niclopez          #+#    #+#             */
-/*   Updated: 2025/04/14 20:31:28 by niclopez         ###   ########.fr       */
+/*   Updated: 2025/04/16 20:45:44 by niclopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int ft_atoi(char *s) {
     int i = 0;
     int res = 0;
     while (s[i]){
-        res = res * 10 + (s[i++] - '0');
+        res = res * 10 + (s[i] - '0');
+        i++;
     }
     return res;
 }
@@ -75,11 +76,11 @@ int ft_is_prime(int n) {
 
 int main(int argc, char **argv)
 {
-    int sum = 0;
-    int n = ft_atoi(argv[1]);
-    
     if (argc == 2)
     {
+        int sum = 0;
+        int n = ft_atoi(argv[1]);
+
         int i = 2;
         while (i <= n)
         {

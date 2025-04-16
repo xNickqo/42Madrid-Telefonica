@@ -1,17 +1,19 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 22:45:57 by niclopez          #+#    #+#             */
-/*   Updated: 2025/03/03 23:08:43 by niclopez         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*
 
+Assignment name  : ft_strcmp
+Expected files   : ft_strcmp.c
+Allowed functions:
+--------------------------------------------------------------------------------
 
+Reproduce the behavior of the function strcmp (man strcmp).
+
+Your function must be declared as follows:
+
+int    ft_strcmp(char *s1, char *s2);
+
+*/
 #include <stdio.h>
+#include <string.h> 
 
 int ft_strcmp(char *s1, char *s2){
     int i = 0;
@@ -21,10 +23,31 @@ int ft_strcmp(char *s1, char *s2){
 
 }
 
-int	main(void)
-{
-	char s1[100] = "abc";
-	char s2[] = "aba";
-	int x = ft_strcmp(s1, s2);
-	printf("%d", x);
+int main(void) {
+    // Prueba 1: Cadenas iguales
+    char *s1 = "abc";
+    char *s2 = "abc";
+    printf("Test 1: '%s' vs '%s' | strcmp: %-3d | ft_strcmp: %-3d\n", s1, s2, strcmp(s1, s2), ft_strcmp(s1, s2));
+
+    // Prueba 2: Cadenas diferentes
+    s1 = "abc";
+    s2 = "abd";
+    printf("Test 2: '%s' vs '%s' | strcmp: %-3d | ft_strcmp: %-3d\n", s1, s2, strcmp(s1, s2), ft_strcmp(s1, s2));
+
+    // Prueba 3: Cadena vacía contra cadena no vacía
+    s1 = "";
+    s2 = "non-empty";
+    printf("Test 3: '%s' vs '%s' | strcmp: %-3d | ft_strcmp: %-3d\n", s1, s2, strcmp(s1, s2), ft_strcmp(s1, s2));
+
+    // Prueba 4: Cadenas con letras mayúsculas y minúsculas
+    s1 = "Hello";
+    s2 = "hello";
+    printf("Test 4: '%s' vs '%s' | strcmp: %-3d | ft_strcmp: %-3d\n", s1, s2, strcmp(s1, s2), ft_strcmp(s1, s2));
+
+    // Prueba 5: Cadenas numéricas
+    s1 = "123";
+    s2 = "123";
+    printf("Test 5: '%s' vs '%s' | strcmp: %-3d | ft_strcmp: %-3d\n", s1, s2, strcmp(s1, s2), ft_strcmp(s1, s2));
+
+    return 0;
 }
