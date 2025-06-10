@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   epur_str.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: niclopez <niclopez@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/04 18:54:57 by niclopez          #+#    #+#             */
-/*   Updated: 2025/04/14 20:39:36 by niclopez         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 /*
 Write a program that takes a string, and displays this string with exactly one
 space between words, with no spaces or tabs either at the beginning or the end,
